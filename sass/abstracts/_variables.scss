@@ -2,4 +2,23 @@ $base: 16px;
 
 //Screen Size
 $width-mobile: calculateRem(375px);
+$width-desktop: calculateRem(1440px);
 
+//Primary Colors
+$color-moderate-blue: "hsl(238, 40%, 52%)";
+$color-soft-red: "hsl(358, 79%, 66%)";
+$color-light-grayish-blue: "hsl(239, 57%, 85%)";
+$color-pale-red: "hsl(357, 100%, 86%)";
+
+//Neutral Colors
+$color-dart-blue: "hsl(212, 24%, 26%)";
+$color-grayish-blue: "hsl(211, 10%, 45%)";
+$color-light-gray: "hsl(223, 19%, 93%)";
+$color-very-light-gray: "hsl(228, 33%, 97%)";
+$color-white: "hsl(0, 0%, 100%)";
+
+//Fonts
+$font-family:'Rubik, sans-serif';
+$font-weight-light: 400;
+$font-weight-medium: 500;
+$font-weight-heavy: 700;
