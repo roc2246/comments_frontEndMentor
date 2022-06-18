@@ -1,24 +1,38 @@
 $base: 16px;
 
 //Screen Size
-$width-mobile: calculateRem(375px);
-$width-desktop: calculateRem(1440px);
+$screen-widths:(
+    "mobile":calculateRem(375px),
+    "desktop":calculateRem(1440px),
+);
 
-//Primary Colors
-$color-moderate-blue: "hsl(238, 40%, 52%)";
-$color-soft-red: "hsl(358, 79%, 66%)";
-$color-light-grayish-blue: "hsl(239, 57%, 85%)";
-$color-pale-red: "hsl(357, 100%, 86%)";
+//Screen position
+$margin: auto;
 
-//Neutral Colors
-$color-dart-blue: "hsl(212, 24%, 26%)";
-$color-grayish-blue: "hsl(211, 10%, 45%)";
-$color-light-gray: "hsl(223, 19%, 93%)";
-$color-very-light-gray: "hsl(228, 33%, 97%)";
-$color-white: "hsl(0, 0%, 100%)";
+//Colors
+$colors-primary: (
+  "moderate blue": hsl(238, 40%, 52%),
+  "soft red": hsl(358, 79%, 66%),
+  "light grayish blue": hsl(239, 57%, 85%),
+  "pale red": hsl(357, 100%, 86%),
+);
+
+$colors-neutral: (
+  "dark blue": hsl(212, 24%, 26%),
+  "grayish blue": hsl(211, 10%, 45%),
+  "light gray": hsl(223, 19%, 93%),
+  "very light gray": hsl(228, 33%, 97%),
+  "white": hsl(0, 0%, 100%),
+);
 
 //Fonts
-$font-family:'Rubik, sans-serif';
-$font-weight-light: 400;
-$font-weight-medium: 500;
-$font-weight-heavy: 700;
+$font-family: "Rubik, sans-serif";
+$font-weights: (
+  "light": 400,
+  "medium": 500,
+  "large": 700,
+);
+
+//Elements
+$width: #{'min(70rem, 90%)'};
+$height: auto;
