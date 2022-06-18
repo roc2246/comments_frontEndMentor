@@ -1,0 +1,9 @@
+main.comment-box{
+    width:$width;
+    height:$height;
+    margin-left: $main-margin;
+    margin-right: $main-margin;
+
+    display: flex;
+    flex-direction: column;
+}

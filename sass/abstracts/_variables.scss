@@ -2,12 +2,12 @@ $base: 16px;
 
 //Screen Size
 $screen-widths:(
-    "mobile":calculateRem(375px),
-    "desktop":calculateRem(1440px),
+    "mobile":calculate-rem(375px),
+    "desktop":calculate-rem(1440px),
 );
 
 //Screen position
-$margin: auto;
+$main-margin: auto;
 
 //Colors
 $colors-primary: (
@@ -33,6 +33,15 @@ $font-weights: (
   "large": 700,
 );
 
+//Base
+$body-background-color: map-get($colors-neutral, "very light gray");
+
 //Elements
 $width: #{'min(70rem, 90%)'};
 $height: auto;
+$card-margin: calculate-rem(10px);
+
+$border-radius: calculate-rem(6px);
+$card-background-color: map-get($colors-neutral, "white");
+
+
