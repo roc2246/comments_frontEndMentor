@@ -37,9 +37,10 @@ $font-weights: (
 $body-background-color: map-get($colors-neutral, "very light gray");
 
 //Elements
-$width: #{'min(70rem, 90%)'};
+$width: #{'min(#{calculate-rem(1220px)}, 90%)'};
 $height: auto;
 $card-margin: calculate-rem(10px);
+$card-padding: calculate-rem(24px);
 
 $border-radius: calculate-rem(6px);
 $card-background-color: map-get($colors-neutral, "white");
