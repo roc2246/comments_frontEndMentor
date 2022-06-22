@@ -1,0 +1,26 @@
+.comment {
+  padding: $card-padding;
+  &__top-row {
+    display: flex;
+    flex-direction: row;
+    margin-left: #{"calc(#{$card-padding} + #{calculate-rem(25px)})"};
+    .name {
+        padding-top: calculate-rem(24px);
+      font-weight: map-get($font-weights, "large");
+    }
+    .post-date{
+        padding-top: calculate-rem(24px);
+        font-weight: map-get($font-weights, "medium");
+        margin-left: calculate-rem(16px);
+    }
+    .reply-edit-delete {
+        padding-top: calculate-rem(24px);
+      margin-left: auto;
+      font-weight: map-get($font-weights, "large");
+      color: map-get($colors-primary, "moderate blue");
+    }
+  }
+  &__text {
+    margin-left: #{"calc(#{$card-padding} + #{calculate-rem(40px)})"};
+  }
+}

@@ -16,16 +16,19 @@
   <!-- Pull dynamic content from the data.json file -->
   <div class="comment">
     <div class="comment__vote">
-      <p>+</p>
-      <p>-</p>
+      <img src="images/icon-plus.svg" alt="" class="upvote">
+      <p class="rating">4</p>
+      <img src="images/icon-minus.svg" alt="" class="downvote">
     </div>
     <div class="comment__top-row">
-      <div class="user">
-        <img class="user__image">
-        <div class="user-name">Person</div>
-        <div class="user__date">Date</div>
-      </div>
-      <div class="reply-edit-delete">Reply</div>
+        <img class="avatar" src="images/avatars/image-amyrobson.webp">
+        <div class="name">Person</div>
+        <div class="post-date">Date</div>
+        <div class="reply-edit-delete">
+          <span class="reply-edit-delete__reply">
+            <img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image">Reply
+          </span>
+        </div>
     </div>
     <div class="comment__text">
       <p><span class="reply-to"></span>Comment</p>
@@ -34,16 +37,19 @@
 
   <div class="comment reply">
     <div class="comment__vote">
-      <p>+</p>
-      <p>-</p>
+      <img src="images/icon-plus.svg" alt="" class="upvote">
+      <p class="rating">2</p>
+      <img src="images/icon-minus.svg" alt="" class="downvote">
     </div>
     <div class="comment__top-row">
-      <div class="user">
-        <img class="user__image">
-        <div class="user-name">Person</div>
-        <div class="user__date">Date</div>
+        <img class="avatar" src="images/avatars/image-maxblagun.png">
+        <div class="name">Person</div>
+        <div class="post-date">Date</div>
+      <div class="reply-edit-delete">
+        <span class="reply-edit-delete__reply">
+          <img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image">Reply
+        </span>
       </div>
-      <div class="reply-edit-delete">Reply</div>
     </div>
     <div class="comment__text">
       <p><span class="reply-to"></span>Comment</p>
@@ -52,7 +58,7 @@
 
   <form action="post" class="add-comment">
     <img class="user__image user__image--you">
-    <input type="text" class="add-comment__comment">
+    <input type="text" class="add-comment__comment" placeholder="Add a comment...">
     <button class="add-comment__send"></button>
   </form>
   </main>

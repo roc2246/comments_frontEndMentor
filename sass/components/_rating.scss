@@ -1,5 +1,6 @@
 .comment {
   &__vote {
+    float: left;
     background-color: map-get($colors-neutral, "light gray");
     width: calculate-rem(32px);
     margin-top: calculate-rem(12px);
@@ -7,8 +8,13 @@
     padding-top: calculate-rem(6px);
     padding-bottom: calculate-rem(6px);
     .upvote,
-    .downvote {
+    .downvote,
+    .rating {
       margin-left: calculate-rem(10px);
+    }
+    .rating {
+      color: map-get($colors-primary, "moderate blue");
+      font-weight: map-get($font-weights, "large");
     }
   }
 }
