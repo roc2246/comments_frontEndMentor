@@ -43,6 +43,9 @@ body {
     color: #5457b6;
     font-weight: 700; }
 
+.avatar {
+  transform: scale(60%); }
+
 main.comment-box {
   width: min(45.3125rem, 95%);
   height: auto;
@@ -57,9 +60,6 @@ main.comment-box {
   background-color: white;
   margin-top: 0.625rem;
   margin-bottom: 0.625rem; }
-
-.comment .avatar {
-  transform: scale(60%); }
 
 .comment__top-row .reply-edit-delete__reply--image {
   margin-right: 0.625rem; }
