@@ -1,7 +1,24 @@
-.comment, .add-comment{
-    border-radius: $border-radius;
-    background-color: $card-background-color;
+.comment,
+.add-comment {
+  border-radius: $border-radius;
+  background-color: $card-background-color;
 
-    margin-top: $card-margin;
-    margin-bottom: $card-margin;
+  margin-top: $card-margin;
+  margin-bottom: $card-margin;
+}
+
+.comment {
+  .avatar {
+    transform: scale(60%);
+  }
+  &__top-row{
+    .reply-edit-delete{
+        &__reply{
+            &--image{
+                margin-right: calculate-rem(10px);
+            }
+        }
+        
+    }
+  }
 }

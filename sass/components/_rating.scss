@@ -1,0 +1,14 @@
+.comment {
+  &__vote {
+    background-color: map-get($colors-neutral, "light gray");
+    width: calculate-rem(32px);
+    margin-top: calculate-rem(12px);
+    border-radius: $border-radius;
+    padding-top: calculate-rem(6px);
+    padding-bottom: calculate-rem(6px);
+    .upvote,
+    .downvote {
+      margin-left: calculate-rem(10px);
+    }
+  }
+}
