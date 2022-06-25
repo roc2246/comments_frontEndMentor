@@ -90,7 +90,10 @@ main.comment-box {
   flex-direction: row; }
   .reply-wrapper hr {
     width: 0.125rem;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
     background-color: #67727e; }
-  .reply-wrapper .reply {
-    width: 85%;
-    margin-left: auto; }
+  .reply-wrapper .reply-comment-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%; }
