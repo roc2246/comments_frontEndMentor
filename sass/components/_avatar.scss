@@ -1,3 +1,6 @@
 .avatar {
-    transform: scale(60%);
+  transform: scale(60%);
+  &--you {
+    height: 20%;
   }
+}

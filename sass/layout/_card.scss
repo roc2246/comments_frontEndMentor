@@ -11,11 +11,25 @@
   &__top-row{
     .reply-edit-delete{
         &__reply{
+          width: calc(inherit - 20%);
             &--image{
                 margin-right: calculate-rem(10px);
             }
         }
         
     }
+  }
+}
+
+.reply-wrapper{
+  display: flex;
+  flex-direction: row;
+  hr{
+    width: calculate-rem(2px);
+background-color: map-get($colors-neutral, "grayish blue" );
+  }
+  .reply{
+    width: 85%;
+    margin-left: auto;
   }
 }

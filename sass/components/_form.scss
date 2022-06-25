@@ -1,0 +1,23 @@
+.add-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $card-padding;
+  &__comment {
+    height: calculate-rem(100px);
+    width: 60%;
+    &::placeholder {
+        
+    }
+  }
+
+  &__send {
+    height: calculate-rem(40px);
+    width: calculate-rem(90px);
+    background-color: map-get($colors-primary, "moderate blue");
+    border-radius: $border-radius;
+    border: none;
+    color: map-get($colors-neutral, "white");
+    font-weight: map-get($font-weights, "large");
+  }
+}

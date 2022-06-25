@@ -35,33 +35,35 @@
     </div>
   </div>
 
-  <div class="comment reply">
-    <div class="comment__vote">
-      <img src="images/icon-plus.svg" alt="" class="upvote">
-      <p class="rating">2</p>
-      <img src="images/icon-minus.svg" alt="" class="downvote">
-    </div>
-    <div class="comment__top-row">
-        <img class="avatar" src="images/avatars/image-maxblagun.png">
-        <div class="name">Person</div>
-        <div class="post-date">Date</div>
-      <div class="reply-edit-delete">
-        <span class="reply-edit-delete__reply">
-          <img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image">Reply
-        </span>
+  <div class="reply-wrapper">
+    <hr>
+    <div class="comment reply">
+      <div class="comment__vote">
+        <img src="images/icon-plus.svg" alt="" class="upvote">
+        <p class="rating">2</p>
+        <img src="images/icon-minus.svg" alt="" class="downvote">
+      </div>
+      <div class="comment__top-row">
+          <img class="avatar" src="images/avatars/image-maxblagun.png">
+          <div class="name">Person</div>
+          <div class="post-date">Date</div>
+        <div class="reply-edit-delete">
+          <span class="reply-edit-delete__reply">
+            <img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image">Reply
+          </span>
+        </div>
+      </div>
+      <div class="comment__text">
+        <p><span class="reply-to"></span>Comment</p>
       </div>
     </div>
-    <div class="comment__text">
-      <p><span class="reply-to"></span>Comment</p>
-    </div>
   </div>
+  
 
-  <form action="post" class="add-comment">
-    <img class="avatar" src="images/avatars/image-maxblagun.png">
-
-    <img class="user__image user__image--you">
+  <form action="post" class="add-comment card">
+    <img class="avatar avatar--you" src="images/avatars/image-maxblagun.png">
     <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-    <button class="add-comment__send"></button>
+    <button class="add-comment__send">SEND</button>
   </form>
   </main>
   
