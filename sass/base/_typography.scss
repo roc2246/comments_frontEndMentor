@@ -22,5 +22,9 @@
   }
   &__text {
     margin-left: #{"calc(#{$card-padding} + #{calculate-rem(40px)})"};
+.reply-to{
+  color: map-get($colors-primary , "moderate blue");
+font-weight: map-get($font-weights, "large");
+}  
   }
 }

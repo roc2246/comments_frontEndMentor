@@ -26,6 +26,9 @@ body {
       color: #5457b6; }
   .comment__text {
     margin-left: calc(2% + 2.5rem); }
+    .comment__text .reply-to {
+      color: #5457b6;
+      font-weight: 700; }
 
 .comment__vote {
   float: left;
