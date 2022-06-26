@@ -5,16 +5,16 @@
     flex-direction: row;
     margin-left: #{"calc(#{$card-padding} + #{calculate-rem(25px)})"};
     .name {
-        padding-top: calculate-rem(24px);
+      padding-top: calculate-rem(24px);
       font-weight: map-get($font-weights, "large");
     }
-    .post-date{
-        padding-top: calculate-rem(24px);
-        font-weight: map-get($font-weights, "medium");
-        margin-left: calculate-rem(16px);
+    .post-date {
+      padding-top: calculate-rem(24px);
+      font-weight: map-get($font-weights, "medium");
+      margin-left: calculate-rem(16px);
     }
     .reply-edit-delete {
-        padding-top: calculate-rem(24px);
+      padding-top: calculate-rem(24px);
       margin-left: auto;
       font-weight: map-get($font-weights, "large");
       color: map-get($colors-primary, "moderate blue");
@@ -22,9 +22,16 @@
   }
   &__text {
     margin-left: #{"calc(#{$card-padding} + #{calculate-rem(40px)})"};
-.reply-to{
-  color: map-get($colors-primary , "moderate blue");
-font-weight: map-get($font-weights, "large");
-}  
+    .reply-to {
+      color: map-get($colors-primary, "moderate blue");
+      font-weight: map-get($font-weights, "large");
+    }
   }
+}
+
+@media only screen and (max-width: calculate-rem(480px)) {
+  .reply-edit-delete{
+    display: none;
+  }
+
 }

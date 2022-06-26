@@ -30,6 +30,10 @@ body {
       color: #5457b6;
       font-weight: 700; }
 
+@media only screen and (max-width: 30rem) {
+  .reply-edit-delete {
+    display: none; } }
+
 .comment__vote {
   float: left;
   background-color: #eaecf1;
@@ -45,6 +49,13 @@ body {
   .comment__vote .rating {
     color: #5457b6;
     font-weight: 700; }
+  .comment__vote--mobile {
+    background-color: #eaecf1;
+    width: 2rem; }
+
+@media only screen and (max-width: 30rem) {
+  .comment__vote {
+    display: none; } }
 
 .avatar {
   transform: scale(60%); }
@@ -87,6 +98,13 @@ main.comment-box {
   width: calc(inherit - 20%); }
   .comment__top-row .reply-edit-delete__reply--image {
     margin-right: 0.625rem; }
+
+.comment__mobile {
+  display: none; }
+
+@media only screen and (max-width: 30rem) {
+  .comment__mobile {
+    display: block; } }
 
 .reply-wrapper {
   display: flex;
