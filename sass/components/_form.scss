@@ -1,17 +1,17 @@
 .add-comment {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     padding: $card-padding;
+    height: auto;
+    .avatar{
+      &--you{
+        transform: scale(70%);
+      }
+    }
   &__comment {
     height: calculate-rem(100px);
-    width: 60%;
-    &::placeholder {
-        
-    }
   }
 
   &__send {
+    margin-left: auto;
     height: calculate-rem(40px);
     width: calculate-rem(90px);
     background-color: map-get($colors-primary, "moderate blue");

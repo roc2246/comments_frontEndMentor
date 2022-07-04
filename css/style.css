@@ -43,14 +43,14 @@ body {
     font-weight: 700; }
 
 .add-comment {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1.5rem; }
+  padding: 1.5rem;
+  height: auto; }
+  .add-comment .avatar--you {
+    transform: scale(70%); }
   .add-comment__comment {
-    height: 6.25rem;
-    width: 60%; }
+    height: 6.25rem; }
   .add-comment__send {
+    margin-left: auto;
     height: 2.5rem;
     width: 5.625rem;
     background-color: #5457b6;
@@ -97,3 +97,9 @@ main.comment-box {
     grid-row-end: 3; }
   .comment__text {
     grid-column: 2; }
+
+.add-comment {
+  display: grid;
+  grid-template-columns: auto 70% auto;
+  grid-template-rows: auto auto;
+  grid-gap: 1rem; }

@@ -1,8 +1,8 @@
 .comment {
   display: grid;
-  grid-template-columns: $columns;
-  grid-template-rows: $rows;
-  grid-gap: $gutter;
+  grid-template-columns: $columns-comment;
+  grid-template-rows: $rows-comment;
+  grid-gap: $gutter-comment;
   &__vote {
     grid-row-start: 1;
     grid-row-end: 3;
@@ -11,4 +11,11 @@
   &__text {
     grid-column: 2;
   }
+}
+
+.add-comment {
+  display: grid;
+  grid-template-columns: $columns-add-comment;
+  grid-template-rows: $rows-add-comment;
+  grid-gap: $gutter-add-comment;
 }

@@ -1,9 +1,9 @@
 $base: 16px;
 
 //Screen Size
-$screen-widths:(
-    "mobile":calculate-rem(375px),
-    "desktop":calculate-rem(1440px),
+$screen-widths: (
+  "mobile": calculate-rem(375px),
+  "desktop": calculate-rem(1440px),
 );
 
 //Screen position
@@ -26,7 +26,7 @@ $colors-neutral: (
 );
 
 //Fonts
-$font-family: 'Rubik', sans-serif;
+$font-family: "Rubik", sans-serif;
 $font-weights: (
   "light": 400,
   "medium": 500,
@@ -37,7 +37,7 @@ $font-weights: (
 $body-background-color: map-get($colors-neutral, "very light gray");
 
 //Elements
-$width: #{'min(#{calculate-rem(725px)}, 95%)'};
+$width: #{"min(#{calculate-rem(725px)}, 95%)"};
 $height: auto;
 $card-margin: calculate-rem(10px);
 $card-padding: calculate-rem(24px);
@@ -52,8 +52,10 @@ $reply-edit-delete-margin: auto;
 $rating-child-margin: calculate-rem(12px);
 
 //Grid
-$columns: calculate-rem(36px) auto;
-$rows: calculate-rem(48px) auto;
-$gutter: calculate-rem(16px);
+$columns-comment: calculate-rem(36px) auto;
+$rows-comment: calculate-rem(48px) auto;
+$gutter-comment: calculate-rem(16px);
 
-
+$columns-add-comment: auto 70% auto;
+$rows-add-comment: auto auto;
+$gutter-add-comment: calculate-rem(16px);
