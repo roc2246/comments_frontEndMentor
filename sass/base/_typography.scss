@@ -3,25 +3,28 @@
   &__top-row {
     display: flex;
     flex-direction: row;
+    .name, .post-date, .reply-edit-delete{
+      margin-top: calculate-rem(16px);
+    }
+    .name, .post-date{
+      margin-left: calculate-rem(16px);
+    }
     .name {
-      padding-top: calculate-rem(24px);
       font-weight: map-get($font-weights, "large");
     }
     .post-date {
-      padding-top: calculate-rem(24px);
       font-weight: map-get($font-weights, "medium");
-      margin-left: calculate-rem(16px);
     }
     .reply-edit-delete {
-      padding-top: calculate-rem(24px);
-      margin-left: auto;
+      margin-left: $reply-edit-delete-margin;
       font-weight: map-get($font-weights, "large");
       color: map-get($colors-primary, "moderate blue");
     }
   }
   &__text {
-    // display: flex;
-    // flex-direction: row;
+    p{
+      margin: 0;
+    }
     .reply-to {
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");

@@ -40,11 +40,20 @@ $body-background-color: map-get($colors-neutral, "very light gray");
 $width: #{'min(#{calculate-rem(725px)}, 95%)'};
 $height: auto;
 $card-margin: calculate-rem(10px);
-$card-padding: 2%;
+$card-padding: calculate-rem(24px);
 
 $hr-margin: 5%;
 
 $border-radius: calculate-rem(6px);
 $card-background-color: map-get($colors-neutral, "white");
+
+$reply-edit-delete-margin: auto;
+
+$rating-child-margin: calculate-rem(12px);
+
+//Grid
+$columns: calculate-rem(36px) auto;
+$rows: calculate-rem(48px) auto;
+$gutter: calculate-rem(16px);
 
 

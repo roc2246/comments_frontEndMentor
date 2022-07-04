@@ -7,7 +7,7 @@
     .upvote,
     .downvote,
     .rating {
-      margin: calculate-rem(12px);
+      margin: $rating-child-margin;
     }
     .rating {
       color: map-get($colors-primary, "moderate blue");

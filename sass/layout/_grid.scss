@@ -1,0 +1,14 @@
+.comment {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+  grid-gap: $gutter;
+  &__vote {
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+
+  &__text {
+    grid-column: 2;
+  }
+}
