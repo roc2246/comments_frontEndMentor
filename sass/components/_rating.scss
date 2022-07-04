@@ -1,16 +1,14 @@
 .comment {
   &__vote {
+    display: flex;
+    flex-direction: column;
     float: left;
     background-color: map-get($colors-neutral, "light gray");
-    width: calculate-rem(32px);
-    margin-top: calculate-rem(12px);
     border-radius: $border-radius;
-    padding-top: calculate-rem(6px);
-    padding-bottom: calculate-rem(6px);
     .upvote,
     .downvote,
     .rating {
-      margin-left: calculate-rem(10px);
+      margin: calculate-rem(12px);
     }
     .rating {
       color: map-get($colors-primary, "moderate blue");
