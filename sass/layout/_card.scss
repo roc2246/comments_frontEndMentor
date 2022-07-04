@@ -18,18 +18,6 @@
       }
     }
   }
-  &__mobile {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: calculate-rem(480px)) {
-    .comment {
-      &__mobile {
-        display: block;
-      }
-    }
-  
 }
 
 .reply-wrapper {

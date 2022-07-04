@@ -16,18 +16,6 @@
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");
     }
-    &--mobile{
-      background-color: map-get($colors-neutral, "light gray");
-      width: calculate-rem(32px);
-    }
   }
 }
 
-@media only screen and (max-width: calculate-rem(480px)) {
-  .comment {
-    &__vote {
-      display: none;
-    }
-  }
-
-}
