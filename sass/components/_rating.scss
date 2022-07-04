@@ -2,7 +2,6 @@
   &__vote {
     display: flex;
     flex-direction: column;
-    float: left;
     background-color: map-get($colors-neutral, "light gray");
     border-radius: $border-radius;
     .upvote,

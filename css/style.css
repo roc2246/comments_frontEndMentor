@@ -10,8 +10,7 @@ body {
   padding: 2%; }
   .comment__top-row {
     display: flex;
-    flex-direction: row;
-    margin-left: calc(2% + 1.5625rem); }
+    flex-direction: row; }
     .comment__top-row .name {
       padding-top: 1.5rem;
       font-weight: 700; }
@@ -24,16 +23,13 @@ body {
       margin-left: auto;
       font-weight: 700;
       color: #5457b6; }
-  .comment__text {
-    margin-left: calc(2% + 2.5rem); }
-    .comment__text .reply-to {
-      color: #5457b6;
-      font-weight: 700; }
+  .comment__text .reply-to {
+    color: #5457b6;
+    font-weight: 700; }
 
 .comment__vote {
   display: flex;
   flex-direction: column;
-  float: left;
   background-color: #eaecf1;
   border-radius: 0.375rem; }
   .comment__vote .upvote,
@@ -43,11 +39,6 @@ body {
   .comment__vote .rating {
     color: #5457b6;
     font-weight: 700; }
-
-.avatar {
-  transform: scale(60%); }
-  .avatar--you {
-    height: 20%; }
 
 .add-comment {
   display: flex;
@@ -81,11 +72,6 @@ main.comment-box {
   margin-top: 0.625rem;
   margin-bottom: 0.625rem; }
 
-.comment__top-row .reply-edit-delete__reply {
-  width: calc(inherit - 20%); }
-  .comment__top-row .reply-edit-delete__reply--image {
-    margin-right: 0.625rem; }
-
 .reply-wrapper {
   display: flex;
   flex-direction: row; }
@@ -98,3 +84,14 @@ main.comment-box {
     display: flex;
     flex-direction: column;
     width: 100%; }
+
+.comment {
+  display: grid;
+  grid-template-columns: 2.25rem auto;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem; }
+  .comment__vote {
+    grid-row-start: 1;
+    grid-row-end: 2; }
+  .comment__text {
+    grid-column: 2; }

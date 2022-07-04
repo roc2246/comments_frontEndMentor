@@ -3,7 +3,6 @@
   &__top-row {
     display: flex;
     flex-direction: row;
-    margin-left: #{"calc(#{$card-padding} + #{calculate-rem(25px)})"};
     .name {
       padding-top: calculate-rem(24px);
       font-weight: map-get($font-weights, "large");
@@ -21,7 +20,8 @@
     }
   }
   &__text {
-    margin-left: #{"calc(#{$card-padding} + #{calculate-rem(40px)})"};
+    // display: flex;
+    // flex-direction: row;
     .reply-to {
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");
