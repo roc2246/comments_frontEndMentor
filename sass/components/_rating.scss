@@ -5,6 +5,9 @@
     background-color: map-get($colors-neutral, "light gray");
     border-radius: $border-radius;
     align-content: center;
+    .upvote,.downvote{
+      cursor: pointer;
+    }
     .upvote,
     .downvote,
     .rating {
@@ -21,6 +24,16 @@
     &__vote {
       flex-direction: row;
       width: 6.5rem;
-  }
+      
+    .upvote
+     {
+      margin-top: 1rem;
+    }
+
+    .downvote{
+      margin-top: 1.25rem;
+
+    }
+}
 }
 }

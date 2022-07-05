@@ -11,19 +11,26 @@ body {
   .comment__top-row {
     display: flex;
     flex-direction: row; }
-    .comment__top-row .name, .comment__top-row .post-date, .comment__top-row .reply-edit-delete {
+    .comment__top-row .name,
+    .comment__top-row .post-date,
+    .comment__top-row .reply-edit-delete {
       margin-top: 1rem; }
-    .comment__top-row .name, .comment__top-row .post-date {
+    .comment__top-row .name,
+    .comment__top-row .post-date {
       margin-left: 1rem; }
     .comment__top-row .name {
       font-weight: 700; }
     .comment__top-row .post-date {
       font-weight: 500; }
   .comment .reply-edit-delete {
+    cursor: pointer;
     margin-left: auto;
     padding-top: 1rem;
-    font-weight: 700;
-    color: #5457b6; }
+    font-weight: 700; }
+    .comment .reply-edit-delete__reply {
+      color: #5457b6; }
+      .comment .reply-edit-delete__reply:hover {
+        color: #c3c4ef; }
   .comment__text p {
     margin: 0; }
   .comment__text .reply-to {
@@ -36,6 +43,8 @@ body {
   background-color: #eaecf1;
   border-radius: 0.375rem;
   align-content: center; }
+  .comment__vote .upvote, .comment__vote .downvote {
+    cursor: pointer; }
   .comment__vote .upvote,
   .comment__vote .downvote,
   .comment__vote .rating {
@@ -47,7 +56,11 @@ body {
 @media only screen and (max-width: 480px) {
   .comment__vote {
     flex-direction: row;
-    width: 6.5rem; } }
+    width: 6.5rem; }
+    .comment__vote .upvote {
+      margin-top: 1rem; }
+    .comment__vote .downvote {
+      margin-top: 1.25rem; } }
 
 .add-comment {
   padding: 1.5rem;
@@ -55,7 +68,11 @@ body {
   .add-comment .avatar--you {
     transform: scale(70%); }
   .add-comment__comment {
-    height: 6.25rem; }
+    height: 6.25rem;
+    border-radius: 0.375rem;
+    cursor: pointer; }
+    .add-comment__comment:hover {
+      border-color: #5457b6; }
   .add-comment__send {
     margin-left: auto;
     height: 2.5rem;
@@ -64,7 +81,10 @@ body {
     border-radius: 0.375rem;
     border: none;
     color: white;
-    font-weight: 700; }
+    font-weight: 700;
+    cursor: pointer; }
+    .add-comment__send:hover {
+      background-color: #c3c4ef; }
 
 @media only screen and (max-width: 480px) {
   .add-comment__send {

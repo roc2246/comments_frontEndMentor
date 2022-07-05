@@ -3,10 +3,13 @@
   &__top-row {
     display: flex;
     flex-direction: row;
-    .name, .post-date, .reply-edit-delete{
+    .name,
+    .post-date,
+    .reply-edit-delete {
       margin-top: calculate-rem(16px);
     }
-    .name, .post-date{
+    .name,
+    .post-date {
       margin-left: calculate-rem(16px);
     }
     .name {
@@ -17,13 +20,19 @@
     }
   }
   .reply-edit-delete {
+    cursor: pointer;
     margin-left: $reply-edit-delete-margin;
     padding-top: 1rem;
     font-weight: map-get($font-weights, "large");
-    color: map-get($colors-primary, "moderate blue");
+    &__reply {
+      color: map-get($colors-primary, "moderate blue");
+      &:hover {
+        color: map-get($colors-primary, "light grayish blue");
+      }
+    }
   }
   &__text {
-    p{
+    p {
       margin: 0;
     }
     .reply-to {
@@ -32,4 +41,3 @@
     }
   }
 }
-

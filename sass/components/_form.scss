@@ -1,13 +1,18 @@
 .add-comment {
-    padding: $card-padding;
-    height: auto;
-    .avatar{
-      &--you{
-        transform: scale(70%);
-      }
+  padding: $card-padding;
+  height: auto;
+  .avatar {
+    &--you {
+      transform: scale(70%);
     }
+  }
   &__comment {
     height: calculate-rem(100px);
+    border-radius: $border-radius;
+    cursor: pointer;
+    &:hover {
+      border-color: map-get($colors-primary, "moderate blue");
+    }
   }
 
   &__send {
@@ -19,11 +24,14 @@
     border: none;
     color: map-get($colors-neutral, "white");
     font-weight: map-get($font-weights, "large");
+    cursor: pointer;
+    &:hover {
+      background-color: map-get($colors-primary, "light grayish blue");
+    }
   }
 }
 
 @media only screen and (max-width: 480px) {
-
   .add-comment {
     &__send {
       margin-top: 1rem;
