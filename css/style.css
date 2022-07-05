@@ -66,6 +66,10 @@ body {
     color: white;
     font-weight: 700; }
 
+@media only screen and (max-width: 480px) {
+  .add-comment__send {
+    margin-top: 1rem; } }
+
 main.comment-box {
   width: min(45.3125rem, 95%);
   height: auto;

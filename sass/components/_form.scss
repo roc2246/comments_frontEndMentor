@@ -21,3 +21,12 @@
     font-weight: map-get($font-weights, "large");
   }
 }
+
+@media only screen and (max-width: 480px) {
+
+  .add-comment {
+    &__send {
+      margin-top: 1rem;
+    }
+  }
+}
