@@ -4,6 +4,7 @@
     flex-direction: column;
     background-color: map-get($colors-neutral, "light gray");
     border-radius: $border-radius;
+    align-content: center;
     .upvote,
     .downvote,
     .rating {
@@ -15,4 +16,11 @@
     }
   }
 }
-
+@media only screen and (max-width: 480px) {
+  .comment{
+    &__vote {
+      flex-direction: row;
+      width: 6.5rem;
+  }
+}
+}

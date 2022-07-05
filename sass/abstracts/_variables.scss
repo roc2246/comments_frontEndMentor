@@ -52,8 +52,8 @@ $reply-edit-delete-margin: auto;
 $rating-child-margin: calculate-rem(12px);
 
 //Grid
-$columns-comment: calculate-rem(36px) auto;
-$rows-comment: calculate-rem(48px) auto;
+$columns-comment: calculate-rem(36px) auto auto;
+$rows-comment: calculate-rem(48px) auto auto;
 $gutter-comment: calculate-rem(16px);
 
 $columns-add-comment: auto 70% auto;

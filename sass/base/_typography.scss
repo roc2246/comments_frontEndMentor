@@ -15,11 +15,12 @@
     .post-date {
       font-weight: map-get($font-weights, "medium");
     }
-    .reply-edit-delete {
-      margin-left: $reply-edit-delete-margin;
-      font-weight: map-get($font-weights, "large");
-      color: map-get($colors-primary, "moderate blue");
-    }
+  }
+  .reply-edit-delete {
+    margin-left: $reply-edit-delete-margin;
+    padding-top: 1rem;
+    font-weight: map-get($font-weights, "large");
+    color: map-get($colors-primary, "moderate blue");
   }
   &__text {
     p{
