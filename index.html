@@ -19,21 +19,44 @@
       <div>
         <img src="images/icon-plus.svg" alt="" class="upvote">
       </div>
-      <p class="rating">4</p>
+      <p class="rating"></p>
       <div>
         <img src="images/icon-minus.svg" alt="" class="downvote">
       </div>
     </div>
     <div class="comment__top-row">
         <img class="avatar" src="images/avatars/image-amyrobson.webp">
-        <span class="name">Person</span>
-        <span class="post-date">Date</span>
+        <span class="name"></span>
+        <span class="post-date"></span>
     </div>
     <span class="reply-edit-delete">
           <span class="reply-edit-delete__reply"><img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image"> Reply</span>
         </span>
     <div class="comment__text">
-      <p>Comment</p>
+      <p></p>
+    </div>
+  </div>
+
+  <div class="comment">
+    <div class="comment__vote">
+      <div>
+        <img src="images/icon-plus.svg" alt="" class="upvote">
+      </div>
+      <p class="rating"></p>
+      <div>
+        <img src="images/icon-minus.svg" alt="" class="downvote">
+      </div>
+    </div>
+    <div class="comment__top-row">
+        <img class="avatar" src="images/avatars/image-amyrobson.webp">
+        <span class="name"></span>
+        <span class="post-date"></span>
+    </div>
+    <span class="reply-edit-delete">
+          <span class="reply-edit-delete__reply"><img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image"> Reply</span>
+        </span>
+    <div class="comment__text">
+      <p></p>
     </div>
   </div>
 
@@ -45,7 +68,7 @@
           <div>
             <img src="images/icon-plus.svg" alt="" class="upvote">
           </div>
-          <p class="rating">2</p>
+          <p class="rating"></p>
           <div>
             <img src="images/icon-minus.svg" alt="" class="downvote">
           </div>
@@ -59,16 +82,19 @@
           <span class="reply-edit-delete__reply"><img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image"> Reply</span>
         </span>
         <div class="comment__text">
-          <p><span class="reply-to">@person </span>Comment</p>
+          <p>
+            <span class="comment__text--reply-to"></span>
+            <span class="comment__text--text"></span>
+          </p>
         </div>
 </div>
 
-       <div class="comment reply">
+       <div class="comment reply reply--you">
         <div class="comment__vote">
           <div>
             <img src="images/icon-plus.svg" alt="" class="upvote">
           </div>
-          <p class="rating">2</p>
+          <p class="rating"></p>
           <div>
             <img src="images/icon-minus.svg" alt="" class="downvote">
           </div>
@@ -79,19 +105,23 @@
             <span class="post-date">Date</span>
         </div>
         <span class="reply-edit-delete">
-          <span class="reply-edit-delete__reply"><img src="images/icon-reply.svg" alt="" class="reply-edit-delete__reply--image"> Reply</span>
+          <span class="reply-edit-delete__delete"><img src="images/icon-delete.svg" alt="" class="reply-edit-delete__reply--image"> Delete</span>
+          <span class="reply-edit-delete__edit"><img src="images/icon-edit.svg" alt="" class="reply-edit-delete__reply--image"> Edit</span>
         </span>
         <div class="comment__text">
-          <p><span class="reply-to">@person </span>Comment</p>
+          <p>
+            <span class="comment__text--reply-to"></span>
+          <span class="comment__text--text"></span>
+          </p>
         </div>
     </div>
   </div>
   </div>
   </div>
   
-
+<!-- Add Comment -->
   <form action="post" class="add-comment">
-      <img class="avatar avatar--you" src="images/avatars/image-maxblagun.png">
+      <img class="avatar avatar--you" src="">
       <input type="text" class="add-comment__comment" placeholder="Add a comment...">
       <button class="add-comment__send">SEND</button>
   </form>

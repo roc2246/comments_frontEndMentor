@@ -5,7 +5,9 @@
     background-color: map-get($colors-neutral, "light gray");
     border-radius: $border-radius;
     align-content: center;
-    .upvote,.downvote{
+    height: 7.2rem;
+    .upvote,
+    .downvote {
       cursor: pointer;
     }
     .upvote,
@@ -20,20 +22,19 @@
   }
 }
 @media only screen and (max-width: 480px) {
-  .comment{
+  .comment {
     &__vote {
       flex-direction: row;
       width: 6.5rem;
-      
-    .upvote
-     {
-      margin-top: 1rem;
-    }
+      height: auto;
 
-    .downvote{
-      margin-top: 1.25rem;
+      .upvote {
+        margin-top: 1rem;
+      }
 
+      .downvote {
+        margin-top: 1.25rem;
+      }
     }
-}
-}
+  }
 }
