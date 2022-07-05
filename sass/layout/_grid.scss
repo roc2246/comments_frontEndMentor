@@ -8,16 +8,16 @@
     grid-row-end: 3;
   }
 
-  &__top-row{
+  &__top-row {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row: 1;
   }
-  .reply-edit-delete{
-      grid-row-start: 1;
-      grid-row-end: 3;
-      grid-column: 3;
-    }
+  .reply-edit-delete {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 3;
+  }
 
   &__text {
     grid-column: 2;
@@ -30,11 +30,23 @@
   grid-template-columns: $columns-add-comment;
   grid-template-rows: $rows-add-comment;
   grid-gap: $gutter-add-comment;
-}
 
+  .avatar {
+    grid-column: 1;
+  }
+  &__comment {
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+  &__send {
+    grid-column: 3;
+  }
+}
+}
 @media only screen and (max-width: 480px) {
-  .comment{
-    &__top-row{
+  .comment {
+    &__top-row {
       grid-column-start: 1;
       grid-column-end: 4;
     }
@@ -47,9 +59,23 @@
       grid-row: 3;
       grid-column-start: 1;
       grid-column-end: 3;
+    }
+    .reply-edit-delete {
+      grid-row: 3;
+    }
   }
-  .reply-edit-delete{
-    grid-row: 3;
+
+  .add-comment {
+    .avatar {
+      grid-row: 2;
+    }
+    &__comment {
+      grid-column-start: 1;
+      grid-column-end: 4;
+    }
+    &__send {
+      grid-row: 2;
+      grid-column: 3;
+    }
   }
-}
 }
