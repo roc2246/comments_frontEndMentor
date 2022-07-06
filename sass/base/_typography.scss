@@ -1,3 +1,7 @@
+p{
+  line-height: 1.5rem;
+}
+
 .comment {
   padding: $card-padding;
   &__top-row {
@@ -60,6 +64,20 @@
     &--reply-to {
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");
+    }
+  }
+}
+
+.modal{
+  padding: $card-padding;
+  &__btn-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    .cancel-delete, .delete-comment{
+      font-weight: map-get($font-weights, "large");
+      color: map-get($colors-neutral, "white");
     }
   }
 }
