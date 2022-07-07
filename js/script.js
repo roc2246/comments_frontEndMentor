@@ -50,12 +50,8 @@ fetch("../data.json")
             comments[comment].replies[reply].createdAt;
           replyContainer.comment[reply].innerHTML =
             comments[comment].replies[reply].content;
-
           replyContainer.replyTo[reply].innerHTML =
             "@" + comments[comment].replies[reply].replyingTo;
-
-            
-            console.log(comments[comment].replies[reply].replyingTo)
         });
       }
     });
