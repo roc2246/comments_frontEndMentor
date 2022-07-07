@@ -37,7 +37,6 @@ fetch("../data.json")
 
       if (Object.keys(comments[comment].replies).length > 0) {
         Object.keys(comments[comment].replies).forEach((reply) => {
-          console.log(comments[comment].replies[reply].content);
           replyContainer.score[reply].innerHTML =
             comments[comment].replies[reply].score;
           replyContainer.avatar[reply].src =

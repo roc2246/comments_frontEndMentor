@@ -12,13 +12,15 @@ p{
     .reply-edit-delete {
       margin-top: calculate-rem(16px);
     }
+
     .name,
     .post-date {
       margin-left: calculate-rem(16px);
     }
-    .name {
-      font-weight: map-get($font-weights, "large");
-    .logged-user{
+    .you-icon{
+      margin-top: calculate-rem(11px);
+      margin-left: calculate-rem(8px);
+
       background-color: map-get($colors-primary , "moderate blue" );
       color: map-get($colors-neutral , "white" );
       border-radius: $border-radius;
@@ -26,7 +28,9 @@ p{
       padding-right: .5rem;
       padding-top: .25rem;
       padding-bottom: .25rem;
-    }
+     }
+    .name {
+      font-weight: map-get($font-weights, "large");
     }
     .post-date {
       font-weight: map-get($font-weights, "medium");
