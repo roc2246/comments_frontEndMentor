@@ -21,14 +21,14 @@ fetch("../data.json")
         ".reply > .comment__top-row > .post-date"
       ),
       avatar: document.querySelectorAll(".reply > .comment__top-row > .avatar"),
+      replyTo: document.getElementsByClassName("comment__text--reply-to"),
     };
 
     // Sets user
-    const youAvatar = document.getElementsByClassName("avatar--you")
+    const youAvatar = document.getElementsByClassName("avatar--you");
     Object.keys(youAvatar).forEach((avatar) => {
-      youAvatar[avatar].src =
-      currentUser.image.png;
-    })
+      youAvatar[avatar].src = currentUser.image.png;
+    });
 
     //Sets other users
     Object.keys(comments).forEach((comment) => {
@@ -50,6 +50,12 @@ fetch("../data.json")
             comments[comment].replies[reply].createdAt;
           replyContainer.comment[reply].innerHTML =
             comments[comment].replies[reply].content;
+
+          replyContainer.replyTo[reply].innerHTML =
+            "@" + comments[comment].replies[reply].replyingTo;
+
+            
+            console.log(comments[comment].replies[reply].replyingTo)
         });
       }
     });
