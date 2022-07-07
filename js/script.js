@@ -1,55 +1,54 @@
-fetch ('../data.json')
-.then(response => response.json())
-.then((data) => {
-    const{currentUser, comments} = data
-const replies = comments[1].replies
+fetch("../data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const { currentUser, comments } = data;
 
+    const postContainer = {
+      score: document.getElementsByClassName("rating"),
+      comment: document.querySelectorAll(".comment__text > p"),
+      user: document.getElementsByClassName("name"),
+      date: document.getElementsByClassName("post-date"),
+      avatar: document.getElementsByClassName("avatar"),
+    };
+
+    const replyContainer = {
+      score: document.querySelectorAll(".reply > .comment__vote > .rating"),
+      comment: document.querySelectorAll(
+        ".reply > .comment__text > p > .comment__text--text"
+      ),
+      user: document.querySelectorAll(".reply > .comment__top-row > .name"),
+      date: document.querySelectorAll(
+        ".reply > .comment__top-row > .post-date"
+      ),
+      avatar: document.querySelectorAll(".reply > .comment__top-row > .avatar"),
+    };
 
     // Sets user
-    document.getElementsByClassName("avatar--you")[0].src= currentUser.image.png
+    document.getElementsByClassName("avatar--you")[0].src =
+      currentUser.image.png;
 
     //Sets other users
-    Object.keys(comments).forEach(comment => {
-        const scoreContainer = document.getElementsByClassName("rating")
+    Object.keys(comments).forEach((comment) => {
+      postContainer.score[comment].innerHTML = comments[comment].score;
+      postContainer.comment[comment].innerHTML = comments[comment].content;
+      postContainer.user[comment].innerHTML = comments[comment].user.username;
+      postContainer.date[comment].innerHTML = comments[comment].createdAt;
+      postContainer.avatar[comment].src = comments[comment].user.image.png;
 
-        const commentContainer = document.querySelectorAll(".comment__text > p")
-        const nameContainer = document.getElementsByClassName("name")
-        const dateContainer = document.getElementsByClassName("post-date")
-        const avatarContainer = document.getElementsByClassName("avatar")
-
-
-        scoreContainer[comment].innerHTML = comments[comment].score
-
-        commentContainer[comment].innerHTML = comments[comment].content
-        nameContainer[comment].innerHTML = comments[comment].user.username
-        dateContainer[comment].innerHTML = comments[comment].createdAt
-        avatarContainer[comment].src = comments[comment].user.image.png
+      if (Object.keys(comments[comment].replies).length > 0) {
+        Object.keys(comments[comment].replies).forEach((reply) => {
+          console.log(comments[comment].replies[reply].content);
+          replyContainer.score[reply].innerHTML =
+            comments[comment].replies[reply].score;
+          replyContainer.avatar[reply].src =
+            comments[comment].replies[reply].user.image.png;
+          replyContainer.user[reply].innerHTML =
+            comments[comment].replies[reply].user.username;
+          replyContainer.date[reply].innerHTML =
+            comments[comment].replies[reply].createdAt;
+          replyContainer.comment[reply].innerHTML =
+            comments[comment].replies[reply].content;
+        });
+      }
     });
-
-    //Sets replies
-    Object.keys(replies).forEach(comment => {
-        const scoreContainer = document.querySelectorAll(".reply > .comment__vote > .rating")
-
-        const commentContainer = document.querySelectorAll(".reply > .comment__text > p > .comment__text--text")
-        const nameContainer = document.querySelectorAll(".reply > .comment__top-row > .name")
-        const dateContainer = document.querySelectorAll(".reply > .comment__top-row > .post-date")
-        const avatarContainer = document.querySelectorAll(".reply > .comment__top-row > .avatar")
-
-        document.getElementsByClassName("comment__text--reply-to")[0].innerHTML = "@" + comments[1].user.username
-        document.getElementsByClassName("comment__text--reply-to")[1].innerHTML = "@" + replies[0].user.username
-
-
-        scoreContainer[comment].innerHTML = replies[comment].score
-
-        commentContainer[comment].innerHTML = replies[comment].content
-
-        nameContainer[0].innerHTML = replies[0].user.username
-        nameContainer[1].innerHTML = replies[1].user.username + " <span class='logged-user'>you</span>"
-        
-        
-        dateContainer[comment].innerHTML = replies[comment].createdAt
-        avatarContainer[comment].src = replies[comment].user.image.png
-
-    })
-
-});
+  });

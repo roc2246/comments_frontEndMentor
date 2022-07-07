@@ -9,6 +9,7 @@
 }
 
 .modal{
+  display: none;
   width: calculate-rem(300px);
   position: absolute;
   border: solid;
@@ -56,6 +57,5 @@
 @media only screen and(max-width: 480px){
   .modal{
     margin: 50% 10%;
-
   }
 }

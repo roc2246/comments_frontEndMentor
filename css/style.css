@@ -141,6 +141,7 @@ main.comment-box {
   margin-bottom: 0.625rem; }
 
 .modal {
+  display: none;
   width: 18.75rem;
   position: absolute;
   border: solid;
