@@ -163,6 +163,9 @@ main.comment-box {
     .modal__btn-box .delete-comment:hover {
       background-color: #ffb8bb; }
 
+.add-reply {
+  display: none !important; }
+
 .reply-wrapper {
   display: flex;
   flex-direction: row; }

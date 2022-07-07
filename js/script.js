@@ -24,8 +24,11 @@ fetch("../data.json")
     };
 
     // Sets user
-    document.getElementsByClassName("avatar--you")[0].src =
+    const youAvatar = document.getElementsByClassName("avatar--you")
+    Object.keys(youAvatar).forEach((avatar) => {
+      youAvatar[avatar].src =
       currentUser.image.png;
+    })
 
     //Sets other users
     Object.keys(comments).forEach((comment) => {
