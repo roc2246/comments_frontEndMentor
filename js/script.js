@@ -142,6 +142,7 @@ fetch("../data.json")
       deleteComment: document.getElementsByClassName("delete-comment")[0],
     };
 
+    // Reply Button
     Object.keys(commentBtns.reply).forEach((form) => {
       forms.reply[form].style.display = "none";
       commentBtns.reply[form].addEventListener("click", () => {
@@ -153,6 +154,7 @@ fetch("../data.json")
       });
     });
 
+    // Edit Button
     Object.keys(commentBtns.edit).forEach((form) => {
       forms.edit[form].style.display = "none";
       forms.textToEditInput[form].value =
@@ -170,6 +172,7 @@ fetch("../data.json")
       });
     });
 
+    // Delete Button
     Object.keys(commentBtns.delete).forEach((btn) => {
       deleteModal.box.style.display = "none";
       commentBtns.delete[btn].addEventListener("click", () => {
@@ -184,10 +187,10 @@ fetch("../data.json")
         }
       });
     });
-
     deleteModal.cancelDelete.addEventListener("click", () => {
       if (deleteModal.box.style.display === "block") {
         deleteModal.box.style.display = "none";
       }
     });
+    
   });
