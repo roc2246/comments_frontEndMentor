@@ -110,76 +110,84 @@ fetch("../data.json")
         });
       }
     });
-  });
 
-//Toggles Modal and reply/edit forms
-const commentBtns = {
-  reply: document.getElementsByClassName("reply-edit-delete__reply"),
-  edit: document.getElementsByClassName("reply-edit-delete__edit"),
-  delete: document.getElementsByClassName("reply-edit-delete__delete"),
+    //Toggles Modal and reply/edit forms
+    const commentBtns = {
+      reply: document.getElementsByClassName("reply-edit-delete__reply"),
+      edit: document.getElementsByClassName("reply-edit-delete__edit"),
+      delete: document.getElementsByClassName("reply-edit-delete__delete"),
 
-  deleteComment: document.getElementsByClassName("delete-comment")[0],
-}
+      deleteComment: document.getElementsByClassName("delete-comment")[0],
+    };
 
-const forms = {
-  reply: document.getElementsByClassName("add-comment--add-reply"),
-  edit: document.getElementsByClassName("comment__text--edit"),
-}
+    const forms = {
+      reply: document.getElementsByClassName("add-comment--add-reply"),
+      edit: document.getElementsByClassName("comment__text--edit"),
+      textToEditInput: document.querySelectorAll(
+        ".comment__text--edit > input"
+      ),
+    };
 
-const activeUser = {
-  replies: document.getElementsByClassName("reply--you"),
-  commentText: document.querySelectorAll(".reply--you > .comment__text > p "),
-}
+    const activeUser = {
+      replies: document.getElementsByClassName("reply--you"),
+      commentText: document.querySelectorAll(
+        ".reply--you > .comment__text > p "
+      ),
+    };
 
-const deleteModal ={
-  box: document.getElementsByClassName("modal")[0],
+    const deleteModal = {
+      box: document.getElementsByClassName("modal")[0],
 
-  cancelDelete: document.getElementsByClassName("cancel-delete")[0],
-  deleteComment: document.getElementsByClassName("delete-comment")[0],
-}
+      cancelDelete: document.getElementsByClassName("cancel-delete")[0],
+      deleteComment: document.getElementsByClassName("delete-comment")[0],
+    };
 
-
-Object.keys(commentBtns.reply).forEach((form) => {
-  forms.reply[form].style.display = "none";
-  commentBtns.reply[form].addEventListener("click", () => {
-    if (forms.reply[form].style.display === "none") {
-      forms.reply[form].style.display = "grid";
-    } else {
+    Object.keys(commentBtns.reply).forEach((form) => {
       forms.reply[form].style.display = "none";
-    }
-  });
-});
+      commentBtns.reply[form].addEventListener("click", () => {
+        if (forms.reply[form].style.display === "none") {
+          forms.reply[form].style.display = "grid";
+        } else {
+          forms.reply[form].style.display = "none";
+        }
+      });
+    });
 
-Object.keys(commentBtns.edit).forEach((form) => {
-  forms.edit[form].style.display = "none";
-  commentBtns.edit[form].addEventListener("click", () => {
-    if (forms.edit[form].style.display === "none") {
-      forms.edit[form].style.display = "grid";
-      activeUser.commentText[form].style.display = "none";
-    } else {
+    Object.keys(commentBtns.edit).forEach((form) => {
       forms.edit[form].style.display = "none";
-      activeUser.commentText[form].style.display = "inline";
-    }
-  });
-});
+      forms.textToEditInput[form].value =
+        "@" +
+        replyContainer.user[form].innerHTML + " " +
+        replyContainer.comment[form].innerHTML;
+      commentBtns.edit[form].addEventListener("click", () => {
+        if (forms.edit[form].style.display === "none") {
+          forms.edit[form].style.display = "grid";
+          activeUser.commentText[form].style.display = "none";
+        } else {
+          forms.edit[form].style.display = "none";
+          activeUser.commentText[form].style.display = "inline";
+        }
+      });
+    });
 
-Object.keys(commentBtns.delete).forEach((btn) => {
-  deleteModal.box.style.display = "none";
-  commentBtns.delete[btn].addEventListener("click", () => {
-    if (deleteModal.box.style.display === "none") {
-      deleteModal.box.style.display = "block";
-    }
-  });
-  deleteModal.deleteComment.addEventListener("click", ()=> {
-    activeUser.replies[btn].remove()
-    if (deleteModal.box.style.display === "block") {
+    Object.keys(commentBtns.delete).forEach((btn) => {
       deleteModal.box.style.display = "none";
-    }
-  })
-});
+      commentBtns.delete[btn].addEventListener("click", () => {
+        if (deleteModal.box.style.display === "none") {
+          deleteModal.box.style.display = "block";
+        }
+      });
+      deleteModal.deleteComment.addEventListener("click", () => {
+        activeUser.replies[btn].remove();
+        if (deleteModal.box.style.display === "block") {
+          deleteModal.box.style.display = "none";
+        }
+      });
+    });
 
-deleteModal.cancelDelete.addEventListener("click", () => {
-  if (deleteModal.box.style.display === "block") {
-    deleteModal.box.style.display = "none";
-  }
-});
+    deleteModal.cancelDelete.addEventListener("click", () => {
+      if (deleteModal.box.style.display === "block") {
+        deleteModal.box.style.display = "none";
+      }
+    });
+  });
