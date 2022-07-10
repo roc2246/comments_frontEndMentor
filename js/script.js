@@ -113,61 +113,73 @@ fetch("../data.json")
   });
 
 //Toggles Modal and reply/edit forms
-const replyBtn = document.getElementsByClassName("reply-edit-delete__reply");
-const editBtn = document.getElementsByClassName("reply-edit-delete__edit");
-const deleteBtn = document.getElementsByClassName("reply-edit-delete__delete");
+const commentBtns = {
+  reply: document.getElementsByClassName("reply-edit-delete__reply"),
+  edit: document.getElementsByClassName("reply-edit-delete__edit"),
+  delete: document.getElementsByClassName("reply-edit-delete__delete"),
 
-const yourReplies = document.getElementsByClassName("reply--you");
-const cmtTxtYou = document.querySelectorAll(".reply--you > .comment__text > p ");
+  deleteComment: document.getElementsByClassName("delete-comment")[0],
+}
 
-const replyFrm = document.getElementsByClassName("add-comment--add-reply");
-const editFrm = document.getElementsByClassName("comment__text--edit");
+const forms = {
+  reply: document.getElementsByClassName("add-comment--add-reply"),
+  edit: document.getElementsByClassName("comment__text--edit"),
+}
 
-const cancelDeleteBtn = document.getElementsByClassName("cancel-delete")[0];
-const deleteCommentBtn = document.getElementsByClassName("delete-comment")[0]
-const modal = document.getElementsByClassName("modal")[0];
+const activeUser = {
+  replies: document.getElementsByClassName("reply--you"),
+  commentText: document.querySelectorAll(".reply--you > .comment__text > p "),
+}
 
-Object.keys(replyBtn).forEach((form) => {
-  replyFrm[form].style.display = "none";
-  replyBtn[form].addEventListener("click", () => {
-    if (replyFrm[form].style.display === "none") {
-      replyFrm[form].style.display = "grid";
+const deleteModal ={
+  box: document.getElementsByClassName("modal")[0],
+
+  cancelDelete: document.getElementsByClassName("cancel-delete")[0],
+  deleteComment: document.getElementsByClassName("delete-comment")[0],
+}
+
+
+Object.keys(commentBtns.reply).forEach((form) => {
+  forms.reply[form].style.display = "none";
+  commentBtns.reply[form].addEventListener("click", () => {
+    if (forms.reply[form].style.display === "none") {
+      forms.reply[form].style.display = "grid";
     } else {
-      replyFrm[form].style.display = "none";
+      forms.reply[form].style.display = "none";
     }
   });
 });
 
-Object.keys(editBtn).forEach((form) => {
-  editFrm[form].style.display = "none";
-  editBtn[form].addEventListener("click", () => {
-    if (editFrm[form].style.display === "none") {
-      editFrm[form].style.display = "grid";
-      cmtTxtYou[form].style.display = "none";
+Object.keys(commentBtns.edit).forEach((form) => {
+  forms.edit[form].style.display = "none";
+  commentBtns.edit[form].addEventListener("click", () => {
+    if (forms.edit[form].style.display === "none") {
+      forms.edit[form].style.display = "grid";
+      activeUser.commentText[form].style.display = "none";
     } else {
-      editFrm[form].style.display = "none";
-      cmtTxtYou[form].style.display = "inline";
+      forms.edit[form].style.display = "none";
+      activeUser.commentText[form].style.display = "inline";
     }
   });
 });
 
-Object.keys(deleteBtn).forEach((btn) => {
-  modal.style.display = "none";
-  deleteBtn[btn].addEventListener("click", () => {
-    if (modal.style.display === "none") {
-      modal.style.display = "block";
+Object.keys(commentBtns.delete).forEach((btn) => {
+  deleteModal.box.style.display = "none";
+  commentBtns.delete[btn].addEventListener("click", () => {
+    if (deleteModal.box.style.display === "none") {
+      deleteModal.box.style.display = "block";
     }
   });
-  deleteCommentBtn.addEventListener("click", ()=> {
-    yourReplies[btn].remove()
-    if (modal.style.display === "block") {
-      modal.style.display = "none";
+  deleteModal.deleteComment.addEventListener("click", ()=> {
+    activeUser.replies[btn].remove()
+    if (deleteModal.box.style.display === "block") {
+      deleteModal.box.style.display = "none";
     }
   })
 });
 
-cancelDeleteBtn.addEventListener("click", () => {
-  if (modal.style.display === "block") {
-    modal.style.display = "none";
+deleteModal.cancelDelete.addEventListener("click", () => {
+  if (deleteModal.box.style.display === "block") {
+    deleteModal.box.style.display = "none";
   }
 });
