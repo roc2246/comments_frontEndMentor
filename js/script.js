@@ -116,6 +116,9 @@ fetch("../data.json")
 const replyBtn = document.getElementsByClassName("reply-edit-delete__reply");
 const replyFrm = document.getElementsByClassName("add-comment--add-reply");
 
+const deleteBtn = document.getElementsByClassName("reply-edit-delete__delete");
+const modal = document.getElementsByClassName("modal")[0]
+
 Object.keys(replyBtn).forEach((form) => {
   replyFrm[form].style.display = "none"
   replyBtn[form].addEventListener("click", () => {
@@ -126,3 +129,18 @@ Object.keys(replyBtn).forEach((form) => {
     }
   });
 });
+
+Object.keys(deleteBtn).forEach((btn) => {
+  modal.style.display = "none"
+  deleteBtn[btn].addEventListener("click", () => {
+    if (modal.style.display === "none") {
+      modal.style.display = "block";
+    } 
+  });
+});
+
+document.getElementsByClassName("cancel-delete")[0].addEventListener("click", ()=>{
+  if (modal.style.display === "block") {
+    modal.style.display = "none";
+  } 
+})
