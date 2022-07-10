@@ -35,6 +35,27 @@
   }
 }
 
+.comment__text--edit{
+  input{
+    height: calculate-rem(100px); 
+  }
+  .update-comment {
+    margin-left: auto;
+    margin-top: 1rem;
+    height: calculate-rem(40px);
+    width: calculate-rem(90px);
+    background-color: map-get($colors-primary, "moderate blue");
+    border-radius: $border-radius;
+    border: none;
+    color: map-get($colors-neutral, "white");
+    font-weight: map-get($font-weights, "large");
+    cursor: pointer;
+    &:hover {
+      background-color: map-get($colors-primary, "light grayish blue");
+    }
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .add-comment {
     &__send {

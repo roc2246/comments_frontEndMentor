@@ -124,6 +124,23 @@ p {
   .add-comment--add-reply {
     display: none; }
 
+.comment__text--edit input {
+  height: 6.25rem; }
+
+.comment__text--edit .update-comment {
+  margin-left: auto;
+  margin-top: 1rem;
+  height: 2.5rem;
+  width: 5.625rem;
+  background-color: #5457b6;
+  border-radius: 0.375rem;
+  border: none;
+  color: white;
+  font-weight: 700;
+  cursor: pointer; }
+  .comment__text--edit .update-comment:hover {
+    background-color: #c3c4ef; }
+
 @media only screen and (max-width: 480px) {
   .add-comment__send {
     margin-top: 1rem; } }
