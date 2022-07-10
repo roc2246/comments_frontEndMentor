@@ -1,8 +1,60 @@
+//Sets Data
 fetch("../data.json")
   .then((response) => response.json())
   .then((data) => {
     const { currentUser, comments } = data;
 
+    // Ratings
+    const voteContainer = {
+      upvote: document.querySelectorAll(
+        ".comment > .comment__vote > div > .upvote"
+      ),
+      rating: document.querySelectorAll(".comment > .comment__vote > .rating"),
+      downvote: document.querySelectorAll(
+        ".comment > .comment__vote > div > .downvote"
+      ),
+    };
+
+    const voteContainerReply = {
+      upvote: document.querySelectorAll(
+        ".reply > .comment__vote > div > .upvote"
+      ),
+      rating: document.querySelectorAll(".reply > .comment__vote > .rating"),
+      downvote: document.querySelectorAll(
+        ".reply > .comment__vote > div > .downvote"
+      ),
+    };
+
+    Object.keys(comments).forEach((vote) => {
+      voteContainer.upvote[vote].addEventListener("click", () => {
+        comments[vote].score++;
+        voteContainer.rating[vote].innerHTML = comments[vote].score;
+      });
+
+      voteContainer.downvote[vote].addEventListener("click", () => {
+        comments[vote].score--;
+        voteContainer.rating[vote].innerHTML = comments[vote].score;
+      });
+
+      if (comments[vote].replies.length > 0) {
+        Object.keys(comments[vote].replies).forEach((replyVote)=>{
+          voteContainerReply.upvote[replyVote].addEventListener("click", () => {
+            comments[vote].replies[replyVote].score++;
+            voteContainerReply.rating[replyVote].innerHTML = comments[vote].replies[replyVote].score;
+          });
+
+          
+          voteContainerReply.downvote[replyVote].addEventListener("click", () => {
+            comments[vote].replies[replyVote].score--;
+             voteContainerReply.rating[replyVote].innerHTML = comments[vote].replies[replyVote].score;
+           });
+
+        })
+      }
+
+    });
+
+    // Comments
     const postContainer = {
       score: document.getElementsByClassName("rating"),
       comment: document.querySelectorAll(".comment__text > p"),
@@ -38,6 +90,7 @@ fetch("../data.json")
       postContainer.date[comment].innerHTML = comments[comment].createdAt;
       postContainer.avatar[comment].src = comments[comment].user.image.png;
 
+      // Replies
       if (Object.keys(comments[comment].replies).length > 0) {
         Object.keys(comments[comment].replies).forEach((reply) => {
           replyContainer.score[reply].innerHTML =
@@ -56,3 +109,5 @@ fetch("../data.json")
       }
     });
   });
+
+//Toggles Modal and reply/edit forms
