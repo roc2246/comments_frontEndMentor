@@ -29,10 +29,10 @@
       background-color: map-get($colors-primary, "light grayish blue");
     }
   }
-}
+  &--add-reply{
+    display: none ;
 
-.add-reply{
-  display: none !important;
+  }
 }
 
 @media only screen and (max-width: 480px) {

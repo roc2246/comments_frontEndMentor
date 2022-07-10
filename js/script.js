@@ -114,11 +114,11 @@ fetch("../data.json")
 
 //Toggles Modal and reply/edit forms
 const replyBtn = document.getElementsByClassName("reply-edit-delete__reply");
-const replyFrm = document.getElementsByClassName("add-reply");
+const replyFrm = document.getElementsByClassName("add-comment--add-reply");
 
 Object.keys(replyBtn).forEach((form) => {
+  replyFrm[form].style.display = "none"
   replyBtn[form].addEventListener("click", () => {
-    console.log(replyFrm[form].style.display)
     if (replyFrm[form].style.display === "none") {
       replyFrm[form].style.display = "grid";
     } else {

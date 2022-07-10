@@ -25,8 +25,11 @@
   }
 }
 
-.add-comment {
+.add-comment{
   display: grid;
+}
+
+.add-comment, .add-comment--add-reply {
   grid-template-columns: $columns-add-comment;
   grid-template-rows: $rows-add-comment;
   grid-gap: $gutter-add-comment;

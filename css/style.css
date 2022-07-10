@@ -121,9 +121,8 @@ p {
     cursor: pointer; }
     .add-comment__send:hover {
       background-color: #c3c4ef; }
-
-.add-reply {
-  display: none !important; }
+  .add-comment--add-reply {
+    display: none; }
 
 @media only screen and (max-width: 480px) {
   .add-comment__send {
@@ -204,17 +203,19 @@ main.comment-box {
     grid-row: 2; }
 
 .add-comment {
-  display: grid;
+  display: grid; }
+
+.add-comment, .add-comment--add-reply {
   grid-template-columns: 4rem auto 6rem;
   grid-template-rows: auto auto;
   grid-gap: 1rem; }
-  .add-comment .avatar {
+  .add-comment .avatar, .add-comment--add-reply .avatar {
     grid-column: 1; }
-  .add-comment__comment {
+  .add-comment__comment, .add-comment--add-reply__comment {
     grid-column: 2;
     grid-row-start: 1;
     grid-row-end: 2; }
-    .add-comment__comment__send {
+    .add-comment__comment__send, .add-comment--add-reply__comment__send {
       grid-column: 3; }
 
 @media only screen and (max-width: 480px) {
