@@ -118,8 +118,10 @@ const editBtn = document.getElementsByClassName("reply-edit-delete__edit");
 const deleteBtn = document.getElementsByClassName("reply-edit-delete__delete");
 
 const yourReplies = document.getElementsByClassName("reply--you");
+const cmtTxtYou = document.querySelectorAll(".reply--you > .comment__text > p ");
 
 const replyFrm = document.getElementsByClassName("add-comment--add-reply");
+const editFrm = document.getElementsByClassName("comment__text--edit");
 
 const cancelDeleteBtn = document.getElementsByClassName("cancel-delete")[0];
 const deleteCommentBtn = document.getElementsByClassName("delete-comment")[0]
@@ -136,16 +138,18 @@ Object.keys(replyBtn).forEach((form) => {
   });
 });
 
-// Object.keys(editBtn).forEach((form) => {
-//   replyFrm[form].style.display = "none";
-//   editBtn[form].addEventListener("click", () => {
-//     if (replyFrm[form].style.display === "none") {
-//       replyFrm[form].style.display = "grid";
-//     } else {
-//       replyFrm[form].style.display = "none";
-//     }
-//   });
-// });
+Object.keys(editBtn).forEach((form) => {
+  editFrm[form].style.display = "none";
+  editBtn[form].addEventListener("click", () => {
+    if (editFrm[form].style.display === "none") {
+      editFrm[form].style.display = "grid";
+      cmtTxtYou[form].style.display = "none";
+    } else {
+      editFrm[form].style.display = "none";
+      cmtTxtYou[form].style.display = "inline";
+    }
+  });
+});
 
 Object.keys(deleteBtn).forEach((btn) => {
   modal.style.display = "none";
