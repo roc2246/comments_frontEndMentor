@@ -122,6 +122,9 @@ p {
     .add-comment__send:hover {
       background-color: #c3c4ef; }
 
+.add-reply {
+  display: none !important; }
+
 @media only screen and (max-width: 480px) {
   .add-comment__send {
     margin-top: 1rem; } }
@@ -162,9 +165,6 @@ main.comment-box {
     background-color: #ed6468; }
     .modal__btn-box .delete-comment:hover {
       background-color: #ffb8bb; }
-
-.add-reply {
-  display: none !important; }
 
 .reply-wrapper {
   display: flex;

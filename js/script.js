@@ -37,21 +37,23 @@ fetch("../data.json")
       });
 
       if (comments[vote].replies.length > 0) {
-        Object.keys(comments[vote].replies).forEach((replyVote)=>{
+        Object.keys(comments[vote].replies).forEach((replyVote) => {
           voteContainerReply.upvote[replyVote].addEventListener("click", () => {
             comments[vote].replies[replyVote].score++;
-            voteContainerReply.rating[replyVote].innerHTML = comments[vote].replies[replyVote].score;
+            voteContainerReply.rating[replyVote].innerHTML =
+              comments[vote].replies[replyVote].score;
           });
 
-          
-          voteContainerReply.downvote[replyVote].addEventListener("click", () => {
-            comments[vote].replies[replyVote].score--;
-             voteContainerReply.rating[replyVote].innerHTML = comments[vote].replies[replyVote].score;
-           });
-
-        })
+          voteContainerReply.downvote[replyVote].addEventListener(
+            "click",
+            () => {
+              comments[vote].replies[replyVote].score--;
+              voteContainerReply.rating[replyVote].innerHTML =
+                comments[vote].replies[replyVote].score;
+            }
+          );
+        });
       }
-
     });
 
     // Comments
@@ -111,3 +113,16 @@ fetch("../data.json")
   });
 
 //Toggles Modal and reply/edit forms
+const replyBtn = document.getElementsByClassName("reply-edit-delete__reply");
+const replyFrm = document.getElementsByClassName("add-reply");
+
+Object.keys(replyBtn).forEach((form) => {
+  replyBtn[form].addEventListener("click", () => {
+    console.log(replyFrm[form].style.display)
+    if (replyFrm[form].style.display === "none") {
+      replyFrm[form].style.display = "grid";
+    } else {
+      replyFrm[form].style.display = "none";
+    }
+  });
+});

@@ -31,6 +31,10 @@
   }
 }
 
+.add-reply{
+  display: none !important;
+}
+
 @media only screen and (max-width: 480px) {
   .add-comment {
     &__send {
