@@ -159,7 +159,8 @@ fetch("../data.json")
       forms.edit[form].style.display = "none";
       forms.textToEditInput[form].value =
         "@" +
-        replyContainer.user[form].innerHTML + " " +
+        replyContainer.user[form].innerHTML +
+        " " +
         replyContainer.comment[form].innerHTML;
       commentBtns.edit[form].addEventListener("click", () => {
         if (forms.edit[form].style.display === "none") {
@@ -192,5 +193,6 @@ fetch("../data.json")
         deleteModal.box.style.display = "none";
       }
     });
-    
+
+    // Create Comments
   });

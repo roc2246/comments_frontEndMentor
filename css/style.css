@@ -122,7 +122,8 @@ p {
     .add-comment__send:hover {
       background-color: #c3c4ef; }
   .add-comment--add-reply {
-    display: none; }
+    display: none;
+    padding: 1.5rem; }
 
 .comment__text--edit input {
   height: 6.25rem; }
@@ -155,6 +156,7 @@ main.comment-box {
 
 .comment,
 .add-comment,
+.add-comment--add-reply,
 .modal {
   border-radius: 0.375rem;
   background-color: white;
