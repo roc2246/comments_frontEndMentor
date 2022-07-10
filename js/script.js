@@ -114,9 +114,13 @@ fetch("../data.json")
 
 //Toggles Modal and reply/edit forms
 const replyBtn = document.getElementsByClassName("reply-edit-delete__reply");
+const editBtn = document.getElementsByClassName("reply-edit-delete__edit");
+const deleteBtn = document.getElementsByClassName("reply-edit-delete__delete");
+
+const yourReplies = document.getElementsByClassName("reply--you");
+
 const replyFrm = document.getElementsByClassName("add-comment--add-reply");
 
-const deleteBtn = document.getElementsByClassName("reply-edit-delete__delete");
 const cancelDeleteBtn = document.getElementsByClassName("cancel-delete")[0];
 const deleteCommentBtn = document.getElementsByClassName("delete-comment")[0]
 const modal = document.getElementsByClassName("modal")[0];
@@ -132,6 +136,17 @@ Object.keys(replyBtn).forEach((form) => {
   });
 });
 
+// Object.keys(editBtn).forEach((form) => {
+//   replyFrm[form].style.display = "none";
+//   editBtn[form].addEventListener("click", () => {
+//     if (replyFrm[form].style.display === "none") {
+//       replyFrm[form].style.display = "grid";
+//     } else {
+//       replyFrm[form].style.display = "none";
+//     }
+//   });
+// });
+
 Object.keys(deleteBtn).forEach((btn) => {
   modal.style.display = "none";
   deleteBtn[btn].addEventListener("click", () => {
@@ -140,7 +155,7 @@ Object.keys(deleteBtn).forEach((btn) => {
     }
   });
   deleteCommentBtn.addEventListener("click", ()=> {
-    document.getElementsByClassName("reply--you")[btn].remove()
+    yourReplies[btn].remove()
     if (modal.style.display === "block") {
       modal.style.display = "none";
     }

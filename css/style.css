@@ -201,6 +201,8 @@ main.comment-box {
   .comment__text {
     grid-column: 2;
     grid-row: 2; }
+    .comment__text--edit {
+      display: none; }
 
 .add-comment {
   display: grid; }
