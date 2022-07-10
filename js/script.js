@@ -117,10 +117,12 @@ const replyBtn = document.getElementsByClassName("reply-edit-delete__reply");
 const replyFrm = document.getElementsByClassName("add-comment--add-reply");
 
 const deleteBtn = document.getElementsByClassName("reply-edit-delete__delete");
-const modal = document.getElementsByClassName("modal")[0]
+const cancelDeleteBtn = document.getElementsByClassName("cancel-delete")[0];
+const deleteCommentBtn = document.getElementsByClassName("delete-comment")[0]
+const modal = document.getElementsByClassName("modal")[0];
 
 Object.keys(replyBtn).forEach((form) => {
-  replyFrm[form].style.display = "none"
+  replyFrm[form].style.display = "none";
   replyBtn[form].addEventListener("click", () => {
     if (replyFrm[form].style.display === "none") {
       replyFrm[form].style.display = "grid";
@@ -131,16 +133,22 @@ Object.keys(replyBtn).forEach((form) => {
 });
 
 Object.keys(deleteBtn).forEach((btn) => {
-  modal.style.display = "none"
+  modal.style.display = "none";
   deleteBtn[btn].addEventListener("click", () => {
     if (modal.style.display === "none") {
       modal.style.display = "block";
-    } 
+    }
   });
+  deleteCommentBtn.addEventListener("click", ()=> {
+    document.getElementsByClassName("reply--you")[btn].remove()
+    if (modal.style.display === "block") {
+      modal.style.display = "none";
+    }
+  })
 });
 
-document.getElementsByClassName("cancel-delete")[0].addEventListener("click", ()=>{
+cancelDeleteBtn.addEventListener("click", () => {
   if (modal.style.display === "block") {
     modal.style.display = "none";
-  } 
-})
+  }
+});
