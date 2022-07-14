@@ -194,16 +194,54 @@ fetch("../data.json")
       }
     });
   });
-    // Create Comments
-    const replyBox = document.querySelectorAll(".add-comment--add-reply + .reply-wrapper > .reply-comment-wrapper");
-    const newReplyBtn = document.getElementsByClassName(
-      "add-comment__send--reply"
-    );
+// Create Comments
+const replyBox = document.querySelectorAll(
+  ".add-comment--add-reply + .reply-wrapper > .reply-comment-wrapper"
+);
+const newReplyBtn = document.getElementsByClassName("add-comment__send--reply");
 
-    const newReply =(box)=>{
-      const container = document.createElement("div");
-      container.className = "comment reply";
-      container.innerHTML = "TEST";
-      replyBox[box].appendChild(container);
-    }
-       
+const newReply = (box) => {
+  const replyContainer = document.createElement("div");
+  replyContainer.className = "comment reply";
+
+  //Vote Box
+  let score = 0;
+  const voteContainer = document.createElement("div");
+  voteContainer.className = "comment__vote";
+
+  const upvoteContainer = document.createElement("div");
+  const upvoteIcon = document.createElement("img");
+  upvoteIcon.className = "upvote";
+  upvoteIcon.src = "images/icon-plus.svg";
+  upvoteContainer.appendChild(upvoteIcon);
+  upvoteIcon.onclick = () => {
+    score++;
+  ratingContainer.innerHTML = score;
+  console.log(score)
+  }
+
+  const ratingContainer = document.createElement("p");
+  ratingContainer.innerHTML = 0;
+  ratingContainer.className = "rating";
+
+  const downvoteContainer = document.createElement("div");
+  const downvoteIcon = document.createElement("img");
+  downvoteIcon.className = "downvote";
+  downvoteIcon.src = "images/icon-minus.svg";
+  downvoteContainer.appendChild(downvoteIcon);
+  downvoteIcon.onclick = () => {
+    score--;
+  ratingContainer.innerHTML = score;
+  console.log(score)
+  }
+
+
+  replyContainer.innerHTML = "TEST";
+
+  voteContainer.appendChild(upvoteContainer);
+  voteContainer.appendChild(ratingContainer);
+  voteContainer.appendChild(downvoteContainer);
+
+  replyContainer.appendChild(voteContainer);
+  replyBox[box].appendChild(replyContainer);
+};
