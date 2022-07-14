@@ -195,4 +195,23 @@ fetch("../data.json")
     });
 
     // Create Comments
+    const createReply = () => {
+      const replyBox = document.getElementsByClassName("reply-comment-wrapper")[0];
+      
+      const newComment = document.createElement("div");
+      newComment.className = "comment reply";
+      newComment.innerHTML = "TEST";
+      replyBox.appendChild(newComment);
+      console.log("TEST")
+    };
+
+    const newReplyBtn = document.getElementsByClassName(
+      "add-comment__send--reply"
+    );
+    Object.keys(newReplyBtn).forEach((btn) => {
+      newReplyBtn[btn].addEventListener(
+        "click",
+        createReply
+      );
+    });
   });

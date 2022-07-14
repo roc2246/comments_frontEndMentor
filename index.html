@@ -36,13 +36,14 @@
       <p></p>
     </div>
   </div>
+  <div class="reply-comment-wrapper"></div>
 
   <!-- Add Reply -->
-  <form action="post" class="add-comment--add-reply">
+  <div class="add-comment--add-reply">
     <img class="avatar--you" src="">
     <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-    <button class="add-comment__send">SEND</button>
-</form>
+    <button class="add-comment__send add-comment__send--reply">SEND</button>
+  </div>
 
   <div class="comment">
     <div class="comment__vote">
@@ -68,11 +69,11 @@
   </div>
 
   <!-- Add Reply -->
-  <form action="post" class="add-comment--add-reply">
+  <div class="add-comment--add-reply">
     <img class="avatar--you" src="">
     <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-    <button class="add-comment__send">SEND</button>
-</form>
+    <button class="add-comment__send add-comment__send--reply">SEND</button>
+  </div>
 
   <div class="reply-wrapper">
     <hr>
@@ -104,11 +105,11 @@
 </div>
 
 <!-- Add Reply -->
-<form action="post" class="add-comment--add-reply">
+<div class="add-comment--add-reply">
   <img class="avatar--you" src="">
   <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-  <button class="add-comment__send">SEND</button>
-</form>
+  <button class="add-comment__send add-comment__send--reply">SEND</button>
+</div>
 
        <div class="comment reply reply--you">
         <div class="comment__vote">
@@ -134,7 +135,7 @@
           <p>
             <span class="comment__text--reply-to"></span>
           <span class="comment__text--text"></span>
-          <form action="" class="comment__text--edit">
+          <form  action="" class="comment__text--edit">
             <input type="textbox">
             <button class="update-comment">UPDATE</button>
           </form>
@@ -143,17 +144,17 @@
     </div>
 
         <!-- Add Reply -->
-    <form action="post" class="add-comment--add-reply">
+    <div class="add-comment--add-reply">
       <img class="avatar--you" src="">
       <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-      <button class="add-comment__send">SEND</button>
-    </form>
+      <button class="add-comment__send add-comment__send--reply">SEND</button>
+    </div>
   </div>
   </div>
   </div>
   
 <!-- Add Comment -->
-  <form action="post" class="add-comment">
+  <form  method='POST'  class="add-comment">
       <img class="avatar--you" src="">
       <input type="text" class="add-comment__comment" placeholder="Add a comment...">
       <button class="add-comment__send">SEND</button>
