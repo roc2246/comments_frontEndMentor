@@ -193,25 +193,17 @@ fetch("../data.json")
         deleteModal.box.style.display = "none";
       }
     });
-
+  });
     // Create Comments
-    const createReply = () => {
-      const replyBox = document.getElementsByClassName("reply-comment-wrapper")[0];
-      
-      const newComment = document.createElement("div");
-      newComment.className = "comment reply";
-      newComment.innerHTML = "TEST";
-      replyBox.appendChild(newComment);
-      console.log("TEST")
-    };
-
+    const replyBox = document.querySelectorAll(".add-comment--add-reply + .reply-wrapper > .reply-comment-wrapper");
     const newReplyBtn = document.getElementsByClassName(
       "add-comment__send--reply"
     );
-    Object.keys(newReplyBtn).forEach((btn) => {
-      newReplyBtn[btn].addEventListener(
-        "click",
-        createReply
-      );
-    });
-  });
+
+    const newReply =(box)=>{
+      const container = document.createElement("div");
+      container.className = "comment reply";
+      container.innerHTML = "TEST";
+      replyBox[box].appendChild(container);
+    }
+       

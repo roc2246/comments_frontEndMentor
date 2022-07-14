@@ -14,6 +14,8 @@
 <body>
   <main class="comment-box">
   <!-- Pull dynamic content from the data.json file -->
+
+  <!-- Comment -->
   <div class="comment">
     <div class="comment__vote">
       <div>
@@ -36,15 +38,21 @@
       <p></p>
     </div>
   </div>
+
+  <!-- Add Reply -->
+  <div class="add-comment--add-reply">
+    <img class="avatar--you" src="">
+    <input type="text" class="add-comment__comment" placeholder="Add a comment...">
+    <button class="add-comment__send add-comment__send--reply" onclick="newReply(0)">SEND</button>
+  </div>
+
+  <!-- Replies -->
+  <div class="reply-wrapper">
+    <hr>
   <div class="reply-comment-wrapper"></div>
+    </div>
 
-  <!-- Add Reply -->
-  <div class="add-comment--add-reply">
-    <img class="avatar--you" src="">
-    <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-    <button class="add-comment__send add-comment__send--reply">SEND</button>
-  </div>
-
+  <!-- Comment -->
   <div class="comment">
     <div class="comment__vote">
       <div>
@@ -72,9 +80,10 @@
   <div class="add-comment--add-reply">
     <img class="avatar--you" src="">
     <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-    <button class="add-comment__send add-comment__send--reply">SEND</button>
+    <button class="add-comment__send add-comment__send--reply" onclick="newReply(1)">SEND</button>
   </div>
 
+  <!-- Replies -->
   <div class="reply-wrapper">
     <hr>
     <div class="reply-comment-wrapper">
@@ -108,7 +117,7 @@
 <div class="add-comment--add-reply">
   <img class="avatar--you" src="">
   <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-  <button class="add-comment__send add-comment__send--reply">SEND</button>
+  <button class="add-comment__send add-comment__send--reply" onclick="newReply(1)">SEND</button>
 </div>
 
        <div class="comment reply reply--you">
@@ -147,7 +156,7 @@
     <div class="add-comment--add-reply">
       <img class="avatar--you" src="">
       <input type="text" class="add-comment__comment" placeholder="Add a comment...">
-      <button class="add-comment__send add-comment__send--reply">SEND</button>
+      <button class="add-comment__send add-comment__send--reply" onclick="newReply(1)">SEND</button>
     </div>
   </div>
   </div>
