@@ -146,7 +146,7 @@ p {
   .add-comment__send {
     margin-top: 1rem; } }
 
-main.comment-box {
+main {
   width: min(45.3125rem, 95%);
   height: auto;
   margin-left: auto;

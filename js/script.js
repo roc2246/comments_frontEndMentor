@@ -1,255 +1,112 @@
-// //Sets Data
-// fetch("../data.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     const { currentUser, comments } = data;
+const users = "http://localhost:3002/users";
+const comments = "http://localhost:3002/comments";
 
-//     // Ratings
-//     const voteContainer = {
-//       upvote: document.querySelectorAll(
-//         ".comment > .comment__vote > div > .upvote"
-//       ),
-//       rating: document.querySelectorAll(".comment > .comment__vote > .rating"),
-//       downvote: document.querySelectorAll(
-//         ".comment > .comment__vote > div > .downvote"
-//       ),
-//     };
+const main = document.getElementsByClassName("comment-box")[0];
 
-//     const voteContainerReply = {
-//       upvote: document.querySelectorAll(
-//         ".reply > .comment__vote > div > .upvote"
-//       ),
-//       rating: document.querySelectorAll(".reply > .comment__vote > .rating"),
-//       downvote: document.querySelectorAll(
-//         ".reply > .comment__vote > div > .downvote"
-//       ),
-//     };
+fetch("http://localhost:3002/users")
+  .then((response) => response.json())
+  .then((data) => {
+    const users = data;
 
-//     Object.keys(comments).forEach((vote) => {
-//       voteContainer.upvote[vote].addEventListener("click", () => {
-//         comments[vote].score++;
-//         voteContainer.rating[vote].innerHTML = comments[vote].score;
-//       });
+    Object.keys(users).forEach((user) => {
+      const divContainer = document.createElement("div");
+      divContainer.className = "comment";
 
-//       voteContainer.downvote[vote].addEventListener("click", () => {
-//         comments[vote].score--;
-//         voteContainer.rating[vote].innerHTML = comments[vote].score;
-//       });
+      // Top Row
+      const toprowContainer = document.createElement("div");
+      toprowContainer.className = "comment__top-row";
 
-//       if (comments[vote].replies.length > 0) {
-//         Object.keys(comments[vote].replies).forEach((replyVote) => {
-//           voteContainerReply.upvote[replyVote].addEventListener("click", () => {
-//             comments[vote].replies[replyVote].score++;
-//             voteContainerReply.rating[replyVote].innerHTML =
-//               comments[vote].replies[replyVote].score;
-//           });
+      // Image Container
+      const avatar = document.createElement("img");
+      avatar.className = "avatar";
+      avatar.src = users[user].avatar_png;
+      toprowContainer.appendChild(avatar);
 
-//           voteContainerReply.downvote[replyVote].addEventListener(
-//             "click",
-//             () => {
-//               comments[vote].replies[replyVote].score--;
-//               voteContainerReply.rating[replyVote].innerHTML =
-//                 comments[vote].replies[replyVote].score;
-//             }
-//           );
-//         });
-//       }
-//     });
+      // Username
+      const username = document.createElement("span");
+      username.className = "name";
+      username.innerHTML = users[user].username;
+      toprowContainer.appendChild(username);
 
-//     // Comments
-//     const postContainer = {
-//       score: document.getElementsByClassName("rating"),
-//       comment: document.querySelectorAll(".comment__text > p"),
-//       user: document.getElementsByClassName("name"),
-//       date: document.getElementsByClassName("post-date"),
-//       avatar: document.getElementsByClassName("avatar"),
-//     };
+      // Append to main tag
+      divContainer.appendChild(toprowContainer)
+      main.appendChild(divContainer);
+    });
+  });
 
-//     const replyContainer = {
-//       score: document.querySelectorAll(".reply > .comment__vote > .rating"),
-//       comment: document.querySelectorAll(
-//         ".reply > .comment__text > p > .comment__text--text"
-//       ),
-//       user: document.querySelectorAll(".reply > .comment__top-row > .name"),
-//       date: document.querySelectorAll(
-//         ".reply > .comment__top-row > .post-date"
-//       ),
-//       avatar: document.querySelectorAll(".reply > .comment__top-row > .avatar"),
-//       replyTo: document.getElementsByClassName("comment__text--reply-to"),
-//     };
+fetch(comments)
+  .then((response) => response.json())
+  .then((data) => {
+    const comments = data;
+    Object.keys(comments).forEach((comment) => {
+      const divContainer = document.getElementsByClassName("comment")
+      // Vote
+      const voteContainer = document.createElement("div");
+      voteContainer.className = "comment__vote";
 
-//     // Sets user
-//     const youAvatar = document.getElementsByClassName("avatar--you");
-//     Object.keys(youAvatar).forEach((avatar) => {
-//       youAvatar[avatar].src = currentUser.image.png;
-//     });
+      const upvoteContainer = document.createElement("div");
+      const upvoteIcon = document.createElement("img");
+      upvoteIcon.className = "upvote";
+      upvoteIcon.src = "images/icon-plus.svg";
+      upvoteIcon.onclick = () => {
+        comments[comment].score++;
+        ratingContainer.innerHTML = comments[comment].score;
+      };
+      upvoteContainer.appendChild(upvoteIcon);
 
-//     //Sets other users
-//     Object.keys(comments).forEach((comment) => {
-//       postContainer.score[comment].innerHTML = comments[comment].score;
-//       postContainer.comment[comment].innerHTML = comments[comment].content;
-//       postContainer.user[comment].innerHTML = comments[comment].user.username;
-//       postContainer.date[comment].innerHTML = comments[comment].createdAt;
-//       postContainer.avatar[comment].src = comments[comment].user.image.png;
+      const ratingContainer = document.createElement("p");
+      ratingContainer.innerHTML = comments[comment].score;
+      ratingContainer.className = "rating";
 
-//       // Replies
-//       if (Object.keys(comments[comment].replies).length > 0) {
-//         Object.keys(comments[comment].replies).forEach((reply) => {
-//           replyContainer.score[reply].innerHTML =
-//             comments[comment].replies[reply].score;
-//           replyContainer.avatar[reply].src =
-//             comments[comment].replies[reply].user.image.png;
-//           replyContainer.user[reply].innerHTML =
-//             comments[comment].replies[reply].user.username;
-//           replyContainer.date[reply].innerHTML =
-//             comments[comment].replies[reply].createdAt;
-//           replyContainer.comment[reply].innerHTML =
-//             comments[comment].replies[reply].content;
-//           replyContainer.replyTo[reply].innerHTML =
-//             "@" + comments[comment].replies[reply].replyingTo;
-//         });
-//       }
-//     });
+      const downvoteContainer = document.createElement("div");
+      const downvoteIcon = document.createElement("img");
+      downvoteIcon.className = "downvote";
+      downvoteIcon.src = "images/icon-minus.svg";
+      downvoteIcon.onclick = () => {
+        comments[comment].score--;
+        ratingContainer.innerHTML = comments[comment].score;
+      };
+      downvoteContainer.appendChild(downvoteIcon);
 
-//     //Toggles Modal and reply/edit forms
-//     const commentBtns = {
-//       reply: document.getElementsByClassName("reply-edit-delete__reply"),
-//       edit: document.getElementsByClassName("reply-edit-delete__edit"),
-//       delete: document.getElementsByClassName("reply-edit-delete__delete"),
+      // Reply, Edit, Delete
+      const replyeditdelete = document.createElement("span");
+      replyeditdelete.className = "reply-edit-delete";
 
-//       deleteComment: document.getElementsByClassName("delete-comment")[0],
-//     };
+      const reply = document.createElement("span");
+      reply.className = "reply-edit-delete__reply";
+      reply.innerText = "Reply";
+      replyeditdelete.appendChild(reply);
 
-//     const forms = {
-//       reply: document.getElementsByClassName("add-comment--add-reply"),
-//       edit: document.getElementsByClassName("comment__text--edit"),
-//       textToEditInput: document.querySelectorAll(
-//         ".comment__text--edit > input"
-//       ),
-//     };
+      const replyImg = document.createElement("img");
+      replyImg.className = "reply-edit-delete__reply--image";
+      replyImg.src = "images/icon-reply.svg";
+      reply.appendChild(replyImg);
 
-//     const activeUser = {
-//       replies: document.getElementsByClassName("reply--you"),
-//       commentText: document.querySelectorAll(
-//         ".reply--you > .comment__text > p "
-//       ),
-//     };
+      // Comment Text
+      const content = document.createElement("div");
+      content.className = "comment__text";
+      const text = document.createElement("p");
+      if(comments[comment].replyTo !== '') {
+        const replyTo = document.createElement("span")
+        replyTo.className = "comment__text--reply-to"
+        replyTo.innerHTML = "@" + comments[comment].replyTo + " "
+        text.appendChild(replyTo)
 
-//     const deleteModal = {
-//       box: document.getElementsByClassName("modal")[0],
+        const commentText = document.createElement("span")
+        commentText.className = "comment__text--text"
+        commentText.innerHTML = comments[comment].content
+        text.appendChild(commentText)
+      } else{
+        text.innerHTML = comments[comment].content;
+      }
+      content.appendChild(text);
 
-//       cancelDelete: document.getElementsByClassName("cancel-delete")[0],
-//       deleteComment: document.getElementsByClassName("delete-comment")[0],
-//     };
+      voteContainer.appendChild(upvoteContainer);
+      voteContainer.appendChild(ratingContainer);
+      voteContainer.appendChild(downvoteContainer);
 
-//     // Reply Button
-//     Object.keys(commentBtns.reply).forEach((form) => {
-//       forms.reply[form].style.display = "none";
-//       commentBtns.reply[form].addEventListener("click", () => {
-//         if (forms.reply[form].style.display === "none") {
-//           forms.reply[form].style.display = "grid";
-//         } else {
-//           forms.reply[form].style.display = "none";
-//         }
-//       });
-//     });
-
-//     // Edit Button
-//     Object.keys(commentBtns.edit).forEach((form) => {
-//       forms.edit[form].style.display = "none";
-//       forms.textToEditInput[form].value =
-//         "@" +
-//         replyContainer.user[form].innerHTML +
-//         " " +
-//         replyContainer.comment[form].innerHTML;
-//       commentBtns.edit[form].addEventListener("click", () => {
-//         if (forms.edit[form].style.display === "none") {
-//           forms.edit[form].style.display = "grid";
-//           activeUser.commentText[form].style.display = "none";
-//         } else {
-//           forms.edit[form].style.display = "none";
-//           activeUser.commentText[form].style.display = "inline";
-//         }
-//       });
-//     });
-
-//     // Delete Button
-//     Object.keys(commentBtns.delete).forEach((btn) => {
-//       deleteModal.box.style.display = "none";
-//       commentBtns.delete[btn].addEventListener("click", () => {
-//         if (deleteModal.box.style.display === "none") {
-//           deleteModal.box.style.display = "block";
-//         }
-//       });
-//       deleteModal.deleteComment.addEventListener("click", () => {
-//         activeUser.replies[btn].remove();
-//         if (deleteModal.box.style.display === "block") {
-//           deleteModal.box.style.display = "none";
-//         }
-//       });
-//     });
-//     deleteModal.cancelDelete.addEventListener("click", () => {
-//       if (deleteModal.box.style.display === "block") {
-//         deleteModal.box.style.display = "none";
-//       }
-//     });
-//   });
-// // Create Comments
-// const replyBox = document.querySelectorAll(
-//   ".add-comment--add-reply + .reply-wrapper > .reply-comment-wrapper"
-// );
-// const newReplyBtn = document.getElementsByClassName("add-comment__send--reply");
-
-// const newReply = (box) => {
-//   const replyContainer = document.createElement("div");
-//   replyContainer.className = "comment reply";
-
-//   //Vote Box
-//   let score = 0;
-//   const voteContainer = document.createElement("div");
-//   voteContainer.className = "comment__vote";
-
-//   const upvoteContainer = document.createElement("div");
-//   const upvoteIcon = document.createElement("img");
-//   upvoteIcon.className = "upvote";
-//   upvoteIcon.src = "images/icon-plus.svg";
-//   upvoteContainer.appendChild(upvoteIcon);
-//   upvoteIcon.onclick = () => {
-//     score++;
-//   ratingContainer.innerHTML = score;
-//   console.log(score)
-//   }
-
-//   const ratingContainer = document.createElement("p");
-//   ratingContainer.innerHTML = 0;
-//   ratingContainer.className = "rating";
-
-//   const downvoteContainer = document.createElement("div");
-//   const downvoteIcon = document.createElement("img");
-//   downvoteIcon.className = "downvote";
-//   downvoteIcon.src = "images/icon-minus.svg";
-//   downvoteContainer.appendChild(downvoteIcon);
-//   downvoteIcon.onclick = () => {
-//     score--;
-//   ratingContainer.innerHTML = score;
-//   console.log(score)
-//   }
-
-
-//   replyContainer.innerHTML = "TEST";
-
-//   voteContainer.appendChild(upvoteContainer);
-//   voteContainer.appendChild(ratingContainer);
-//   voteContainer.appendChild(downvoteContainer);
-
-//   replyContainer.appendChild(voteContainer);
-//   replyBox[box].appendChild(replyContainer);
-// };
-
-const adress = "http://localhost:3002/get"
-
-fetch(adress)
-  .then(response => response.json())
-  .then(data => {
-console.log(data)
-  })
+      divContainer[comment].appendChild(voteContainer);
+      divContainer[comment].appendChild(replyeditdelete);
+      divContainer[comment].appendChild(content);
+    });
+  });
