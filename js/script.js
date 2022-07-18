@@ -29,17 +29,26 @@ fetch("http://localhost:3002/users")
       toprowContainer.appendChild(username);
 
       // Append to main tag
-      divContainer.appendChild(toprowContainer)
+      divContainer.appendChild(toprowContainer);
       main.appendChild(divContainer);
     });
   });
 
+  const replyContainer = document.createElement("div")
+        replyContainer.className="reply-wrapper"
 fetch(comments)
   .then((response) => response.json())
   .then((data) => {
     const comments = data;
     Object.keys(comments).forEach((comment) => {
-      const divContainer = document.getElementsByClassName("comment")
+      const divContainer = document.getElementsByClassName("comment");
+      // Check for reply comments
+      if (comments[comment].replyTo !== "") {
+        main.appendChild(replyContainer)
+        console.log(divContainer[comment])
+        divContainer[comment].className = "comment reply";
+      }
+
       // Vote
       const voteContainer = document.createElement("div");
       voteContainer.className = "comment__vote";
@@ -86,17 +95,17 @@ fetch(comments)
       const content = document.createElement("div");
       content.className = "comment__text";
       const text = document.createElement("p");
-      if(comments[comment].replyTo !== '') {
-        const replyTo = document.createElement("span")
-        replyTo.className = "comment__text--reply-to"
-        replyTo.innerHTML = "@" + comments[comment].replyTo + " "
-        text.appendChild(replyTo)
+      if (comments[comment].replyTo !== "") {
+        const replyTo = document.createElement("span");
+        replyTo.className = "comment__text--reply-to";
+        replyTo.innerHTML = "@" + comments[comment].replyTo + " ";
+        text.appendChild(replyTo);
 
-        const commentText = document.createElement("span")
-        commentText.className = "comment__text--text"
-        commentText.innerHTML = comments[comment].content
-        text.appendChild(commentText)
-      } else{
+        const commentText = document.createElement("span");
+        commentText.className = "comment__text--text";
+        commentText.innerHTML = comments[comment].content;
+        text.appendChild(commentText);
+      } else {
         text.innerHTML = comments[comment].content;
       }
       content.appendChild(text);

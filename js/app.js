@@ -20,18 +20,6 @@ db.connect((err) => {
   console.log("MySql Connected...");
 });
 
-// Define paths for Express config
-const publicDirectoryPath = path.join(__dirname, "../");
-console.log(publicDirectoryPath);
-// Setup static directory to serve
-app.use(express.static(publicDirectoryPath));
-
-// app.get("/insert", (req, res) => {
-//   let sql =
-//     "CREATE TABLE table4(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id))";
-
-// });
-
 // Sets CORS policy
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -55,7 +43,8 @@ app.get("/users", (req, res) => {
 
 // Get Comment Data
 app.get("/comments", (req, res) => {
-  let sql = "SELECT * FROM comments";
+  let sql =
+    "SELECT * FROM comments INNER JOIN users ON (users.user_id=comments.comment_id)";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
