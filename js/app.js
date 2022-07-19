@@ -30,17 +30,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Get user data
-app.get("/users", (req, res) => {
-  let sql = "SELECT * FROM users";
-  db.query(sql, (error, result) => {
-    if (error) {
-      console.log(error);
-    }
-    res.send(result);
-  });
-});
-
 // Get Comment Data
 app.get("/comments", (req, res) => {
   let sql =

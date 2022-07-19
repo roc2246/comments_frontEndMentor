@@ -1,121 +1,45 @@
 const users = "http://localhost:3002/users";
+
+const commentBox = document.getElementsByClassName("comment-box")[0];
 const comments = "http://localhost:3002/comments";
 
-const main = document.getElementsByClassName("comment-box")[0];
-
-fetch("http://localhost:3002/users")
-  .then((response) => response.json())
-  .then((data) => {
-    const users = data;
-
-    Object.keys(users).forEach((user) => {
-      const divContainer = document.createElement("div");
-      divContainer.className = "comment";
-
-      // Top Row
-      const toprowContainer = document.createElement("div");
-      toprowContainer.className = "comment__top-row";
-
-      // Image Container
-      const avatar = document.createElement("img");
-      avatar.className = "avatar";
-      avatar.src = users[user].avatar_png;
-      toprowContainer.appendChild(avatar);
-
-      // Username
-      const username = document.createElement("span");
-      username.className = "name";
-      username.innerHTML = users[user].username;
-      toprowContainer.appendChild(username);
-
-      // Append to main tag
-      divContainer.appendChild(toprowContainer);
-      main.appendChild(divContainer);
-    });
-  });
-
-  const replyContainer = document.createElement("div")
-        replyContainer.className="reply-wrapper"
 fetch(comments)
   .then((response) => response.json())
   .then((data) => {
-    const comments = data;
-    Object.keys(comments).forEach((comment) => {
-      const divContainer = document.getElementsByClassName("comment");
-      // Check for reply comments
-      if (comments[comment].replyTo !== "") {
-        main.appendChild(replyContainer)
-        console.log(divContainer[comment])
-        divContainer[comment].className = "comment reply";
-      }
-
-      // Vote
-      const voteContainer = document.createElement("div");
-      voteContainer.className = "comment__vote";
-
-      const upvoteContainer = document.createElement("div");
-      const upvoteIcon = document.createElement("img");
-      upvoteIcon.className = "upvote";
-      upvoteIcon.src = "images/icon-plus.svg";
-      upvoteIcon.onclick = () => {
-        comments[comment].score++;
-        ratingContainer.innerHTML = comments[comment].score;
-      };
-      upvoteContainer.appendChild(upvoteIcon);
-
-      const ratingContainer = document.createElement("p");
-      ratingContainer.innerHTML = comments[comment].score;
-      ratingContainer.className = "rating";
-
-      const downvoteContainer = document.createElement("div");
-      const downvoteIcon = document.createElement("img");
-      downvoteIcon.className = "downvote";
-      downvoteIcon.src = "images/icon-minus.svg";
-      downvoteIcon.onclick = () => {
-        comments[comment].score--;
-        ratingContainer.innerHTML = comments[comment].score;
-      };
-      downvoteContainer.appendChild(downvoteIcon);
-
-      // Reply, Edit, Delete
-      const replyeditdelete = document.createElement("span");
-      replyeditdelete.className = "reply-edit-delete";
-
-      const reply = document.createElement("span");
-      reply.className = "reply-edit-delete__reply";
-      reply.innerText = "Reply";
-      replyeditdelete.appendChild(reply);
-
-      const replyImg = document.createElement("img");
-      replyImg.className = "reply-edit-delete__reply--image";
-      replyImg.src = "images/icon-reply.svg";
-      reply.appendChild(replyImg);
-
-      // Comment Text
-      const content = document.createElement("div");
-      content.className = "comment__text";
-      const text = document.createElement("p");
-      if (comments[comment].replyTo !== "") {
-        const replyTo = document.createElement("span");
-        replyTo.className = "comment__text--reply-to";
-        replyTo.innerHTML = "@" + comments[comment].replyTo + " ";
-        text.appendChild(replyTo);
-
-        const commentText = document.createElement("span");
-        commentText.className = "comment__text--text";
-        commentText.innerHTML = comments[comment].content;
-        text.appendChild(commentText);
-      } else {
-        text.innerHTML = comments[comment].content;
-      }
-      content.appendChild(text);
-
-      voteContainer.appendChild(upvoteContainer);
-      voteContainer.appendChild(ratingContainer);
-      voteContainer.appendChild(downvoteContainer);
-
-      divContainer[comment].appendChild(voteContainer);
-      divContainer[comment].appendChild(replyeditdelete);
-      divContainer[comment].appendChild(content);
-    });
+    for (let x in data) {
+      commentBox.innerHTML +=
+        "<div class='comment'>" +
+        "<div class='comment__vote'>" +
+        "<div>" +
+        "<img src='images/icon-plus.svg' alt='' class='upvote'>" +
+        "</div>" +
+        "<p class='rating'>" +
+        data[x].score +
+        "</p>" +
+        "<div>" +
+        "<img src='images/icon-minus.svg' alt='' class='downvote'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='comment__top-row'>" +
+        "<img class='avatar' src='" +
+        data[x].avatar_png +
+        "'>" +
+        "<span class='name'>" +
+        data[x].username +
+        "</span>" +
+        "<span class='post-date'>" +
+        data[x].createdAt +
+        "</span>" +
+        "</div>" +
+        "<span class='reply-edit-delete'>" +
+        "<span class='reply-edit-delete__reply'>" +
+        "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'>Reply</span>" +
+        "</span>" +
+        "<div class='comment__text'>" +
+        "<p>" +
+        data[x].content +
+        "</p>" +
+        "</div>" +
+        "</div>";
+    }
   });
