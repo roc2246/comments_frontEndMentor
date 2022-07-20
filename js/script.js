@@ -41,8 +41,44 @@ fetch(comments)
         data[x].content +
         "</p>" +
         "</div>" +
-        "</div>" +
-        "<div class='reply-wrapper'></div>";
+        "</div>";
+      if (data[x].replies === 1) {
+        console.log(data[x].reply_content);
+        commentBox.innerHTML +=
+          "<div class='reply-wrapper'>" +
+          "<hr>" +
+          "<div class='reply-comment-wrapper'>" +
+          "<div class='comment reply'>" +
+          "<div class='comment__vote'>" +
+          "<div>" +
+          "<img src='images/icon-plus.svg' alt='' class='upvote'>" +
+          "</div>" +
+          "<p class='rating'>" +
+          data[x].reply_score +
+          "</p>"+
+        "<div>" +
+          "<img src='images/icon-minus.svg' alt='' class='downvote'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='comment__top-row'>" +
+          "<img class='avatar' src='images/avatars/image-maxblagun.png'>" +
+          "<span class='name'>Person</span>" +
+          "<span class='post-date'>Date</span>" +
+          "</div>" +
+          "<span class='reply-edit-delete'>" +
+          "<span class='reply-edit-delete__reply'>" +
+          "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'>Reply</span>" +
+          "</span>" +
+          "<div class='comment__text'>" +
+          "<p>" +
+          "<span class='comment__text--reply-to'></span>" +
+          "<span class='comment__text--text'>" +
+          data[x].reply_content +
+          "</span>" +
+          "</p>" +
+          "</div>" +
+          "</div>";
+      }
     }
   });
 

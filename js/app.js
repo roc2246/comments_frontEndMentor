@@ -68,7 +68,20 @@ app.get("/session", (req, res) => {
 // Get Comment Data
 app.get("/comments", (req, res) => {
   let sql =
-    "SELECT * FROM comments INNER JOIN users ON (users.id=comments.user_id)";
+    "SELECT "
+    +"comments.user_id, users.username, "
+    +"users.avatar_png, comments.content, "
+    +"comments.content, comments.createdAt, "
+    +"comments.score, comments.replies "
+
+    +", replies.reply_content, replies.reply_score "
+    
+    + "FROM comments " 
+    +"INNER JOIN users "
+    +"ON (users.id=comments.user_id) " 
+    
+    + "INNER JOIN replies "
+    +"on (comments.id=replies.comment_id)";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
