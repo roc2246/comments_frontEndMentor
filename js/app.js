@@ -1,9 +1,16 @@
 const express = require("express");
 var session = require("express-session");
+const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
 
 const mysql = require("mysql");
+
+// Body Parser
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
 // Create Connection
 const db = mysql.createConnection({
@@ -72,13 +79,15 @@ app.get("/comments", (req, res) => {
 
 // Posts New Comment
 app.post("/add", (req, res) => {
-  let sql = "INSERT INTO users (username, avatar_png, avatar_webp) VALUES ('TEST', 'EST', 'score')";
+  let text = req.body.comment_text
+  let sql = `INSERT INTO comments (user_id, content, createdAt, score) VALUES (`+ sessionData.user.user__id +`, '`+text+`', 'date', 0)`;
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
     }
     res.send(result);
     console.log("TEST")
+    console.log(req.body)
   });
 })
 
