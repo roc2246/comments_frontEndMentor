@@ -52,7 +52,8 @@ app.get("/session", (req, res) => {
   console.log(
     "Setting session data:username=%s user__id=%s, and avatar_png=%s",
     username,
-    sessionData.user.salary
+    sessionData.user.user__id,
+    sessionData.user.avatar_png
   );
   res.json(sessionData.user);
 });
@@ -68,6 +69,18 @@ app.get("/comments", (req, res) => {
     res.send(result);
   });
 });
+
+// Posts New Comment
+app.post("/add", (req, res) => {
+  let sql = "INSERT INTO users (username, avatar_png, avatar_webp) VALUES ('TEST', 'EST', 'score')";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log("TEST")
+  });
+})
 
 const portNo = 3002;
 app.listen(portNo, () => {

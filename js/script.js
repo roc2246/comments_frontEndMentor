@@ -1,4 +1,5 @@
 const users = "http://localhost:3002/users";
+const session = "http://localhost:3002/session";
 
 const commentBox = document.getElementsByClassName("comment-box")[0];
 const comments = "http://localhost:3002/comments";
@@ -9,28 +10,46 @@ fetch(comments)
     for (let x in data) {
       commentBox.innerHTML +=
         "<div class='comment'>" +
-          "<div class='comment__vote'>" +
-            "<div>" +
-              "<img src='images/icon-plus.svg' alt='upvote score' class='upvote'>" +
-            "</div>" +
-            "<p class='rating'>" + data[x].score + "</p>" +
-            "<div>" +
-              "<img src='images/icon-minus.svg' alt='downvote score' class='downvote'>" +
-            "</div>" +
-          "</div>" +
-          "<div class='comment__top-row'>" +
-            "<img class='avatar' alt='avatar' src='" + data[x].avatar_png + "'>" +
-            "<span class='name'>" + data[x].username + "</span>" +
-            "<span class='post-date'>" + data[x].createdAt + "</span>" +
-          "</div>" +
-          "<span class='reply-edit-delete'>" +
-            "<span class='reply-edit-delete__reply'>" +
-            "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'>Reply</span>" +
-          "</span>" +
-          "<div class='comment__text'>" +
-            "<p>" + data[x].content + "</p>" +
-          "</div>" +
-        "</div>"+
-        "<div class='reply-wrapper'></div>"
+        "<div class='comment__vote'>" +
+        "<div>" +
+        "<img src='images/icon-plus.svg' alt='upvote score' class='upvote'>" +
+        "</div>" +
+        "<p class='rating'>" +
+        data[x].score +
+        "</p>" +
+        "<div>" +
+        "<img src='images/icon-minus.svg' alt='downvote score' class='downvote'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='comment__top-row'>" +
+        "<img class='avatar' alt='avatar' src='" +
+        data[x].avatar_png +
+        "'>" +
+        "<span class='name'>" +
+        data[x].username +
+        "</span>" +
+        "<span class='post-date'>" +
+        data[x].createdAt +
+        "</span>" +
+        "</div>" +
+        "<span class='reply-edit-delete'>" +
+        "<span class='reply-edit-delete__reply'>" +
+        "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'>Reply</span>" +
+        "</span>" +
+        "<div class='comment__text'>" +
+        "<p>" +
+        data[x].content +
+        "</p>" +
+        "</div>" +
+        "</div>" +
+        "<div class='reply-wrapper'></div>";
     }
+  });
+
+fetch(session)
+  .then((response) => response.json())
+  .then((data) => {
+    const userInfo = data;
+    const userAvatar = document.getElementsByClassName("avatar--you")[1];
+    userAvatar.src = userInfo.avatar_png;
   });
