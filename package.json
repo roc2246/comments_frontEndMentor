@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "express-session": "^1.17.3",
     "sass": "^1.52.3"
   },
   "name": "comments",

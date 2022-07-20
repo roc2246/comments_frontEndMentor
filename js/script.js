@@ -30,6 +30,7 @@ fetch(comments)
           "<div class='comment__text'>" +
             "<p>" + data[x].content + "</p>" +
           "</div>" +
-        "</div>";
+        "</div>"+
+        "<div class='reply-wrapper'></div>"
     }
   });

@@ -1,4 +1,5 @@
 const express = require("express");
+var session = require("express-session");
 const app = express();
 const path = require("path");
 
@@ -28,6 +29,30 @@ app.use(function (req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
+});
+
+// Sets Session Variable
+app.use(
+  session({
+    secret: "XASDASDA",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+let sessionData;
+app.get("/session", (req, res) => {
+  sessionData = req.session;
+  sessionData.user = {};
+  let username = "juliusomo";
+  let userID = 4;
+  sessionData.user.username = username;
+  sessionData.user.user__id = userID;
+  console.log(
+    "Setting session data:username=%s and user__id=%s",
+    username,
+    sessionData.user.salary
+  );
+  res.json(sessionData.user);
 });
 
 // Get Comment Data
