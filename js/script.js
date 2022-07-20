@@ -50,6 +50,8 @@ fetch(session)
   .then((response) => response.json())
   .then((data) => {
     const userInfo = data;
-    const userAvatar = document.getElementsByClassName("avatar--you")[1];
-    userAvatar.src = userInfo.avatar_png;
+    const userAvatar = document.getElementsByClassName("avatar--you");
+    Object.keys(userAvatar).forEach((avatar) => {
+      userAvatar[avatar].src = userInfo.avatar_png;
+    });
   });
