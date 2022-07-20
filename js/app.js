@@ -45,10 +45,12 @@ app.get("/session", (req, res) => {
   sessionData.user = {};
   let username = "juliusomo";
   let userID = 4;
+  let avatar = "./images/avatars/image-juliusomo.png";
   sessionData.user.username = username;
   sessionData.user.user__id = userID;
+  sessionData.user.avatar_png = avatar;
   console.log(
-    "Setting session data:username=%s and user__id=%s",
+    "Setting session data:username=%s user__id=%s, and avatar_png=%s",
     username,
     sessionData.user.salary
   );
