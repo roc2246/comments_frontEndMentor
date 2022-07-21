@@ -95,7 +95,7 @@ app.get("/replies", (req, res) => {
   let sql =
     "SELECT "
     +"replies.user_id, users.username, "
-    +"users.avatar_png, replies.content, "
+    +"users.avatar_png, replies.replyTo, replies.content, "
     +"replies.createdAt, replies.score "
     + "FROM replies " 
     + "INNER JOIN users "

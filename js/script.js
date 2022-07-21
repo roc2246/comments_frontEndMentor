@@ -35,7 +35,7 @@ fetch(comments)
         "</div>" +
         "<span class='reply-edit-delete'>" +
         "<span class='reply-edit-delete__reply'>" +
-        "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'>Reply</span>" +
+        "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>" +
         "</span>" +
         "<div class='comment__text'>" +
         "<p>" +
@@ -82,11 +82,11 @@ fetch(comments)
                 "</div>" +
                 "<span class='reply-edit-delete'>" +
                 "<span class='reply-edit-delete__reply'>" +
-                "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'>Reply</span>" +
+                "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
                 "</span>" +
                 "<div class='comment__text'>" +
                 "<p>" +
-                "<span class='comment__text--reply-to'></span>" +
+                "<span class='comment__text--reply-to'>@"+data[x].replyTo+" </span>" +
                 "<span class='comment__text--text'>" +
                 data[x].content +
                 "</span>" +
