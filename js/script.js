@@ -46,9 +46,11 @@ fetch(comments)
         "</div>" +
         "</div>" +
         // Add Reply
-        "<form class='add-comment--add-reply'>" +
+        "<form class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
+        "<input name='comment_id' type='text' value='"+data[x].id+"' style='display:none;'>" +
+        "<input name='reply_to' type='text' value='"+data[x].username+"' style='display:none;'>" +
         "<img class='avatar--you' src=''>" +
-        "<input type='text' class='add-comment__comment' placeholder='Add a comment...'>" +
+        "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
         " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
         "</form>";
       if (data[x].replies === 1) {
@@ -103,14 +105,14 @@ fetch(comments)
                 data[x].content +
                 "</span>" +
                 "</p>" +
-                "</div>" 
-                // Add Reply
-                document.getElementsByClassName(
-                  "reply-comment-wrapper"
-                )[0].innerHTML +=
-                "<form class='add-comment--add-reply replyToReply'>" +
+                "</div>";
+              // Add Reply
+              document.getElementsByClassName(
+                "reply-comment-wrapper"
+              )[0].innerHTML +=
+                "<form name='"+[x]+" 'class='add-comment--add-reply replyToReply'>" +
                 "<img class='avatar--you' src=''>" +
-                "<input type='text' class='add-comment__comment' placeholder='Add a comment...'>" +
+                "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
                 " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                 "</form>";
             }
@@ -124,17 +126,20 @@ fetch(session)
   .then((data) => {
     const userInfo = data;
     const userAvatar = document.getElementsByClassName("avatar--you");
+    console.log(userAvatar)
     Object.keys(userAvatar).forEach((avatar) => {
       userAvatar[avatar].src = userInfo.avatar_png;
     });
   });
 
-  const replyForm = document.getElementsByClassName("add-comment--add-reply");
-  const replyToReply = document.getElementsByClassName("replyToReply");
+const replyForm = document.getElementsByClassName("add-comment--add-reply");
+const replyToReply = document.getElementsByClassName("replyToReply");
 
 const toggleForm = (formName, form) => {
-
-  if (formName[form].style.display === "none" || formName[form].style.display === "") {
+  if (
+    formName[form].style.display === "none" ||
+    formName[form].style.display === ""
+  ) {
     formName[form].style.display = "grid";
   } else {
     formName[form].style.display = "none";

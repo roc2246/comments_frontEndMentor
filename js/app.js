@@ -69,7 +69,7 @@ app.get("/session", (req, res) => {
 app.get("/comments", (req, res) => {
   let sql =
     "SELECT "
-    +"comments.user_id, users.username, "
+    +"comments.id, comments.user_id, users.username, "
     +"users.avatar_png, comments.content, "
     +"comments.content, comments.createdAt, "
     +"comments.score, comments.replies "
@@ -112,6 +112,23 @@ app.get("/replies", (req, res) => {
 app.post("/add", (req, res) => {
   let text = req.body.comment_text
   let sql = `INSERT INTO comments (user_id, content, createdAt, score) VALUES (`+ sessionData.user.user__id +`, '`+text+`', 'date', 0)`;
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(req.body)
+  });
+})
+
+// Posts New Reply
+app.post("/addReply", (req, res) => {
+  let commentID = req.body.comment_id
+  let text = req.body.comment_text
+  let replyTo = req.body.reply_to
+
+  let sql = `INSERT INTO replies (comment_id, user_id, replyTo, content, createdAt, score) 
+  VALUES (`+commentID+`, `+ sessionData.user.user__id +`, '`+replyTo+`','`+text+`', 'date', 0)`;
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
