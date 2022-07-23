@@ -17,20 +17,21 @@ fetch(comments)
       // onsubmit='event.preventDefault();'
       commentBox.innerHTML +=
         "<div class='comment'>" +
-          "<form class='comment__vote' method='POST' action='http://localhost:3002/updateScore'>" +
-            
-            "<input name='vote_user_id' style='display:none;' value="+comments[x].id +">" +
-            
-            "<input name='upvote_or_downvote' id='change' style='display:none;' value=''>" +
-
-            "<button class='upvote' onclick='changeValue(\"+1\")'>"+
-              "<img src='images/icon-plus.svg' alt='upvote score'>" +
-            "</button>"+
-            "<input name='score' class='rating' value="+comments[x].score +">" +
-            "<button class='downvote' onclick='changeValue(\"-1\")'>" +
-              "<img src='images/icon-minus.svg' alt='downvote score'>" +
-            "</button>" +
-          "</form>" +
+        "<form class='comment__vote' method='POST' action='http://localhost:3002/updateScore'>" +
+        "<input name='vote_user_id' style='display:none;' value=" +
+        comments[x].id +
+        ">" +
+        "<input name='upvote_or_downvote' class='change' style='display:none;' value=''>" +
+        "<button class='upvote' onclick='changeValue(\"+1\")'>" +
+        "<img src='images/icon-plus.svg' alt='upvote score'>" +
+        "</button>" +
+        "<input name='score' class='rating' value=" +
+        comments[x].score +
+        ">" +
+        "<button class='downvote' onclick='changeValue(\"-1\")'>" +
+        "<img src='images/icon-minus.svg' alt='downvote score'>" +
+        "</button>" +
+        "</form>" +
         "<div class='comment__top-row'>" +
         "<img class='avatar' alt='avatar' src='" +
         comments[x].avatar_png +
@@ -54,7 +55,6 @@ fetch(comments)
         "</p>" +
         "</div>" +
         "</div>" +
-
         // Add Reply
         "<form class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
         "<input name='comment_id' type='text' value='" +
@@ -127,7 +127,7 @@ fetch(comments)
                 "</span>" +
                 "</p>" +
                 "</div>";
-                
+
               // Add Reply
               document.getElementsByClassName(
                 "reply-comment-wrapper"
@@ -169,8 +169,10 @@ const toggleForm = (formName, form) => {
   }
 };
 
+const changeValue = (o) => {
+  const changeBox = document.getElementsByClassName("change")
+  for (x in changeBox) {
+    changeBox[x].value = o;
 
-   function changeValue(o){
-     document.getElementById('change').value=o;
-     console.log(document.getElementById('change').value)
-    }
+  }
+};

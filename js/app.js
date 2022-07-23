@@ -158,6 +158,7 @@ app.post("/updateScore", (req, res) => {
       console.log(error);
     }
     res.send(result);
+    console.log(sql)
   });
 });
 
