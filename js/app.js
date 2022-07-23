@@ -128,7 +128,7 @@ app.post("/addReply", (req, res) => {
   let replyTo = req.body.reply_to;
 
   let sql =
-    `INSERT INTO replies (comment_id, reply_user_id, replyTo, reply_content, reply_createdAt, reply_score) 
+    `INSERT INTO replies (comment_id, user_id, replyTo, reply_content, reply_createdAt, reply_score) 
   VALUES (` +
     commentID +
     `, ` +

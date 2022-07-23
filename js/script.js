@@ -4,6 +4,8 @@ const replies = "http://localhost:3002/replies";
 const comments = "http://localhost:3002/comments";
 
 const commentBox = document.getElementsByClassName("comment-box")[0];
+let replyFormKey = -1;
+let commentFormKey = -1;
 
 fetch(comments)
   .then((response) => response.json())
@@ -11,6 +13,7 @@ fetch(comments)
     const comments = data;
 
     for (let x = 0; x < comments.length; x++) {
+      commentFormKey++;
       // Generates Comments
       // onsubmit='event.preventDefault();'
       commentBox.innerHTML +=
@@ -45,7 +48,7 @@ fetch(comments)
         "</div>" +
         "<span class='reply-edit-delete'>" +
         "<span class='reply-edit-delete__reply' onclick='toggleForm(replyForm," +
-        [x] +
+        commentFormKey +
         ")'>" +
         "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>" +
         "</span>" +
@@ -56,7 +59,7 @@ fetch(comments)
         "</div>" +
         "</div>" +
         // Add Reply
-        "<form class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
+        "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
         "<input name='comment_id' type='text' value='" +
         comments[x].id +
         "' style='display:none;'>" +
@@ -67,7 +70,7 @@ fetch(comments)
         "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
         " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
         "</form>";
-
+       
       // Creates reply flexbox for each comment
       commentBox.innerHTML +=
         "<div class='reply-wrapper'>" +
@@ -75,7 +78,6 @@ fetch(comments)
         "<div class='reply-comment-wrapper'>" +
         "</div>" +
         "</div>";
-
       fetch(replies)
         .then((response) => response.json())
         .then((data) => {
@@ -83,9 +85,9 @@ fetch(comments)
           const replyCommentWrapper = document.getElementsByClassName(
             "reply-comment-wrapper"
           );
-
           for (let y = 0; y < replies.length; y++) {
             if (comments[x].id === replies[y].comment_id) {
+              replyFormKey++;
               // Generates replies
               replyCommentWrapper[x].innerHTML +=
                 "<div class='comment reply'>" +
@@ -119,7 +121,7 @@ fetch(comments)
                 "</div>" +
                 "<span class='reply-edit-delete'>" +
                 "<span class='reply-edit-delete__reply' onclick='toggleForm(replyToReply," +
-                [y] +
+                [replyFormKey] +
                 ")'>" +
                 "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
                 "</span>" +
@@ -132,15 +134,10 @@ fetch(comments)
                 replies[y].reply_content +
                 "</span>" +
                 "</p>" +
-                "</div>";
-
-              // Add Reply
-              document.getElementsByClassName(
-                "reply-comment-wrapper"
-              )[0].innerHTML +=
-                "<form name='" +
-                [x] +
-                " 'class='add-comment--add-reply replyToReply'>" +
+                "</div>" +
+                "</div>" +
+                // Add Reply
+                "<form name='replyToReply' class='add-comment--add-reply'>" +
                 "<img class='avatar--you' src=''>" +
                 "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
                 " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
@@ -161,8 +158,9 @@ fetch(session)
     });
   });
 
-const replyForm = document.getElementsByClassName("add-comment--add-reply");
-const replyToReply = document.getElementsByClassName("replyToReply");
+const replyForm = document.getElementsByName("add-comment");
+const replyToReply = document.getElementsByName("replyToReply");
+console.log(replyForm);
 
 const toggleForm = (formName, form) => {
   if (
