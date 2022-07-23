@@ -9,21 +9,28 @@ fetch(comments)
   .then((response) => response.json())
   .then((data) => {
     const comments = data;
+
+    let updateScore;
+
     for (let x = 0; x < comments.length; x++) {
       // Generates Comments
+      // onsubmit='event.preventDefault();'
       commentBox.innerHTML +=
         "<div class='comment'>" +
-        "<form class='comment__vote' action='/updateScore'>" +
-        "<button class='upvote'>"+
-        "<img src='images/icon-plus.svg' alt='upvote score'>" +
-        "</button>"+
-        "<p class='rating'>" +
-        comments[x].score +
-        "</p>" +
-        "<button class='downvote'>" +
-        "<img src='images/icon-minus.svg' alt='downvote score'>" +
-        "</button>" +
-        "</form>" +
+          "<form class='comment__vote' method='POST' action='http://localhost:3002/updateScore'>" +
+            
+            "<input name='vote_user_id' style='display:none;' value="+comments[x].id +">" +
+            
+            "<input name='upvote_or_downvote' id='change' style='display:none;' value=''>" +
+
+            "<button class='upvote' onclick='changeValue(\"+1\")'>"+
+              "<img src='images/icon-plus.svg' alt='upvote score'>" +
+            "</button>"+
+            "<input name='score' class='rating' value="+comments[x].score +">" +
+            "<button class='downvote' onclick='changeValue(\"-1\")'>" +
+              "<img src='images/icon-minus.svg' alt='downvote score'>" +
+            "</button>" +
+          "</form>" +
         "<div class='comment__top-row'>" +
         "<img class='avatar' alt='avatar' src='" +
         comments[x].avatar_png +
@@ -161,3 +168,9 @@ const toggleForm = (formName, form) => {
     formName[form].style.display = "none";
   }
 };
+
+
+   function changeValue(o){
+     document.getElementById('change').value=o;
+     console.log(document.getElementById('change').value)
+    }

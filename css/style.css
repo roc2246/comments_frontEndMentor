@@ -110,9 +110,14 @@ p {
     cursor: pointer;
     border: none; }
   .comment__vote .rating {
+    border: none;
+    background-color: #eaecf1;
     color: #5457b6;
     font-weight: 700;
     text-align: center; }
+    .comment__vote .rating:focus {
+      outline: none;
+      cursor: pointer; }
 
 .comment__text--edit input {
   height: 6.25rem; }

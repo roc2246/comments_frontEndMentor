@@ -52,9 +52,15 @@
       border: none;
     }
     .rating {
+      border: none;
+    background-color: map-get($colors-neutral, "light gray");
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");
       text-align: center;
+      &:focus{
+        outline: none;
+      cursor: pointer;
+      }
     }
   }
 

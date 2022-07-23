@@ -7,9 +7,11 @@ const path = require("path");
 const mysql = require("mysql");
 
 // Body Parser
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 app.use(bodyParser.json());
 
 // Create Connection
@@ -68,14 +70,14 @@ app.get("/session", (req, res) => {
 // Get Comment Data
 app.get("/comments", (req, res) => {
   let sql =
-    "SELECT "
-    +"comments.id, comments.user_id, users.username, "
-    +"users.avatar_png, comments.content, "
-    +"comments.content, comments.createdAt, "
-    +"comments.score "
-    + "FROM comments " 
-    +"INNER JOIN users "
-    +"ON (users.id=comments.user_id) " 
+    "SELECT " +
+    "comments.id, comments.user_id, users.username, " +
+    "users.avatar_png, comments.content, " +
+    "comments.content, comments.createdAt, " +
+    "comments.score " +
+    "FROM comments " +
+    "INNER JOIN users " +
+    "ON (users.id=comments.user_id) ";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
@@ -87,12 +89,12 @@ app.get("/comments", (req, res) => {
 // Get replies
 app.get("/replies", (req, res) => {
   let sql =
-    "SELECT "
-    +"replies.id, replies.comment_id, users.username, users.avatar_png, "
-    +"replies.replyTo, replies.reply_content, replies.reply_createdAt, replies.reply_score " 
-    +"FROM comments "
-    +"INNER JOIN replies on comments.id = replies.comment_id "
-    +"INNER JOIN users on users.id = replies.user_id"
+    "SELECT " +
+    "replies.id, replies.comment_id, users.username, users.avatar_png, " +
+    "replies.replyTo, replies.reply_content, replies.reply_createdAt, replies.reply_score " +
+    "FROM comments " +
+    "INNER JOIN replies on comments.id = replies.comment_id " +
+    "INNER JOIN users on users.id = replies.user_id";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
@@ -103,38 +105,61 @@ app.get("/replies", (req, res) => {
 
 // Posts New Comment
 app.post("/add", (req, res) => {
-  let text = req.body.comment_text
-  let sql = `INSERT INTO comments (user_id, content, createdAt, score) VALUES (`+ sessionData.user.user__id +`, '`+text+`', 'date', 0)`;
+  let text = req.body.comment_text;
+  let sql =
+    `INSERT INTO comments (user_id, content, createdAt, score) VALUES (` +
+    sessionData.user.user__id +
+    `, '` +
+    text +
+    `', 'date', 0)`;
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
     }
     res.send(result);
-    console.log(req.body)
+    console.log(req.body);
   });
-})
+});
 
 // Posts New Reply
 app.post("/addReply", (req, res) => {
-  let commentID = req.body.comment_id
-  let text = req.body.comment_text
-  let replyTo = req.body.reply_to
+  let commentID = req.body.comment_id;
+  let text = req.body.comment_text;
+  let replyTo = req.body.reply_to;
 
-  let sql = `INSERT INTO replies (comment_id, reply_user_id, replyTo, reply_content, reply_createdAt, reply_score) 
-  VALUES (`+commentID+`, `+ sessionData.user.user__id +`, '`+replyTo+`','`+text+`', 'date', 0)`;
+  let sql =
+    `INSERT INTO replies (comment_id, reply_user_id, replyTo, reply_content, reply_createdAt, reply_score) 
+  VALUES (` +
+    commentID +
+    `, ` +
+    sessionData.user.user__id +
+    `, '` +
+    replyTo +
+    `','` +
+    text +
+    `', 'date', 0)`;
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
     }
     res.send(result);
-    console.log(req.body)
+    console.log(req.body);
   });
-})
+});
 
 // Update Score
-app.patch("/updateScore", (req, res) => {
-  
-})
+app.post("/updateScore", (req, res) => {
+  let userID = req.body.vote_user_id;
+  let score = req.body.score;
+  let scoreChange = req.body.upvote_or_downvote
+  let sql = "UPDATE comments SET score=" + score + " "+scoreChange+" WHERE id=" + userID + "";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+  });
+});
 
 const portNo = 3002;
 app.listen(portNo, () => {
