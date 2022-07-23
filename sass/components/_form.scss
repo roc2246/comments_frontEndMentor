@@ -45,18 +45,16 @@
     border-radius: $border-radius;
     align-content: center;
     height: 7.2rem;
+    padding: .25rem;
     .upvote,
     .downvote {
       cursor: pointer;
-    }
-    .upvote,
-    .downvote,
-    .rating {
-      margin: $rating-child-margin;
+      border: none;
     }
     .rating {
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");
+      text-align: center;
     }
   }
 
@@ -89,14 +87,7 @@
       flex-direction: row;
       width: 6.5rem;
       height: auto;
-
-      .upvote {
-        margin-top: 1rem;
-      }
-
-      .downvote {
-        margin-top: 1.25rem;
-      }
+      justify-content: space-between;
     }
   }
 

@@ -13,16 +13,16 @@ fetch(comments)
       // Generates Comments
       commentBox.innerHTML +=
         "<div class='comment'>" +
-        "<form class='comment__vote'>" +
-        "<div>" +
-        "<img src='images/icon-plus.svg' alt='upvote score' class='upvote'>" +
-        "</div>" +
+        "<form class='comment__vote' action='/updateScore'>" +
+        "<button class='upvote'>"+
+        "<img src='images/icon-plus.svg' alt='upvote score'>" +
+        "</button>"+
         "<p class='rating'>" +
         comments[x].score +
         "</p>" +
-        "<div>" +
-        "<img src='images/icon-minus.svg' alt='downvote score' class='downvote'>" +
-        "</div>" +
+        "<button class='downvote'>" +
+        "<img src='images/icon-minus.svg' alt='downvote score'>" +
+        "</button>" +
         "</form>" +
         "<div class='comment__top-row'>" +
         "<img class='avatar' alt='avatar' src='" +
@@ -82,7 +82,7 @@ fetch(comments)
               // Generates replies
               replyCommentWrapper[x].innerHTML +=
                 "<div class='comment reply'>" +
-                "<form class='comment__vote'>" +
+                "<form class='comment__vote' action='/updateScore'>" +
                 "<div>" +
                 "<img src='images/icon-plus.svg' alt='' class='upvote'>" +
                 "</div>" +

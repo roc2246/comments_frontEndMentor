@@ -131,6 +131,11 @@ app.post("/addReply", (req, res) => {
   });
 })
 
+// Update Score
+app.patch("/updateScore", (req, res) => {
+  
+})
+
 const portNo = 3002;
 app.listen(portNo, () => {
   console.log("Server running on port " + portNo);
