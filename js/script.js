@@ -9,7 +9,7 @@ fetch(comments)
   .then((response) => response.json())
   .then((data) => {
     const comments = data;
-    for (let x in data) {
+    for (let x = 0; x < comments.length; x++) {
       commentBox.innerHTML +=
         "<div class='comment'>" +
         "<div class='comment__vote'>" +
@@ -48,34 +48,48 @@ fetch(comments)
         "</div>" +
         // Add Reply
         "<form class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
-        "<input name='comment_id' type='text' value='"+comments[x].id+"' style='display:none;'>" +
-        "<input name='reply_to' type='text' value='"+comments[x].username+"' style='display:none;'>" +
+        "<input name='comment_id' type='text' value='" +
+        comments[x].id +
+        "' style='display:none;'>" +
+        "<input name='reply_to' type='text' value='" +
+        comments[x].username +
+        "' style='display:none;'>" +
         "<img class='avatar--you' src=''>" +
         "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
         " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
         "</form>";
-        fetch(replies)
-          .then((response) => response.json())
-          .then((data) => {
-            const replies = data;
-                 if (comments[x].id === replies[x].comment_id) {
-        commentBox.innerHTML +=
-          "<div class='reply-wrapper'>" +
-          "<hr>" +
-          "<div class='reply-comment-wrapper'>" +
-          "</div>" +
-          "</div>";
-            for (let x in data) {
-              document.getElementsByClassName(
-                "reply-comment-wrapper"
-              )[0].innerHTML +=
+
+      commentBox.innerHTML +=
+        "<div class='reply-wrapper'>" +
+        "<hr>" +
+        "<div class='reply-comment-wrapper'>" +
+        "</div>" +
+        "</div>";
+      // Generates replies
+      fetch(replies)
+        .then((response) => response.json())
+        .then((data) => {
+          const replies = data;
+          const replyCommentWrapper = document.getElementsByClassName(
+            "reply-comment-wrapper"
+          )
+
+          for (let y = 0; y < replies.length; y++) {
+            // console.log("------------------------------------------");
+            // console.log("Comment id: " +comments[x].id);
+            // console.log("------");
+            // console.log("Reply id: " +replies[y].comment_id);
+            // console.log("------");
+            // console.log(comments[x].id === replies[y].comment_id)
+            if (comments[x].id === replies[y].comment_id) {
+              replyCommentWrapper[x].innerHTML +=
                 "<div class='comment reply'>" +
                 "<div class='comment__vote'>" +
                 "<div>" +
                 "<img src='images/icon-plus.svg' alt='' class='upvote'>" +
                 "</div>" +
                 "<p class='rating'>" +
-                replies[x].reply_score +
+                replies[y].reply_score +
                 "</p>" +
                 "<div>" +
                 "<img src='images/icon-minus.svg' alt='' class='downvote'>" +
@@ -83,28 +97,28 @@ fetch(comments)
                 "</div>" +
                 "<div class='comment__top-row'>" +
                 "<img class='avatar' src='" +
-                replies[x].avatar_png +
+                replies[y].avatar_png +
                 "'>" +
                 "<span class='name'>" +
-                replies[x].username +
+                replies[y].username +
                 "</span>" +
                 "<span class='post-date'>" +
-                replies[x].reply_createdAt +
+                replies[y].reply_createdAt +
                 "</span>" +
                 "</div>" +
                 "<span class='reply-edit-delete'>" +
                 "<span class='reply-edit-delete__reply' onclick='toggleForm(replyToReply," +
-                [x] +
+                [y] +
                 ")'>" +
                 "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
                 "</span>" +
                 "<div class='comment__text'>" +
                 "<p>" +
                 "<span class='comment__text--reply-to'>@" +
-                replies[x].replyTo +
+                replies[y].replyTo +
                 " </span>" +
                 "<span class='comment__text--text'>" +
-                replies[x].reply_content +
+                replies[y].reply_content +
                 "</span>" +
                 "</p>" +
                 "</div>";
@@ -112,16 +126,18 @@ fetch(comments)
               document.getElementsByClassName(
                 "reply-comment-wrapper"
               )[0].innerHTML +=
-                "<form name='"+[x]+" 'class='add-comment--add-reply replyToReply'>" +
+                "<form name='" +
+                [x] +
+                " 'class='add-comment--add-reply replyToReply'>" +
                 "<img class='avatar--you' src=''>" +
                 "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
                 " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                 "</form>";
-            }}
-          });
-      }
+            }
+          }
+        });
     }
-  );
+  });
 
 fetch(session)
   .then((response) => response.json())

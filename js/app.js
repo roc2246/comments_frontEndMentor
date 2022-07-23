@@ -88,7 +88,7 @@ app.get("/comments", (req, res) => {
 app.get("/replies", (req, res) => {
   let sql =
     "SELECT "
-    +"comments.id, replies.comment_id, users.username, users.avatar_png, "
+    +"replies.id, replies.comment_id, users.username, users.avatar_png, "
     +"replies.replyTo, replies.reply_content, replies.reply_createdAt, replies.reply_score " 
     +"FROM comments "
     +"INNER JOIN replies on comments.id = replies.comment_id "
