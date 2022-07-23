@@ -84,7 +84,7 @@ app.get("/comments", (req, res) => {
   });
 });
 
-
+// Get replies
 app.get("/replies", (req, res) => {
   let sql =
     "SELECT "
@@ -100,25 +100,6 @@ app.get("/replies", (req, res) => {
     res.send(result);
   });
 });
-
-
-// Get replies
-// app.get("/replies", (req, res) => {
-//   let sql =
-//     "SELECT "
-//     +"replies.user_id, users.username, "
-//     +"users.avatar_png, replies.replyTo, replies.reply_content, "
-//     +"replies.reply_createdAt, replies.reply_score "
-//     + "FROM replies " 
-//     + "INNER JOIN users "
-//     +"on (users.id=replies.user_id)";
-//   db.query(sql, (error, result) => {
-//     if (error) {
-//       console.log(error);
-//     }
-//     res.send(result);
-//   });
-// });
 
 // Posts New Comment
 app.post("/add", (req, res) => {

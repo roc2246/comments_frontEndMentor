@@ -58,7 +58,7 @@ fetch(comments)
           .then((response) => response.json())
           .then((data) => {
             const replies = data;
-                 if (comments[x].id === 1) {
+                 if (comments[x].id === replies[x].comment_id) {
         commentBox.innerHTML +=
           "<div class='reply-wrapper'>" +
           "<hr>" +
