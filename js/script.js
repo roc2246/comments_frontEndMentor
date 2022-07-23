@@ -8,6 +8,7 @@ const commentBox = document.getElementsByClassName("comment-box")[0];
 fetch(comments)
   .then((response) => response.json())
   .then((data) => {
+    const comments = data;
     for (let x in data) {
       commentBox.innerHTML +=
         "<div class='comment'>" +
@@ -16,7 +17,7 @@ fetch(comments)
         "<img src='images/icon-plus.svg' alt='upvote score' class='upvote'>" +
         "</div>" +
         "<p class='rating'>" +
-        data[x].score +
+        comments[x].score +
         "</p>" +
         "<div>" +
         "<img src='images/icon-minus.svg' alt='downvote score' class='downvote'>" +
@@ -24,13 +25,13 @@ fetch(comments)
         "</div>" +
         "<div class='comment__top-row'>" +
         "<img class='avatar' alt='avatar' src='" +
-        data[x].avatar_png +
+        comments[x].avatar_png +
         "'>" +
         "<span class='name'>" +
-        data[x].username +
+        comments[x].username +
         "</span>" +
         "<span class='post-date'>" +
-        data[x].createdAt +
+        comments[x].createdAt +
         "</span>" +
         "</div>" +
         "<span class='reply-edit-delete'>" +
@@ -41,28 +42,29 @@ fetch(comments)
         "</span>" +
         "<div class='comment__text'>" +
         "<p>" +
-        data[x].content +
+        comments[x].content +
         "</p>" +
         "</div>" +
         "</div>" +
         // Add Reply
         "<form class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
-        "<input name='comment_id' type='text' value='"+data[x].id+"' style='display:none;'>" +
-        "<input name='reply_to' type='text' value='"+data[x].username+"' style='display:none;'>" +
+        "<input name='comment_id' type='text' value='"+comments[x].id+"' style='display:none;'>" +
+        "<input name='reply_to' type='text' value='"+comments[x].username+"' style='display:none;'>" +
         "<img class='avatar--you' src=''>" +
         "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
         " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
         "</form>";
-      if (data[x].replies === 1) {
+        fetch(replies)
+          .then((response) => response.json())
+          .then((data) => {
+            const replies = data;
+                 if (comments[x].id === 1) {
         commentBox.innerHTML +=
           "<div class='reply-wrapper'>" +
           "<hr>" +
           "<div class='reply-comment-wrapper'>" +
           "</div>" +
           "</div>";
-        fetch(replies)
-          .then((response) => response.json())
-          .then((data) => {
             for (let x in data) {
               document.getElementsByClassName(
                 "reply-comment-wrapper"
@@ -73,7 +75,7 @@ fetch(comments)
                 "<img src='images/icon-plus.svg' alt='' class='upvote'>" +
                 "</div>" +
                 "<p class='rating'>" +
-                data[x].score +
+                replies[x].reply_score +
                 "</p>" +
                 "<div>" +
                 "<img src='images/icon-minus.svg' alt='' class='downvote'>" +
@@ -81,13 +83,13 @@ fetch(comments)
                 "</div>" +
                 "<div class='comment__top-row'>" +
                 "<img class='avatar' src='" +
-                data[x].avatar_png +
+                replies[x].avatar_png +
                 "'>" +
                 "<span class='name'>" +
-                data[x].username +
+                replies[x].username +
                 "</span>" +
                 "<span class='post-date'>" +
-                data[x].createdAt +
+                replies[x].reply_createdAt +
                 "</span>" +
                 "</div>" +
                 "<span class='reply-edit-delete'>" +
@@ -99,10 +101,10 @@ fetch(comments)
                 "<div class='comment__text'>" +
                 "<p>" +
                 "<span class='comment__text--reply-to'>@" +
-                data[x].replyTo +
+                replies[x].replyTo +
                 " </span>" +
                 "<span class='comment__text--text'>" +
-                data[x].content +
+                replies[x].reply_content +
                 "</span>" +
                 "</p>" +
                 "</div>";
@@ -115,18 +117,17 @@ fetch(comments)
                 "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
                 " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                 "</form>";
-            }
+            }}
           });
       }
     }
-  });
+  );
 
 fetch(session)
   .then((response) => response.json())
   .then((data) => {
     const userInfo = data;
     const userAvatar = document.getElementsByClassName("avatar--you");
-    console.log(userAvatar)
     Object.keys(userAvatar).forEach((avatar) => {
       userAvatar[avatar].src = userInfo.avatar_png;
     });

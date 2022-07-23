@@ -72,16 +72,10 @@ app.get("/comments", (req, res) => {
     +"comments.id, comments.user_id, users.username, "
     +"users.avatar_png, comments.content, "
     +"comments.content, comments.createdAt, "
-    +"comments.score, comments.replies "
-
-    // +", replies.reply_content, replies.reply_score "
-    
+    +"comments.score "
     + "FROM comments " 
     +"INNER JOIN users "
     +"ON (users.id=comments.user_id) " 
-
-    // + "INNER JOIN replies "
-    // +"on (comments.id=replies.comment_id)";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
@@ -90,16 +84,15 @@ app.get("/comments", (req, res) => {
   });
 });
 
-// Get replies
+
 app.get("/replies", (req, res) => {
   let sql =
     "SELECT "
-    +"replies.user_id, users.username, "
-    +"users.avatar_png, replies.replyTo, replies.content, "
-    +"replies.createdAt, replies.score "
-    + "FROM replies " 
-    + "INNER JOIN users "
-    +"on (users.id=replies.user_id)";
+    +"comments.id, replies.comment_id, users.username, users.avatar_png, "
+    +"replies.replyTo, replies.reply_content, replies.reply_createdAt, replies.reply_score " 
+    +"FROM comments "
+    +"INNER JOIN replies on comments.id = replies.comment_id "
+    +"INNER JOIN users on users.id = replies.user_id"
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
@@ -107,6 +100,25 @@ app.get("/replies", (req, res) => {
     res.send(result);
   });
 });
+
+
+// Get replies
+// app.get("/replies", (req, res) => {
+//   let sql =
+//     "SELECT "
+//     +"replies.user_id, users.username, "
+//     +"users.avatar_png, replies.replyTo, replies.reply_content, "
+//     +"replies.reply_createdAt, replies.reply_score "
+//     + "FROM replies " 
+//     + "INNER JOIN users "
+//     +"on (users.id=replies.user_id)";
+//   db.query(sql, (error, result) => {
+//     if (error) {
+//       console.log(error);
+//     }
+//     res.send(result);
+//   });
+// });
 
 // Posts New Comment
 app.post("/add", (req, res) => {
@@ -127,7 +139,7 @@ app.post("/addReply", (req, res) => {
   let text = req.body.comment_text
   let replyTo = req.body.reply_to
 
-  let sql = `INSERT INTO replies (comment_id, user_id, replyTo, content, createdAt, score) 
+  let sql = `INSERT INTO replies (comment_id, reply_user_id, replyTo, reply_content, reply_createdAt, reply_score) 
   VALUES (`+commentID+`, `+ sessionData.user.user__id +`, '`+replyTo+`','`+text+`', 'date', 0)`;
   db.query(sql, (error, result) => {
     if (error) {
