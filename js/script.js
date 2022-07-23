@@ -10,9 +10,10 @@ fetch(comments)
   .then((data) => {
     const comments = data;
     for (let x = 0; x < comments.length; x++) {
+      // Generates Comments
       commentBox.innerHTML +=
         "<div class='comment'>" +
-        "<div class='comment__vote'>" +
+        "<form class='comment__vote'>" +
         "<div>" +
         "<img src='images/icon-plus.svg' alt='upvote score' class='upvote'>" +
         "</div>" +
@@ -22,7 +23,7 @@ fetch(comments)
         "<div>" +
         "<img src='images/icon-minus.svg' alt='downvote score' class='downvote'>" +
         "</div>" +
-        "</div>" +
+        "</form>" +
         "<div class='comment__top-row'>" +
         "<img class='avatar' alt='avatar' src='" +
         comments[x].avatar_png +
@@ -46,6 +47,7 @@ fetch(comments)
         "</p>" +
         "</div>" +
         "</div>" +
+
         // Add Reply
         "<form class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
         "<input name='comment_id' type='text' value='" +
@@ -59,32 +61,28 @@ fetch(comments)
         " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
         "</form>";
 
+      // Creates reply flexbox for each comment
       commentBox.innerHTML +=
         "<div class='reply-wrapper'>" +
         "<hr>" +
         "<div class='reply-comment-wrapper'>" +
         "</div>" +
         "</div>";
-      // Generates replies
+
       fetch(replies)
         .then((response) => response.json())
         .then((data) => {
           const replies = data;
           const replyCommentWrapper = document.getElementsByClassName(
             "reply-comment-wrapper"
-          )
+          );
 
           for (let y = 0; y < replies.length; y++) {
-            // console.log("------------------------------------------");
-            // console.log("Comment id: " +comments[x].id);
-            // console.log("------");
-            // console.log("Reply id: " +replies[y].comment_id);
-            // console.log("------");
-            // console.log(comments[x].id === replies[y].comment_id)
             if (comments[x].id === replies[y].comment_id) {
+              // Generates replies
               replyCommentWrapper[x].innerHTML +=
                 "<div class='comment reply'>" +
-                "<div class='comment__vote'>" +
+                "<form class='comment__vote'>" +
                 "<div>" +
                 "<img src='images/icon-plus.svg' alt='' class='upvote'>" +
                 "</div>" +
@@ -94,7 +92,7 @@ fetch(comments)
                 "<div>" +
                 "<img src='images/icon-minus.svg' alt='' class='downvote'>" +
                 "</div>" +
-                "</div>" +
+                "</form>" +
                 "<div class='comment__top-row'>" +
                 "<img class='avatar' src='" +
                 replies[y].avatar_png +
@@ -122,6 +120,7 @@ fetch(comments)
                 "</span>" +
                 "</p>" +
                 "</div>";
+                
               // Add Reply
               document.getElementsByClassName(
                 "reply-comment-wrapper"
