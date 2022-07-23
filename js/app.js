@@ -162,6 +162,21 @@ app.post("/updateScore", (req, res) => {
   });
 });
 
+// Update ReplyScore
+app.post("/updateReplyScore", (req, res) => {
+  let userID = req.body.vote_user_id;
+  let score = req.body.score;
+  let scoreChange = req.body.upvote_or_downvote
+  let sql = "UPDATE replies SET reply_score=" + score + " "+scoreChange+" WHERE id=" + userID + "";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
 const portNo = 3002;
 app.listen(portNo, () => {
   console.log("Server running on port " + portNo);
