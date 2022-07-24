@@ -147,6 +147,35 @@ app.post("/addReply", (req, res) => {
   });
 });
 
+
+// Posts New Reply TO Reply
+app.post("/addReplyToReply", (req, res) => {
+  let commentID = req.body.comment_id;
+  let text = req.body.comment_text;
+  let replyTo = req.body.reply_to;
+
+  let sql =
+    `INSERT INTO replies 
+    (comment_id, user_id, replyTo, reply_content, reply_createdAt, reply_score) 
+  VALUES (` +
+    commentID +
+    `, ` +
+    sessionData.user.user__id +
+    `, '` +
+    replyTo +
+    `','` +
+    text +
+    `', 'date', 0)`;
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(req.body);
+  });
+});
+
+
 // Update Score
 app.post("/updateScore", (req, res) => {
   let userID = req.body.vote_user_id;
