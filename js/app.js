@@ -206,6 +206,21 @@ app.post("/updateReplyScore", (req, res) => {
   });
 });
 
+
+// Update ReplyScore
+app.post("/deleteComment", (req, res) => {
+  // let userID = req.body.vote_user_id;
+
+  // let sql = "DELETE FROM comments WHERE comments.id="++"";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
 const portNo = 3002;
 app.listen(portNo, () => {
   console.log("Server running on port " + portNo);
