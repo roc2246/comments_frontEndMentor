@@ -178,7 +178,7 @@ app.post("/addReplyToReply", (req, res) => {
 
 // Update Score
 app.post("/updateScore", (req, res) => {
-  let userID = req.body.vote_user_id;
+  let userID = req.body.comment_index;
   let score = req.body.score;
   let scoreChange = req.body.upvote_or_downvote
   let sql = "UPDATE comments SET score=" + score + " "+scoreChange+" WHERE id=" + userID + "";
@@ -193,7 +193,7 @@ app.post("/updateScore", (req, res) => {
 
 // Update ReplyScore
 app.post("/updateReplyScore", (req, res) => {
-  let userID = req.body.vote_user_id;
+  let userID = req.body.comment_index;
   let score = req.body.score;
   let scoreChange = req.body.upvote_or_downvote
   let sql = "UPDATE replies SET reply_score=" + score + " "+scoreChange+" WHERE id=" + userID + "";
@@ -207,11 +207,11 @@ app.post("/updateReplyScore", (req, res) => {
 });
 
 
-// Update ReplyScore
+// Delete Comment
 app.post("/deleteComment", (req, res) => {
-  // let userID = req.body.vote_user_id;
+  let commentID = req.body.delete_comment_id;
+  let sql = "DELETE FROM comments WHERE comments.id="+commentID+"";
 
-  // let sql = "DELETE FROM comments WHERE comments.id="++"";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);

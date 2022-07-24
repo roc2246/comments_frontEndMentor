@@ -27,14 +27,17 @@ fetch(session)
           let commentClass;
           commentFormKey++;
           if (comments[x].username === userInfo.username) {
-            commentClass = "comment comment--you"
+            commentClass = "comment comment--you";
             crud =
-              "<span class='reply-edit-delete__delete' onclick='toggleModal(deleteForm, "+0+")'>" +
+              "<input name='comment_index' class='reference-no' style='display:none;' value=" +
+              comments[x].id +
+              ">" +
+              "<span class='reply-edit-delete__delete'>" +
               "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
               "<span class='reply-edit-delete__edit'>" +
               "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>";
           } else {
-            commentClass = "comment"
+            commentClass = "comment";
             crud =
               "<span class='reply-edit-delete__reply' onclick='toggle(replyForm," +
               commentFormKey +
@@ -43,10 +46,12 @@ fetch(session)
           }
           // Generates Comments
           commentBox.innerHTML +=
-            "<div class='"+commentClass+"'>" +
+            "<div class='" +
+            commentClass +
+            "'>" +
             //Vote Form
             "<form class='comment__vote' method='POST' action='http://localhost:3002/updateScore'>" +
-            "<input name='vote_user_id' style='display:none;' value=" +
+            "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
             "<input name='upvote_or_downvote' class='change' style='display:none;' value=''>" +
@@ -116,30 +121,31 @@ fetch(session)
                   // Generates replies
                   commentFormKey++;
                   if (replies[y].username === userInfo.username) {
-                    console.log("TEST")
-                    commentClass = "comment reply comment--you"
+                    commentClass = "comment reply comment--you";
                     crud =
                       "<span class='reply-edit-delete'>" +
-                      "<span class='reply-edit-delete__delete' onclick='toggleModal(deleteForm, "+0+")'>" +
+                      "<span class='reply-edit-delete__delete'>" +
                       "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
                       "<span class='reply-edit-delete__edit'>" +
-                      "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>"+
-                      "</span>"
+                      "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>" +
+                      "</span>";
                   } else {
-                    commentClass = "comment"
+                    commentClass = "comment";
                     crud =
-                    "<span class='reply-edit-delete'>" +
+                      "<span class='reply-edit-delete'>" +
                       "<span class='reply-edit-delete__reply' onclick='toggle(replyToReply," +
                       [replyFormKey] +
                       ")'>" +
                       "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
-                      "</span>"
-                    }
+                      "</span>";
+                  }
                   replyCommentWrapper[x].innerHTML +=
-                    "<div class='"+commentClass+"'>" +
+                    "<div class='" +
+                    commentClass +
+                    "'>" +
                     //Vote Form
                     "<form class='comment__vote' method='POST' action='http://localhost:3002/updateReplyScore'>" +
-                    "<input name='vote_user_id' style='display:none;' value=" +
+                    "<input name='comment_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
                     "<input name='upvote_or_downvote' class='change' style='display:none;' value=''>" +
@@ -165,7 +171,7 @@ fetch(session)
                     replies[y].reply_createdAt +
                     "</span>" +
                     "</div>" +
-                  crud +
+                    crud +
                     "<div class='comment__text'>" +
                     "<p>" +
                     "<span class='comment__text--reply-to'>@" +
@@ -195,11 +201,32 @@ fetch(session)
               }
             });
         }
+        const deleteForm = document.getElementsByClassName("modal");
+        const idContainer = document.querySelectorAll(
+          ".reply-edit-delete > .reference-no"
+        );
+        const deleteComment = document.getElementsByClassName(
+          "reply-edit-delete__delete"
+        );
+
+        for (let x = 0; x < deleteComment.length; x++) {
+          deleteComment[x].addEventListener("click", () => {
+            document.getElementsByName("delete_comment_id")[0].value =
+              idContainer[x].value;
+            if (
+              deleteForm[0].style.display === "none" ||
+              deleteForm[0].style.display === ""
+            ) {
+              deleteForm[0].style.display = "block";
+            } else {
+              deleteForm[0].style.display = "none";
+            }
+          });
+        }
       });
   });
 const replyForm = document.getElementsByName("add-comment");
 const replyToReply = document.getElementsByName("replyToReply");
-const deleteForm = document.getElementsByClassName("modal")
 
 const toggle = (formName, form) => {
   if (
@@ -207,17 +234,6 @@ const toggle = (formName, form) => {
     formName[form].style.display === ""
   ) {
     formName[form].style.display = "grid";
-  } else {
-    formName[form].style.display = "none";
-  }
-};
-
-const toggleModal = (formName, form) => {
-  if (
-    formName[form].style.display === "none" ||
-    formName[form].style.display === ""
-  ) {
-    formName[form].style.display = "block";
   } else {
     formName[form].style.display = "none";
   }
@@ -232,9 +248,9 @@ const changeValue = (o) => {
 
 // action="http://localhost:3002/deleteComment"
 const deleteComment = () => {
-  deleteForm[0].setAttribute("action", "")
-  console.log("TEST")
-}
+  deleteForm[0].setAttribute("action", "");
+  console.log("TEST");
+};
 // Edit Button
 // Object.keys(commentBtns.edit).forEach((form) => {
 //   forms.edit[form].style.display = "none";
@@ -253,4 +269,3 @@ const deleteComment = () => {
 //     }
 //   });
 // });
-
