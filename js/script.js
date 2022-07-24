@@ -23,10 +23,27 @@ fetch(session)
         const comments = data;
 
         for (let x = 0; x < comments.length; x++) {
+          let crud;
+          let commentClass;
           commentFormKey++;
+          if (comments[x].username === userInfo.username) {
+            commentClass = "comment comment--you"
+            crud =
+              "<span class='reply-edit-delete__delete' onclick='toggleModal(deleteForm, "+0+")'>" +
+              "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
+              "<span class='reply-edit-delete__edit'>" +
+              "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>";
+          } else {
+            commentClass = "comment"
+            crud =
+              "<span class='reply-edit-delete__reply' onclick='toggle(replyForm," +
+              commentFormKey +
+              ")'>" +
+              "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>";
+          }
           // Generates Comments
           commentBox.innerHTML +=
-            "<div class='comment'>" +
+            "<div class='"+commentClass+"'>" +
             //Vote Form
             "<form class='comment__vote' method='POST' action='http://localhost:3002/updateScore'>" +
             "<input name='vote_user_id' style='display:none;' value=" +
@@ -56,10 +73,7 @@ fetch(session)
             "</span>" +
             "</div>" +
             "<span class='reply-edit-delete'>" +
-            "<span class='reply-edit-delete__reply' onclick='toggleForm(replyForm," +
-            commentFormKey +
-            ")'>" +
-            "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>" +
+            crud +
             "</span>" +
             "<div class='comment__text'>" +
             "<p>" +
@@ -75,7 +89,9 @@ fetch(session)
             "<input name='reply_to' type='text' value='" +
             comments[x].username +
             "' style='display:none;'>" +
-            "<img class='avatar--you' src='"+userAvatar+"'>" +
+            "<img class='avatar--you' src='" +
+            userAvatar +
+            "'>" +
             "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
             " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
             "</form>";
@@ -129,7 +145,7 @@ fetch(session)
                     "</span>" +
                     "</div>" +
                     "<span class='reply-edit-delete'>" +
-                    "<span class='reply-edit-delete__reply' onclick='toggleForm(replyToReply," +
+                    "<span class='reply-edit-delete__reply' onclick='toggle(replyToReply," +
                     [replyFormKey] +
                     ")'>" +
                     "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
@@ -147,7 +163,9 @@ fetch(session)
                     "</div>" +
                     // Add Reply
                     "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:3002/addReplyToReply'>" +
-                    "<img class='avatar--you' src='"+userAvatar+"'>" +
+                    "<img class='avatar--you' src='" +
+                    userAvatar +
+                    "'>" +
                     "<input name='comment_id' type='text' value='" +
                     comments[x].id +
                     "' style='display:none;'>" +
@@ -162,26 +180,77 @@ fetch(session)
             });
         }
       });
-
-  
   });
-  const replyForm = document.getElementsByName("add-comment");
-    const replyToReply = document.getElementsByName("replyToReply");
+const replyForm = document.getElementsByName("add-comment");
+const replyToReply = document.getElementsByName("replyToReply");
+const deleteForm = document.getElementsByClassName("modal")
+console.log(deleteForm)
+const toggle = (formName, form) => {
+  if (
+    formName[form].style.display === "none" ||
+    formName[form].style.display === ""
+  ) {
+    formName[form].style.display = "grid";
+  } else {
+    formName[form].style.display = "none";
+  }
+};
 
-    const toggleForm = (formName, form) => {
-      if (
-        formName[form].style.display === "none" ||
-        formName[form].style.display === ""
-      ) {
-        formName[form].style.display = "grid";
-      } else {
-        formName[form].style.display = "none";
-      }
-    };
+const toggleModal = (formName, form) => {
+  if (
+    formName[form].style.display === "none" ||
+    formName[form].style.display === ""
+  ) {
+    formName[form].style.display = "block";
+  } else {
+    formName[form].style.display = "none";
+  }
+};
 
-    const changeValue = (o) => {
-      const changeBox = document.getElementsByClassName("change");
-      for (x in changeBox) {
-        changeBox[x].value = o;
-      }
-    };
+const changeValue = (o) => {
+  const changeBox = document.getElementsByClassName("change");
+  for (x in changeBox) {
+    changeBox[x].value = o;
+  }
+};
+
+
+// Edit Button
+// Object.keys(commentBtns.edit).forEach((form) => {
+//   forms.edit[form].style.display = "none";
+//   forms.textToEditInput[form].value =
+//     "@" +
+//     replyContainer.user[form].innerHTML +
+//     " " +
+//     replyContainer.comment[form].innerHTML;
+//   commentBtns.edit[form].addEventListener("click", () => {
+//     if (forms.edit[form].style.display === "none") {
+//       forms.edit[form].style.display = "grid";
+//       activeUser.commentText[form].style.display = "none";
+//     } else {
+//       forms.edit[form].style.display = "none";
+//       activeUser.commentText[form].style.display = "inline";
+//     }
+//   });
+// });
+
+// // Delete Button
+// Object.keys(commentBtns.delete).forEach((btn) => {
+//   deleteModal.box.style.display = "none";
+//   commentBtns.delete[btn].addEventListener("click", () => {
+//     if (deleteModal.box.style.display === "none") {
+//       deleteModal.box.style.display = "block";
+//     }
+//   });
+//   deleteModal.deleteComment.addEventListener("click", () => {
+//     activeUser.replies[btn].remove();
+//     if (deleteModal.box.style.display === "block") {
+//       deleteModal.box.style.display = "none";
+//     }
+//   });
+// });
+// deleteModal.cancelDelete.addEventListener("click", () => {
+//   if (deleteModal.box.style.display === "block") {
+//     deleteModal.box.style.display = "none";
+//   }
+// });
