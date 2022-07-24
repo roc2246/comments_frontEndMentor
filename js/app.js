@@ -221,6 +221,20 @@ app.post("/deleteComment", (req, res) => {
   });
 });
 
+// Delete Reply
+app.post("/deleteReply", (req, res) => {
+  let replyID = req.body.delete_comment_id;
+  let sql = "DELETE FROM replies WHERE replies.id="+replyID+"";
+
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
 const portNo = 3002;
 app.listen(portNo, () => {
   console.log("Server running on port " + portNo);

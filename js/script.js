@@ -124,6 +124,9 @@ fetch(session)
                     commentClass = "comment reply comment--you";
                     crud =
                       "<span class='reply-edit-delete'>" +
+                      "<input name='comment_index' class='reply-reference-no' style='display:none;' value=" +
+                      replies[y].id +
+                      ">" +
                       "<span class='reply-edit-delete__delete'>" +
                       "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
                       "<span class='reply-edit-delete__edit'>" +
@@ -199,12 +202,38 @@ fetch(session)
                     "</form>";
                 }
               }
+
+              const replyIdContainer = document.querySelectorAll(
+                ".reply-edit-delete > .reply-reference-no"
+              );
+      
+
+              const deleteReplyForm = document.getElementsByClassName("modal")[1];
+          
+              console.log(replyIdContainer)
+              for (let x = 0; x < deleteComment.length; x++) {
+                deleteComment[x].addEventListener("click", () => {
+
+                  document.getElementsByName("delete_comment_id")[1].value =
+                    replyIdContainer[x].value;
+
+                  if (
+                    deleteReplyForm.style.display === "none" ||
+                    deleteReplyForm.style.display === ""
+                  ) {
+                    deleteReplyForm.style.display = "block";
+                  } else {
+                    deleteReplyForm.style.display = "none";
+                  }
+                });
+              }
             });
         }
-        const deleteForm = document.getElementsByClassName("modal");
+        const deleteForm = document.getElementsByClassName("modal")[0];
         const idContainer = document.querySelectorAll(
           ".reply-edit-delete > .reference-no"
         );
+       
         const deleteComment = document.getElementsByClassName(
           "reply-edit-delete__delete"
         );
@@ -214,15 +243,17 @@ fetch(session)
             document.getElementsByName("delete_comment_id")[0].value =
               idContainer[x].value;
             if (
-              deleteForm[0].style.display === "none" ||
-              deleteForm[0].style.display === ""
+              deleteForm.style.display === "none" ||
+              deleteForm.style.display === ""
             ) {
-              deleteForm[0].style.display = "block";
+              deleteForm.style.display = "block";
             } else {
-              deleteForm[0].style.display = "none";
+              deleteForm.style.display = "none";
             }
           });
         }
+
+
       });
   });
 const replyForm = document.getElementsByName("add-comment");
