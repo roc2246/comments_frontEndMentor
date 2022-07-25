@@ -203,17 +203,16 @@ fetch(session)
                 }
               }
 
+              // Delete Reply
               const replyIdContainer = document.querySelectorAll(
                 ".reply-edit-delete > .reply-reference-no"
               );
-      
 
-              const deleteReplyForm = document.getElementsByClassName("modal")[1];
-          
-              console.log(replyIdContainer)
+              const deleteReplyForm =
+                document.getElementsByClassName("modal")[1];
+
               for (let x = 0; x < deleteComment.length; x++) {
                 deleteComment[x].addEventListener("click", () => {
-
                   document.getElementsByName("delete_comment_id")[1].value =
                     replyIdContainer[x].value;
 
@@ -222,9 +221,7 @@ fetch(session)
                     deleteReplyForm.style.display === ""
                   ) {
                     deleteReplyForm.style.display = "block";
-                  } else {
-                    deleteReplyForm.style.display = "none";
-                  }
+                  } 
                 });
               }
             });
@@ -233,7 +230,7 @@ fetch(session)
         const idContainer = document.querySelectorAll(
           ".reply-edit-delete > .reference-no"
         );
-       
+
         const deleteComment = document.getElementsByClassName(
           "reply-edit-delete__delete"
         );
@@ -247,13 +244,9 @@ fetch(session)
               deleteForm.style.display === ""
             ) {
               deleteForm.style.display = "block";
-            } else {
-              deleteForm.style.display = "none";
-            }
+            } 
           });
         }
-
-
       });
   });
 const replyForm = document.getElementsByName("add-comment");
