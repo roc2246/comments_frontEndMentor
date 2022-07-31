@@ -206,11 +206,25 @@ app.post("/updateReplyScore", (req, res) => {
   });
 });
 
-// Update ReplyScore
+// Update Reply
 app.post("/updateReply", (req, res) => {
   let replyID = req.body.reply_index;
   let content = req.body.updated_reply;
   let sql = "UPDATE replies SET reply_content='" + content + "' WHERE id=" + replyID + "";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
+// Update Comment
+app.post("/updateComment", (req, res) => {
+  let commentID = req.body.comment_index;
+  let content = req.body.updated_comment;
+  let sql = "UPDATE comments SET content='" + content + "' WHERE id=" + commentID + "";
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);

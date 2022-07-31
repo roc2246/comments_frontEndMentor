@@ -85,8 +85,11 @@ fetch(session)
             // Edit Comment
             "<div class='comment__text'>" +
             "<p>" +
-            "<form  action='http://localhost:3002/updateComment' class='comment__text--edit'>" +
-            "<input type='textbox'>" +
+            "<form  method='POST' action='http://localhost:3002/updateComment' class='comment__text--edit'>" +
+            "<input name='comment_index' style='display:none;' value=" +
+            comments[x].id +
+            ">" +
+            "<input type='textbox' name='updated_comment' value='"+comments[x].content+"'>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
             comments[x].content +
@@ -223,7 +226,6 @@ fetch(session)
               // Edit Reply Edit Comment
               const editReply = document.getElementsByClassName("reply-edit-delete__edit")
               const editReplyForm= document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit")
-              const editBox = document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit > input")
               const commentText = document.querySelectorAll(".comment--you > .comment__text > .comment__text--text")
               const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
 
