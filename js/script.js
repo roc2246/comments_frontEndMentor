@@ -9,14 +9,19 @@ const commentBox = document.getElementsByClassName("comment-box")[0];
 let replyFormKey = -1;
 let commentFormKey = -1;
 
+// Containers for crud features and class names
+let crud;
+let commentClass;
+
 // Fetches Session Data
 fetch(session)
   .then((response) => response.json())
   .then((data) => {
     const userInfo = data;
     const userAvatar = userInfo.avatar_png;
+    const userAvatarContainer = document.querySelector(".add-comment > .avatar--you")
 
-    document.querySelector(".add-comment > .avatar--you").src = userAvatar;
+    userAvatarContainer.src = userAvatar;
 
     // Fetches Comments
     fetch(comments)
@@ -25,9 +30,9 @@ fetch(session)
         const comments = data;
 
         for (let x = 0; x < comments.length; x++) {
-          let crud;
-          let commentClass;
           commentFormKey++;
+
+          // Checks if comment is from user
           if (comments[x].username === userInfo.username) {
             commentClass = "comment comment--you";
             crud =
@@ -46,6 +51,7 @@ fetch(session)
               ")'>" +
               "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>";
           }
+          
           // Generates Comments
           commentBox.innerHTML +=
             "<div class='" +
@@ -67,7 +73,8 @@ fetch(session)
             "<img src='images/icon-minus.svg' alt='downvote score'>" +
             "</button>" +
             "</form>" +
-            //End Vote Form
+
+            // Avatar, Post Date, and CRUD Features
             "<div class='comment__top-row'>" +
             "<img class='avatar' alt='avatar' src='" +
             comments[x].avatar_png +
@@ -82,9 +89,12 @@ fetch(session)
             "<span class='reply-edit-delete'>" +
             crud +
             "</span>" +
-            // Edit Comment
+
+            // Comment Container
             "<div class='comment__text'>" +
             "<p></p>" +
+
+            // Edit Comment
             "<form  method='POST' action='http://localhost:3002/updateComment' class='comment__text--edit'>" +
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
@@ -95,9 +105,9 @@ fetch(session)
             "<span class='comment__text--reply-to'></span>" +
             "<span class='comment__text--text'>"+ comments[x].content +"</span>" +
             "</div>" +
-            // Edit Form
 
             "</div>" +
+
             // Add Reply
             "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
             "<input name='comment_id' type='text' value='" +
@@ -120,6 +130,8 @@ fetch(session)
             "<div class='reply-comment-wrapper'>" +
             "</div>" +
             "</div>";
+
+            // Fetches Replies
           fetch(replies)
             .then((response) => response.json())
             .then((data) => {
@@ -127,11 +139,14 @@ fetch(session)
               const replyCommentWrapper = document.getElementsByClassName(
                 "reply-comment-wrapper"
               );
+
+              // Orgainizes Replies by account reply is responding to
               for (let y = 0; y < replies.length; y++) {
                 if (comments[x].id === replies[y].comment_id) {
                   replyFormKey++;
-                  // Generates replies
                   commentFormKey++;
+
+                  // Checks if reply is from user
                   if (replies[y].username === userInfo.username) {
                     commentClass = "comment reply comment--you";
                     crud =
@@ -154,6 +169,8 @@ fetch(session)
                       "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
                       "</span>";
                   }
+
+                  // Generates Replies
                   replyCommentWrapper[x].innerHTML +=
                     "<div class='" +
                     commentClass +
@@ -174,7 +191,8 @@ fetch(session)
                     "<img src='images/icon-minus.svg' alt='downvote score'>" +
                     "</button>" +
                     "</form>" +
-                    //End Vote Form
+                   
+                    // Avatar, Post Date, and CRUD Features
                     "<div class='comment__top-row'>" +
                     "<img class='avatar' src='" +
                     replies[y].avatar_png +
@@ -187,8 +205,11 @@ fetch(session)
                     "</span>" +
                     "</div>" +
                     crud +
+
+                    // Reply Container
                     "<div class='comment__text'>" +
-                    "<p>" +
+                    "<p></p>" +
+
                     // Edit Reply
                     "<form method='POST' action='http://localhost:3002/updateReply' class='comment__text--edit'>" +
                     "<input name='reply_index' style='display:none;' value=" +
@@ -203,9 +224,10 @@ fetch(session)
                     "<span class='comment__text--text'>" +
                     replies[y].reply_content +
                     "</span>" +
-                    "</p>" +
                     "</div>" +
+
                     "</div>" +
+
                     // Add Reply
                     "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:3002/addReplyToReply'>" +
                     "<img class='avatar--you' src='" +
@@ -290,6 +312,7 @@ fetch(session)
         }
       });
   });
+
 const replyForm = document.getElementsByName("add-comment");
 const replyToReply = document.getElementsByName("replyToReply");
 
@@ -311,7 +334,6 @@ const changeValue = (o) => {
   }
 };
 
-// action="http://localhost:3002/deleteComment"
 const deleteComment = () => {
   deleteForm[0].setAttribute("action", "");
   console.log("TEST");
