@@ -84,7 +84,7 @@ fetch(session)
             "</span>" +
             // Edit Comment
             "<div class='comment__text'>" +
-            "<p>" +
+            "<p></p>" +
             "<form  method='POST' action='http://localhost:3002/updateComment' class='comment__text--edit'>" +
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
@@ -92,8 +92,7 @@ fetch(session)
             "<input type='textbox' name='updated_comment' value='"+comments[x].content+"'>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
-            comments[x].content +
-            "</p>" +
+            "<span class='comment__text--text'>"+ comments[x].content +"</span>" +
             "</div>" +
             // Edit Form
 
@@ -230,6 +229,7 @@ fetch(session)
               const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
 
               for (let x = 0; x < editReply.length; x++) {
+                console.log(commentText[x])
                 editReply[x].addEventListener("click", () => {
                   if (
                     editReplyForm[x].style.display === "none" ||
