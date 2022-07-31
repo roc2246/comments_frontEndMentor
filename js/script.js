@@ -191,7 +191,7 @@ fetch(session)
                     "<input name='reply_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
-                    "<input type='textbox' name='updated_reply'>" +
+                    "<input type='textbox' name='updated_reply' value='@"+ replies[y].replyTo + " " + replies[y].reply_content +"'>" +
                     "<button class='update-comment'>UPDATE</button>" +
                     "</form> " +
                     "<span class='comment__text--reply-to'>@" +
@@ -228,7 +228,6 @@ fetch(session)
               const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
 
               for (let x = 0; x < editReply.length; x++) {
-                editBox[x].value = replyTo[x].innerHTML + commentText[x].innerHTML
                 editReply[x].addEventListener("click", () => {
                   if (
                     editReplyForm[x].style.display === "none" ||
