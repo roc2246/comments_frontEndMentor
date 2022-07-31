@@ -92,6 +92,7 @@ fetch(session)
             "<input type='textbox' name='updated_comment' value='"+comments[x].content+"'>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
+            "<span class='comment__text--reply-to'></span>" +
             "<span class='comment__text--text'>"+ comments[x].content +"</span>" +
             "</div>" +
             // Edit Form
@@ -229,7 +230,6 @@ fetch(session)
               const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
 
               for (let x = 0; x < editReply.length; x++) {
-                console.log(commentText[x])
                 editReply[x].addEventListener("click", () => {
                   if (
                     editReplyForm[x].style.display === "none" ||
