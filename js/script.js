@@ -1,9 +1,9 @@
-const port = "3002"
+const port = "3002";
 
-const users = "http://localhost:"+port+"/users";
-const session = "http://localhost:"+port+"/session";
-const replies = "http://localhost:"+port+"/replies";
-const comments = "http://localhost:"+port+"/comments";
+const users = "http://localhost:" + port + "/users";
+const session = "http://localhost:" + port + "/session";
+const replies = "http://localhost:" + port + "/replies";
+const comments = "http://localhost:" + port + "/comments";
 
 const commentBox = document.getElementsByClassName("comment-box")[0];
 
@@ -14,6 +14,7 @@ let commentFormKey = -1;
 // Containers for crud features and class names
 let crud;
 let commentClass;
+let youIcon;
 
 // Fetches Session Data
 fetch(session)
@@ -21,7 +22,9 @@ fetch(session)
   .then((data) => {
     const userInfo = data;
     const userAvatar = userInfo.avatar_png;
-    const userAvatarContainer = document.querySelector(".add-comment > .avatar--you")
+    const userAvatarContainer = document.querySelector(
+      ".add-comment > .avatar--you"
+    );
 
     userAvatarContainer.src = userAvatar;
 
@@ -45,6 +48,7 @@ fetch(session)
               "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
               "<span class='reply-edit-delete__edit'>" +
               "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>";
+            youIcon = "<span class='you-icon'>you</span>";
           } else {
             commentClass = "comment";
             crud =
@@ -52,15 +56,18 @@ fetch(session)
               commentFormKey +
               ")'>" +
               "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>";
+            youIcon = "";
           }
-          
+
           // Generates Comments
           commentBox.innerHTML +=
             "<div class='" +
             commentClass +
             "'>" +
             //Vote Form
-            "<form class='comment__vote' method='POST' action='http://localhost:"+port+"/updateScore'>" +
+            "<form class='comment__vote' method='POST' action='http://localhost:" +
+            port +
+            "/updateScore'>" +
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
@@ -75,7 +82,6 @@ fetch(session)
             "<img src='images/icon-minus.svg' alt='downvote score'>" +
             "</button>" +
             "</form>" +
-
             // Avatar, Post Date, and CRUD Features
             "<div class='comment__top-row'>" +
             "<img class='avatar' alt='avatar' src='" +
@@ -84,6 +90,7 @@ fetch(session)
             "<span class='name'>" +
             comments[x].username +
             "</span>" +
+            youIcon +
             "<span class='post-date'>" +
             comments[x].createdAt +
             "</span>" +
@@ -91,27 +98,31 @@ fetch(session)
             "<span class='reply-edit-delete'>" +
             crud +
             "</span>" +
-
             // Comment Container
             "<div class='comment__text'>" +
             "<p></p>" +
-
             // Edit Comment
-            "<form  method='POST' action='http://localhost:"+port+"/updateComment' class='comment__text--edit'>" +
+            "<form  method='POST' action='http://localhost:" +
+            port +
+            "/updateComment' class='comment__text--edit'>" +
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
-            "<input type='textbox' name='updated_comment' value='"+comments[x].content+"'>" +
+            "<input type='textbox' name='updated_comment' value='" +
+            comments[x].content +
+            "'>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
             "<span class='comment__text--reply-to'></span>" +
-            "<span class='comment__text--text'>"+ comments[x].content +"</span>" +
+            "<span class='comment__text--text'>" +
+            comments[x].content +
+            "</span>" +
             "</div>" +
-
             "</div>" +
-
             // Add Reply
-            "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:"+port+"/addReply'>" +
+            "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:" +
+            port +
+            "/addReply'>" +
             "<input name='comment_id' type='text' value='" +
             comments[x].id +
             "' style='display:none;'>" +
@@ -133,7 +144,7 @@ fetch(session)
             "</div>" +
             "</div>";
 
-            // Fetches Replies
+          // Fetches Replies
           fetch(replies)
             .then((response) => response.json())
             .then((data) => {
@@ -161,6 +172,7 @@ fetch(session)
                       "<span class='reply-edit-delete__edit'>" +
                       "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>" +
                       "</span>";
+                    youIcon = "<span class='you-icon'>you</span>";
                   } else {
                     commentClass = "comment";
                     crud =
@@ -170,6 +182,7 @@ fetch(session)
                       ")'>" +
                       "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
                       "</span>";
+                      youIcon = "";
                   }
 
                   // Generates Replies
@@ -178,7 +191,9 @@ fetch(session)
                     commentClass +
                     "'>" +
                     //Vote Form
-                    "<form class='comment__vote' method='POST' action='http://localhost:"+port+"/updateReplyScore'>" +
+                    "<form class='comment__vote' method='POST' action='http://localhost:" +
+                    port +
+                    "/updateReplyScore'>" +
                     "<input name='comment_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
@@ -193,7 +208,6 @@ fetch(session)
                     "<img src='images/icon-minus.svg' alt='downvote score'>" +
                     "</button>" +
                     "</form>" +
-                   
                     // Avatar, Post Date, and CRUD Features
                     "<div class='comment__top-row'>" +
                     "<img class='avatar' src='" +
@@ -202,22 +216,27 @@ fetch(session)
                     "<span class='name'>" +
                     replies[y].username +
                     "</span>" +
+                    youIcon +
                     "<span class='post-date'>" +
                     replies[y].reply_createdAt +
                     "</span>" +
                     "</div>" +
                     crud +
-
                     // Reply Container
                     "<div class='comment__text'>" +
                     "<p></p>" +
-
                     // Edit Reply
-                    "<form method='POST' action='http://localhost:"+port+"/updateReply' class='comment__text--edit'>" +
+                    "<form method='POST' action='http://localhost:" +
+                    port +
+                    "/updateReply' class='comment__text--edit'>" +
                     "<input name='reply_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
-                    "<input type='textbox' name='updated_reply' value='@"+ replies[y].replyTo + " " + replies[y].reply_content +"'>" +
+                    "<input type='textbox' name='updated_reply' value='@" +
+                    replies[y].replyTo +
+                    " " +
+                    replies[y].reply_content +
+                    "'>" +
                     "<button class='update-comment'>UPDATE</button>" +
                     "</form> " +
                     "<span class='comment__text--reply-to'>@" +
@@ -227,11 +246,11 @@ fetch(session)
                     replies[y].reply_content +
                     "</span>" +
                     "</div>" +
-
                     "</div>" +
-
                     // Add Reply
-                    "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:"+port+"/addReplyToReply'>" +
+                    "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:" +
+                    port +
+                    "/addReplyToReply'>" +
                     "<img class='avatar--you' src='" +
                     userAvatar +
                     "'>" +
@@ -248,10 +267,18 @@ fetch(session)
               }
 
               // Edit Reply Edit Comment
-              const editBtn = document.getElementsByClassName("reply-edit-delete__edit")
-              const editForm= document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit")
-              const commentText = document.querySelectorAll(".comment--you > .comment__text > .comment__text--text")
-              const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
+              const editBtn = document.getElementsByClassName(
+                "reply-edit-delete__edit"
+              );
+              const editForm = document.querySelectorAll(
+                ".comment--you > .comment__text > .comment__text--edit"
+              );
+              const commentText = document.querySelectorAll(
+                ".comment--you > .comment__text > .comment__text--text"
+              );
+              const replyTo = document.querySelectorAll(
+                ".comment--you > .comment__text > .comment__text--reply-to"
+              );
 
               for (let x = 0; x < editBtn.length; x++) {
                 editBtn[x].addEventListener("click", () => {
@@ -260,15 +287,15 @@ fetch(session)
                     editForm[x].style.display === ""
                   ) {
                     editForm[x].style.display = "block";
-                    commentText[x].style.display = "none"
-                    replyTo[x].style.display = "none"
+                    commentText[x].style.display = "none";
+                    replyTo[x].style.display = "none";
                   }
                   editBtn[x].onclick = () => {
                     editForm[x].style.display = "none";
-                    commentText[x].style.display = "inline"
-                    replyTo[x].style.display = "inline"
-                    editBtn[x].onclick = ''
-                  }
+                    commentText[x].style.display = "inline";
+                    replyTo[x].style.display = "inline";
+                    editBtn[x].onclick = "";
+                  };
                 });
               }
 
@@ -324,7 +351,7 @@ fetch(session)
 const replyForm = document.getElementsByName("add-comment");
 const replyToReply = document.getElementsByName("replyToReply");
 
-const modal = document.getElementsByClassName("modal")
+const modal = document.getElementsByClassName("modal");
 
 const toggle = (formName, form) => {
   if (
@@ -345,12 +372,10 @@ const changeValue = (o) => {
 };
 
 const deleteAction = (formNo) => {
-modal[formNo].setAttribute('onsubmit', 'return true;');
+  modal[formNo].setAttribute("onsubmit", "return true;");
 };
 
 const closeModal = (formNo) => {
-modal[formNo].style.display = "none"
-modal[formNo].setAttribute('onsubmit', 'return false;');
-
-}
-
+  modal[formNo].style.display = "none";
+  modal[formNo].setAttribute("onsubmit", "return false;");
+};
