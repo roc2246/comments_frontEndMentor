@@ -9,6 +9,7 @@ const commentBox = document.getElementsByClassName("comment-box")[0];
 let replyFormKey = -1;
 let commentFormKey = -1;
 
+// Fetches Session Data
 fetch(session)
   .then((response) => response.json())
   .then((data) => {
@@ -17,6 +18,7 @@ fetch(session)
 
     document.querySelector(".add-comment > .avatar--you").src = userAvatar;
 
+    // Fetches Comments
     fetch(comments)
       .then((response) => response.json())
       .then((data) => {
@@ -80,11 +82,18 @@ fetch(session)
             "<span class='reply-edit-delete'>" +
             crud +
             "</span>" +
+            // Edit Comment
             "<div class='comment__text'>" +
             "<p>" +
+            "<form  action='http://localhost:3002/updateComment' class='comment__text--edit'>" +
+            "<input type='textbox'>" +
+            "<button class='update-comment'>UPDATE</button>" +
+            "</form> " +
             comments[x].content +
             "</p>" +
             "</div>" +
+            // Edit Form
+
             "</div>" +
             // Add Reply
             "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
@@ -177,6 +186,14 @@ fetch(session)
                     crud +
                     "<div class='comment__text'>" +
                     "<p>" +
+                    // Edit Reply
+                    "<form method='POST' action='http://localhost:3002/updateReply' class='comment__text--edit'>" +
+                    "<input name='reply_index' style='display:none;' value=" +
+                    replies[y].id +
+                    ">" +
+                    "<input type='textbox' name='updated_reply'>" +
+                    "<button class='update-comment'>UPDATE</button>" +
+                    "</form> " +
                     "<span class='comment__text--reply-to'>@" +
                     replies[y].replyTo +
                     " </span>" +
@@ -203,6 +220,27 @@ fetch(session)
                 }
               }
 
+              // Edit Reply Edit Comment
+              const editReply = document.getElementsByClassName("reply-edit-delete__edit")
+              const editReplyForm= document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit")
+              const editBox = document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit > input")
+              const commentText = document.querySelectorAll(".comment--you > .comment__text > .comment__text--text")
+              const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
+
+              for (let x = 0; x < editReply.length; x++) {
+                editBox[x].value = replyTo[x].innerHTML + commentText[x].innerHTML
+                editReply[x].addEventListener("click", () => {
+                  if (
+                    editReplyForm[x].style.display === "none" ||
+                    editReplyForm[x].style.display === ""
+                  ) {
+                    editReplyForm[x].style.display = "block";
+                    commentText[x].style.display = "none"
+                    replyTo[x].style.display = "none"
+                  }
+                });
+              }
+
               // Delete Reply
               const replyIdContainer = document.querySelectorAll(
                 ".reply-edit-delete > .reply-reference-no"
@@ -221,11 +259,13 @@ fetch(session)
                     deleteReplyForm.style.display === ""
                   ) {
                     deleteReplyForm.style.display = "block";
-                  } 
+                  }
                 });
               }
             });
         }
+
+        // Delete Comment
         const deleteForm = document.getElementsByClassName("modal")[0];
         const idContainer = document.querySelectorAll(
           ".reply-edit-delete > .reference-no"
@@ -244,7 +284,7 @@ fetch(session)
               deleteForm.style.display === ""
             ) {
               deleteForm.style.display = "block";
-            } 
+            }
           });
         }
       });
@@ -275,21 +315,4 @@ const deleteComment = () => {
   deleteForm[0].setAttribute("action", "");
   console.log("TEST");
 };
-// Edit Button
-// Object.keys(commentBtns.edit).forEach((form) => {
-//   forms.edit[form].style.display = "none";
-//   forms.textToEditInput[form].value =
-//     "@" +
-//     replyContainer.user[form].innerHTML +
-//     " " +
-//     replyContainer.comment[form].innerHTML;
-//   commentBtns.edit[form].addEventListener("click", () => {
-//     if (forms.edit[form].style.display === "none") {
-//       forms.edit[form].style.display = "grid";
-//       activeUser.commentText[form].style.display = "none";
-//     } else {
-//       forms.edit[form].style.display = "none";
-//       activeUser.commentText[form].style.display = "inline";
-//     }
-//   });
-// });
+

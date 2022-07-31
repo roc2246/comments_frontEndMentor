@@ -206,6 +206,19 @@ app.post("/updateReplyScore", (req, res) => {
   });
 });
 
+// Update ReplyScore
+app.post("/updateReply", (req, res) => {
+  let replyID = req.body.reply_index;
+  let content = req.body.updated_reply;
+  let sql = "UPDATE replies SET reply_content='" + content + "' WHERE id=" + replyID + "";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
 
 // Delete Comment
 app.post("/deleteComment", (req, res) => {
