@@ -263,6 +263,12 @@ fetch(session)
                     commentText[x].style.display = "none"
                     replyTo[x].style.display = "none"
                   }
+                  editBtn[x].onclick = () => {
+                    editForm[x].style.display = "none";
+                    commentText[x].style.display = "inline"
+                    replyTo[x].style.display = "inline"
+                    editBtn[x].onclick = ''
+                  }
                 });
               }
 
