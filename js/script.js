@@ -324,6 +324,8 @@ fetch(session)
 const replyForm = document.getElementsByName("add-comment");
 const replyToReply = document.getElementsByName("replyToReply");
 
+const modal = document.getElementsByClassName("modal")
+
 const toggle = (formName, form) => {
   if (
     formName[form].style.display === "none" ||
@@ -342,7 +344,13 @@ const changeValue = (o) => {
   }
 };
 
-const deleteComment = () => {
-  deleteForm[0].setAttribute("action", "");
+const deleteAction = (formNo) => {
+modal[formNo].setAttribute('onsubmit', 'return true;');
 };
+
+const closeModal = (formNo) => {
+modal[formNo].style.display = "none"
+modal[formNo].setAttribute('onsubmit', 'return false;');
+
+}
 
