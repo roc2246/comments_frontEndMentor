@@ -338,6 +338,5 @@ const changeValue = (o) => {
 
 const deleteComment = () => {
   deleteForm[0].setAttribute("action", "");
-  console.log("TEST");
 };
 
