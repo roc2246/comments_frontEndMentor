@@ -248,18 +248,18 @@ fetch(session)
               }
 
               // Edit Reply Edit Comment
-              const editReply = document.getElementsByClassName("reply-edit-delete__edit")
-              const editReplyForm= document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit")
+              const editBtn = document.getElementsByClassName("reply-edit-delete__edit")
+              const editForm= document.querySelectorAll(".comment--you > .comment__text > .comment__text--edit")
               const commentText = document.querySelectorAll(".comment--you > .comment__text > .comment__text--text")
               const replyTo = document.querySelectorAll(".comment--you > .comment__text > .comment__text--reply-to")
 
-              for (let x = 0; x < editReply.length; x++) {
-                editReply[x].addEventListener("click", () => {
+              for (let x = 0; x < editBtn.length; x++) {
+                editBtn[x].addEventListener("click", () => {
                   if (
-                    editReplyForm[x].style.display === "none" ||
-                    editReplyForm[x].style.display === ""
+                    editForm[x].style.display === "none" ||
+                    editForm[x].style.display === ""
                   ) {
-                    editReplyForm[x].style.display = "block";
+                    editForm[x].style.display = "block";
                     commentText[x].style.display = "none"
                     replyTo[x].style.display = "none"
                   }
