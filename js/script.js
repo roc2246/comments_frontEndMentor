@@ -1,7 +1,9 @@
-const users = "http://localhost:3002/users";
-const session = "http://localhost:3002/session";
-const replies = "http://localhost:3002/replies";
-const comments = "http://localhost:3002/comments";
+const port = "3002"
+
+const users = "http://localhost:"+port+"/users";
+const session = "http://localhost:"+port+"/session";
+const replies = "http://localhost:"+port+"/replies";
+const comments = "http://localhost:"+port+"/comments";
 
 const commentBox = document.getElementsByClassName("comment-box")[0];
 
@@ -58,7 +60,7 @@ fetch(session)
             commentClass +
             "'>" +
             //Vote Form
-            "<form class='comment__vote' method='POST' action='http://localhost:3002/updateScore'>" +
+            "<form class='comment__vote' method='POST' action='http://localhost:"+port+"/updateScore'>" +
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
@@ -95,7 +97,7 @@ fetch(session)
             "<p></p>" +
 
             // Edit Comment
-            "<form  method='POST' action='http://localhost:3002/updateComment' class='comment__text--edit'>" +
+            "<form  method='POST' action='http://localhost:"+port+"/updateComment' class='comment__text--edit'>" +
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
@@ -109,7 +111,7 @@ fetch(session)
             "</div>" +
 
             // Add Reply
-            "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:3002/addReply'>" +
+            "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:"+port+"/addReply'>" +
             "<input name='comment_id' type='text' value='" +
             comments[x].id +
             "' style='display:none;'>" +
@@ -176,7 +178,7 @@ fetch(session)
                     commentClass +
                     "'>" +
                     //Vote Form
-                    "<form class='comment__vote' method='POST' action='http://localhost:3002/updateReplyScore'>" +
+                    "<form class='comment__vote' method='POST' action='http://localhost:"+port+"/updateReplyScore'>" +
                     "<input name='comment_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
@@ -211,7 +213,7 @@ fetch(session)
                     "<p></p>" +
 
                     // Edit Reply
-                    "<form method='POST' action='http://localhost:3002/updateReply' class='comment__text--edit'>" +
+                    "<form method='POST' action='http://localhost:"+port+"/updateReply' class='comment__text--edit'>" +
                     "<input name='reply_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
@@ -229,7 +231,7 @@ fetch(session)
                     "</div>" +
 
                     // Add Reply
-                    "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:3002/addReplyToReply'>" +
+                    "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:"+port+"/addReplyToReply'>" +
                     "<img class='avatar--you' src='" +
                     userAvatar +
                     "'>" +
