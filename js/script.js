@@ -139,7 +139,7 @@ fetch(session)
           // Creates reply flexbox for each comment
           commentBox.innerHTML +=
             "<div class='reply-wrapper'>" +
-            "<hr>" +
+            "<hr class ='reply-line'>" +
             "<div class='reply-comment-wrapper'>" +
             "</div>" +
             "</div>";
@@ -153,12 +153,14 @@ fetch(session)
                 "reply-comment-wrapper"
               );
 
+              const replyLine = document.getElementsByClassName("reply-line");
+
+              console.log(replyLine[x]);
               // Orgainizes Replies by account reply is responding to
               for (let y = 0; y < replies.length; y++) {
                 if (comments[x].id === replies[y].comment_id) {
                   replyFormKey++;
                   commentFormKey++;
-
                   // Checks if reply is from user
                   if (replies[y].username === userInfo.username) {
                     commentClass = "comment reply comment--you";
@@ -182,7 +184,7 @@ fetch(session)
                       ")'>" +
                       "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
                       "</span>";
-                      youIcon = "";
+                    youIcon = "";
                   }
 
                   // Generates Replies
@@ -263,6 +265,8 @@ fetch(session)
                     "<input name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'>" +
                     " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                     "</form>";
+                } else if (comments[x].id === replies[y].comment_id) {
+                  replyLine[x].style.display = "none";
                 }
               }
 
