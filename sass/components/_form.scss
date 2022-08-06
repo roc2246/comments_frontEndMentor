@@ -75,6 +75,7 @@
           border-color: map-get($colors-primary, "moderate blue");
           cursor: pointer;
         }
+       
       }
       .update-comment {
         margin-left: auto;
@@ -118,6 +119,7 @@
     }
   }
 }
+
 @media only screen and (max-width: map-get($screen-widths, "mobile")) {
   .comment {
     &__vote {
@@ -138,4 +140,8 @@
       margin-top: 1rem;
     }
   }
+}
+
+::placeholder{
+  text-align: center;
 }

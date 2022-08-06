@@ -155,7 +155,6 @@ fetch(session)
 
               const replyLine = document.getElementsByClassName("reply-line");
 
-              console.log(replyLine[x]);
               // Orgainizes Replies by account reply is responding to
               for (let y = 0; y < replies.length; y++) {
                 if (comments[x].id === replies[y].comment_id) {
@@ -265,11 +264,13 @@ fetch(session)
                     "<input name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'>" +
                     " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                     "</form>";
-                } else if (comments[x].id === replies[y].comment_id) {
-                  replyLine[x].style.display = "none";
-                }
-              }
+                } 
 
+                
+              }
+              if(replyCommentWrapper[x].childElementCount === 0){
+                replyLine[x].style.display='none'
+              }
               // Edit Reply Edit Comment
               const editBtn = document.getElementsByClassName(
                 "reply-edit-delete__edit"

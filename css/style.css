@@ -180,6 +180,9 @@ p {
   .add-comment__send {
     margin-top: 1rem; } }
 
+::placeholder {
+  text-align: center; }
+
 main {
   width: min(45.3125rem, 95%);
   height: auto;
