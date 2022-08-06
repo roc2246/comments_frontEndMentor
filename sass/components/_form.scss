@@ -3,12 +3,18 @@ textarea {
   height: calculate-rem(100px);
   border-radius: $border-radius;
   resize: none;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: $font-family;
+  resize: none;
+  overflow: hidden;
   &:hover, &:focus {
     border-color: map-get($colors-primary, "moderate blue");
     cursor: pointer;
   }
- 
 }
+
 
 .add-comment {
   padding: $card-padding;

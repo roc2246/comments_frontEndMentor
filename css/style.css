@@ -80,7 +80,13 @@ textarea {
   width: auto;
   height: 6.25rem;
   border-radius: 0.375rem;
-  resize: none; }
+  resize: none;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: "Rubik", sans-serif;
+  resize: none;
+  overflow: hidden; }
   textarea:hover, textarea:focus {
     border-color: #5457b6;
     cursor: pointer; }
