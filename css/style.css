@@ -162,7 +162,7 @@ p {
   .modal__btn-box .delete-comment:hover {
     background-color: #ffb8bb; }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 38.4375rem) {
   .comment__vote {
     flex-direction: row;
     height: 2rem;
@@ -211,7 +211,7 @@ main {
     flex-direction: column;
     width: 100%; }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 38.4375rem) {
   .modal {
     margin: 50% 10%; } }
 
@@ -253,7 +253,7 @@ main {
     .add-comment__comment__send, .add-comment--add-reply__comment__send {
       grid-column: 3; }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 38.4375rem) {
   .comment__top-row {
     grid-column-start: 1;
     grid-column-end: 4; }

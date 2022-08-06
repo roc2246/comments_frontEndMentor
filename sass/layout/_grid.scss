@@ -50,7 +50,7 @@
   }
 }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: map-get($screen-widths, "mobile")) {
   .comment {
     &__top-row {
       grid-column-start: 1;
