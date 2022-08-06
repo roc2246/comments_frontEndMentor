@@ -76,6 +76,15 @@ p {
       font-weight: 700;
       color: white; }
 
+textarea {
+  width: auto;
+  height: 6.25rem;
+  border-radius: 0.375rem;
+  resize: none; }
+  textarea:hover, textarea:focus {
+    border-color: #5457b6;
+    cursor: pointer; }
+
 .add-comment {
   padding: 1.5rem;
   height: auto; }
@@ -129,14 +138,6 @@ p {
 
 .comment__text--edit {
   flex-direction: column; }
-  .comment__text--edit textarea {
-    width: auto;
-    height: 6.25rem;
-    border-radius: 0.375rem;
-    resize: none; }
-    .comment__text--edit textarea:hover {
-      border-color: #5457b6;
-      cursor: pointer; }
   .comment__text--edit .update-comment {
     margin-left: auto;
     margin-top: 1rem;

@@ -1,3 +1,15 @@
+textarea {
+  width: auto;
+  height: calculate-rem(100px);
+  border-radius: $border-radius;
+  resize: none;
+  &:hover, &:focus {
+    border-color: map-get($colors-primary, "moderate blue");
+    cursor: pointer;
+  }
+ 
+}
+
 .add-comment {
   padding: $card-padding;
   height: auto;
@@ -67,17 +79,6 @@
   &__text{
     &--edit {
       flex-direction: column;
-      textarea {
-        width: auto;
-        height: calculate-rem(100px);
-        border-radius: $border-radius;
-        resize: none;
-        &:hover {
-          border-color: map-get($colors-primary, "moderate blue");
-          cursor: pointer;
-        }
-       
-      }
       .update-comment {
         margin-left: auto;
         margin-top: 1rem;

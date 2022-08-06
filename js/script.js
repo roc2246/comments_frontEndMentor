@@ -130,7 +130,7 @@ fetch(session)
             "<img class='avatar--you' src='" +
             userAvatar +
             "'>" +
-            "<input type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'>" +
+            "<textarea type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'></textarea>" +
             " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
             "</form>";
 
