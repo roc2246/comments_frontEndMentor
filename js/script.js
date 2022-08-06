@@ -108,9 +108,7 @@ fetch(session)
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
-            "<input type='textbox' name='updated_comment' value='" +
-            comments[x].content +
-            "'>" +
+            "<textarea type='textbox' name='updated_comment'>"+ comments[x].content+"</textarea>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
             "<span class='comment__text--reply-to'></span>" +
@@ -233,11 +231,10 @@ fetch(session)
                     "<input name='reply_index' style='display:none;' value=" +
                     replies[y].id +
                     ">" +
-                    "<input type='textbox' name='updated_reply' value='@" +
+                    "<textarea name='updated_reply'>@" +
                     replies[y].replyTo +
                     " " +
-                    replies[y].reply_content +
-                    "'>" +
+                    replies[y].reply_content +"</textarea>" +
                     "<button class='update-comment'>UPDATE</button>" +
                     "</form> " +
                     "<span class='comment__text--reply-to'>@" +
@@ -261,7 +258,7 @@ fetch(session)
                     "<input name='reply_to' value ='" +
                     replies[y].username +
                     "' style='display:none;'>" +
-                    "<input name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'>" +
+                    "<textarea name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'></textarea>" +
                     " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                     "</form>";
                 }

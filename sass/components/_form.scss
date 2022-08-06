@@ -67,10 +67,11 @@
   &__text{
     &--edit {
       flex-direction: column;
-      input {
+      textarea {
         width: auto;
         height: calculate-rem(100px);
         border-radius: $border-radius;
+        resize: none;
         &:hover {
           border-color: map-get($colors-primary, "moderate blue");
           cursor: pointer;
@@ -142,6 +143,3 @@
   }
 }
 
-::placeholder{
-  text-align: center;
-}
