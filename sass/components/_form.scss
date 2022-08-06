@@ -29,13 +29,11 @@
       background-color: map-get($colors-primary, "light grayish blue");
     }
   }
-  &--add-reply{
-    display: none ;
+  &--add-reply {
+    display: none;
     padding: $card-padding;
   }
 }
-
-
 
 .comment {
   &__vote {
@@ -44,29 +42,31 @@
     background-color: map-get($colors-neutral, "light gray");
     border-radius: $border-radius;
     align-content: center;
-    height: 7.2rem;
-    padding: .25rem;
+    height: 6.5rem;
+    padding: 0.25rem;
     .upvote,
     .downvote {
+      flex: 1;
       cursor: pointer;
       border: none;
     }
     .rating {
+      flex: 1;
       border: none;
-    background-color: map-get($colors-neutral, "light gray");
+      background-color: map-get($colors-neutral, "light gray");
       color: map-get($colors-primary, "moderate blue");
       font-weight: map-get($font-weights, "large");
       text-align: center;
-      &:focus{
+      &:focus {
         outline: none;
-      cursor: pointer;
+        cursor: pointer;
       }
     }
   }
 
-  &__text--edit{
-    input{
-      height: calculate-rem(100px); 
+  &__text--edit {
+    input {
+      height: calculate-rem(100px);
     }
     .update-comment {
       margin-left: auto;
@@ -86,37 +86,42 @@
   }
 }
 
-.modal{
-&__btn-box{
-  .cancel-delete, .delete-comment{
-    height: calculate-rem(40px);
-    width: calc((100% / 2) - .5rem);
-    border-radius: $border-radius;
-    border: none;
-    cursor: pointer;
-  }
-  .cancel-delete{
-    background-color: map-get($colors-neutral, "grayish blue");
-    &:hover {
-      background-color: map-get($colors-neutral, "light gray");
+.modal {
+  &__btn-box {
+    .cancel-delete,
+    .delete-comment {
+      height: calculate-rem(40px);
+      width: calc((100% / 2) - 0.5rem);
+      border-radius: $border-radius;
+      border: none;
+      cursor: pointer;
+    }
+    .cancel-delete {
+      background-color: map-get($colors-neutral, "grayish blue");
+      &:hover {
+        background-color: map-get($colors-neutral, "light gray");
+      }
+    }
+    .delete-comment {
+      background-color: map-get($colors-primary, "soft red");
+      &:hover {
+        background-color: map-get($colors-primary, "pale red");
+      }
     }
   }
-  .delete-comment{
-    background-color: map-get($colors-primary, "soft red");
-    &:hover {
-      background-color: map-get($colors-primary, "pale red");
-    }
-  }
-}
 }
 @media only screen and (max-width: 480px) {
-
   .comment {
     &__vote {
       flex-direction: row;
-      width: 6.5rem;
-      height: auto;
-      justify-content: space-between;
+      height: 2rem;
+      width: 5.5rem;
+      .rating {
+        width: 0.25rem;
+      }
+      .downvote{
+        padding-bottom: .5rem;
+      }
     }
   }
 

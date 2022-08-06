@@ -1,9 +1,15 @@
-p{
+p {
   line-height: 1.5rem;
 }
 
 .comment {
   padding: $card-padding;
+  &__vote {
+    .rating {
+      font-weight: map-get($font-weights, "large");
+      font-size: 1rem;
+    }
+  }
   &__top-row {
     display: flex;
     flex-direction: row;
@@ -17,18 +23,18 @@ p{
     .post-date {
       margin-left: calculate-rem(16px);
     }
-    .you-icon{
+    .you-icon {
       margin-top: calculate-rem(11px);
       margin-left: calculate-rem(8px);
 
-      background-color: map-get($colors-primary , "moderate blue" );
-      color: map-get($colors-neutral , "white" );
+      background-color: map-get($colors-primary, "moderate blue");
+      color: map-get($colors-neutral, "white");
       border-radius: $border-radius;
-      padding-left: .5rem;
-      padding-right: .5rem;
-      padding-top: .25rem;
-      padding-bottom: .25rem;
-     }
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
     .name {
       font-weight: map-get($font-weights, "large");
     }
@@ -47,8 +53,8 @@ p{
         color: map-get($colors-primary, "light grayish blue");
       }
     }
-    &__edit{
-      margin-left: .5rem;
+    &__edit {
+      margin-left: 0.5rem;
       color: map-get($colors-primary, "moderate blue");
       &:hover {
         color: map-get($colors-primary, "light grayish blue");
@@ -62,6 +68,7 @@ p{
     }
   }
   &__text {
+    line-height: 1.5rem;
     p {
       margin: 0;
     }
@@ -72,14 +79,15 @@ p{
   }
 }
 
-.modal{
+.modal {
   padding: $card-padding;
-  &__btn-box{
+  &__btn-box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    .cancel-delete, .delete-comment{
+    .cancel-delete,
+    .delete-comment {
       font-weight: map-get($font-weights, "large");
       color: map-get($colors-neutral, "white");
     }
