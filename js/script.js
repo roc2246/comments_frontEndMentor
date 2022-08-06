@@ -108,7 +108,7 @@ fetch(session)
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
-            "<textarea type='textbox' name='updated_comment'>"+ comments[x].content+"</textarea>" +
+            "<textarea name='updated_comment'>"+ comments[x].content+"</textarea>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
             "<span class='comment__text--reply-to'></span>" +
@@ -130,7 +130,7 @@ fetch(session)
             "<img class='avatar--you' src='" +
             userAvatar +
             "'>" +
-            "<textarea type='text' class='add-comment__comment' name='comment_text' placeholder='Add a comment...'></textarea>" +
+            "<textarea  class='add-comment__comment' name='comment_text' placeholder='Add a comment...'></textarea>" +
             " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
             "</form>";
 
