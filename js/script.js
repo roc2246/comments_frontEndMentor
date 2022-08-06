@@ -264,13 +264,14 @@ fetch(session)
                     "<input name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'>" +
                     " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
                     "</form>";
-                } 
+                }
+              }
 
-                
+              // Prevents vertical line from displaying if there are no replies
+              if (replyCommentWrapper[x].childElementCount === 0) {
+                replyLine[x].style.display = "none";
               }
-              if(replyCommentWrapper[x].childElementCount === 0){
-                replyLine[x].style.display='none'
-              }
+
               // Edit Reply Edit Comment
               const editBtn = document.getElementsByClassName(
                 "reply-edit-delete__edit"
