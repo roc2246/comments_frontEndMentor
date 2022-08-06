@@ -286,7 +286,7 @@ fetch(session)
                     editForm[x].style.display === "none" ||
                     editForm[x].style.display === ""
                   ) {
-                    editForm[x].style.display = "block";
+                    editForm[x].style.display = "flex";
                     commentText[x].style.display = "none";
                     replyTo[x].style.display = "none";
                   }
