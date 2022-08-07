@@ -1,9 +1,12 @@
-const port = "3002";
+// https://stackoverflow.com/questions/58000355/save-data-to-mysql-with-node-js-express-without-refreshing-page
 
-const users = "http://localhost:" + port + "/users";
-const session = "http://localhost:" + port + "/session";
-const replies = "http://localhost:" + port + "/replies";
-const comments = "http://localhost:" + port + "/comments";
+const port = "5500";
+const url = "http://localhost:";
+
+const users = url + port + "/users";
+const session = url + port + "/session";
+const replies = url + port + "/replies";
+const comments = url + port + "/comments";
 
 const commentBox = document.getElementsByClassName("comment-box")[0];
 
@@ -108,7 +111,9 @@ fetch(session)
             "<input name='comment_index' style='display:none;' value=" +
             comments[x].id +
             ">" +
-            "<textarea name='updated_comment'>"+ comments[x].content+"</textarea>" +
+            "<textarea name='updated_comment'>" +
+            comments[x].content +
+            "</textarea>" +
             "<button class='update-comment'>UPDATE</button>" +
             "</form> " +
             "<span class='comment__text--reply-to'></span>" +
@@ -234,7 +239,8 @@ fetch(session)
                     "<textarea name='updated_reply'>@" +
                     replies[y].replyTo +
                     " " +
-                    replies[y].reply_content +"</textarea>" +
+                    replies[y].reply_content +
+                    "</textarea>" +
                     "<button class='update-comment'>UPDATE</button>" +
                     "</form> " +
                     "<span class='comment__text--reply-to'>@" +
@@ -326,9 +332,9 @@ fetch(session)
                     deleteReplyForm.style.display = "block";
                     window.scrollTo(0, 0);
 
-                    window.addEventListener('scroll', ()=>{
+                    window.addEventListener("scroll", () => {
                       window.scrollTo(0, 0);
-                    })
+                    });
                   }
                 });
               }
@@ -356,9 +362,9 @@ fetch(session)
               deleteForm.style.display = "block";
               window.scrollTo(0, 0);
 
-              window.addEventListener('scroll', ()=>{
+              window.addEventListener("scroll", () => {
                 window.scrollTo(0, 0);
-              })
+              });
             }
           });
         }
@@ -395,5 +401,5 @@ const deleteAction = (formNo) => {
 const closeModal = (formNo) => {
   modal[formNo].style.display = "none";
   modal[formNo].setAttribute("onsubmit", "return false;");
-  window.onscroll = ()=>{}
+  window.onscroll = () => {};
 };

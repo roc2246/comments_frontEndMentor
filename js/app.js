@@ -262,7 +262,7 @@ app.post("/deleteReply", (req, res) => {
   });
 });
 
-const portNo = 3002;
+const portNo = 5500;
 app.listen(portNo, () => {
   console.log("Server running on port " + portNo);
 });
