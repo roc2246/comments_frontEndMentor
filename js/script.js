@@ -307,11 +307,15 @@ fetch(session)
                 ".reply-edit-delete > .reply-reference-no"
               );
 
+              const deleteReply = document.querySelectorAll(
+                ".reply > .reply-edit-delete > .reply-edit-delete__delete"
+              );
+
               const deleteReplyForm =
                 document.getElementsByClassName("modal")[1];
 
-              for (let x = 0; x < deleteComment.length; x++) {
-                deleteComment[x].addEventListener("click", () => {
+              for (let x = 0; x < deleteReply.length; x++) {
+                deleteReply[x].addEventListener("click", () => {
                   document.getElementsByName("delete_comment_id")[1].value =
                     replyIdContainer[x].value;
 
