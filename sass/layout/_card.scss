@@ -9,13 +9,24 @@
   margin-bottom: $card-margin;
 }
 
-.modal{
+.modal {
   display: none;
-  width: calculate-rem(300px);
   position: absolute;
-  border: solid;
-  margin: 15% 10%;
- 
+  z-index: 1;
+  left: 0;
+  top: 0;
+  margin: auto;
+  width: 100%; 
+  min-height: 100vh; 
+  background-color: rgba(0,0,0,0.4);
+  &__content {
+    background-color: $card-background-color;
+    margin: auto;
+    padding: calculate-rem(20px);
+    border-radius: $border-radius;
+    width: calculate-rem(350px);
+    margin-top: 25vh;
+  }
 }
 
 .reply-wrapper {
@@ -34,8 +45,11 @@
   }
 }
 
-@media only screen and(max-width: map-get($screen-widths, "mobile")){
-  .modal{
-    margin: 50% 10%;
+@media only screen and(max-width: map-get($screen-widths, "mobile")) {
+  .modal {
+    &__content{
+      width: calculate-rem(300px);
+
+    }
   }
 }

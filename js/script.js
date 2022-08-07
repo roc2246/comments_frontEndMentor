@@ -320,6 +320,11 @@ fetch(session)
                     deleteReplyForm.style.display === ""
                   ) {
                     deleteReplyForm.style.display = "block";
+                    window.scrollTo(0, 0);
+
+                    window.addEventListener('scroll', ()=>{
+                      window.scrollTo(0, 0);
+                    })
                   }
                 });
               }
@@ -345,6 +350,11 @@ fetch(session)
               deleteForm.style.display === ""
             ) {
               deleteForm.style.display = "block";
+              window.scrollTo(0, 0);
+
+              window.addEventListener('scroll', ()=>{
+                window.scrollTo(0, 0);
+              })
             }
           });
         }
@@ -381,4 +391,5 @@ const deleteAction = (formNo) => {
 const closeModal = (formNo) => {
   modal[formNo].style.display = "none";
   modal[formNo].setAttribute("onsubmit", "return false;");
+  window.onscroll = ()=>{}
 };
