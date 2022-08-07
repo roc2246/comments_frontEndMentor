@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/58000355/save-data-to-mysql-with-node-js-express-without-refreshing-page
 
-const port = "5500";
+const port = "3000";
 const url = "http://localhost:";
 
 const users = url + port + "/users";
