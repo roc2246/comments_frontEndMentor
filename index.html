@@ -18,27 +18,9 @@
     <div class="comment-box"></div>
   <!-- Pull dynamic content from the data.json file -->
 
-<script>
-const ajax = () => {
-  const data= new FormData()
-  // data.append("user_id", 4)
-  // data.append("content", "TEST")
-
-  const xhr = new XMLHttpRequest()
-  xhr.open("POST", "http://localhost:3000/add")
-  xhr.onload = ()=>{
-    console.log(this.response)
-  }
-  xhr.send(data)
-
-  return false;
-}
-</script>
-
-
   <!-- Add Comment -->
   <!-- action="http://localhost:3000/add" -->
-  <form  method='POST'  class="add-comment" onsubmit='return ajax()'>
+  <form  method='POST'  class="add-comment" onsubmit='return newComment()'>
     <img class="avatar--you" src="">
     <textarea  name="comment_text" class="add-comment__comment" placeholder="Add a comment..."></textarea>
     <button class="add-comment__send">SEND</button>
@@ -91,5 +73,6 @@ const ajax = () => {
     Coded by <a href="#">Your Name Here</a>.
   </footer>
   <script defer src="js/script.js"></script>
+  <script src="js/ajax.js"></script>
 </body>
 </html>
