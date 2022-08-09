@@ -19,10 +19,10 @@
   <!-- Pull dynamic content from the data.json file -->
 
   <!-- Add Comment -->
-  <!-- action="http://localhost:3000/add" -->
-  <form  method='POST'  class="add-comment" onsubmit='return newComment()'>
+  <!--   action="http://localhost:3000/add"  onsubmit='return newComment()' -->
+  <form  method='POST' id="new-comment" class="add-comment">
     <img class="avatar--you" src="">
-    <textarea  name="comment_text" class="add-comment__comment" placeholder="Add a comment..."></textarea>
+    <textarea  id="comment" name="comment_text" class="add-comment__comment" placeholder="Add a comment..."></textarea>
     <button class="add-comment__send">SEND</button>
 </form>
 
