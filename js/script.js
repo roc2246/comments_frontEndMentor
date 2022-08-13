@@ -120,20 +120,20 @@ fetch(session)
             "</div>" +
             "</div>" +
             // Add Reply
-            "<form name='add-comment' class='add-comment--add-reply' method='POST' action='http://localhost:" +
-            port +
-            "/addReply'>" +
-            "<input name='comment_id' type='text' value='" +
+             //  action='http://localhost:" +port + "/addReply'
+                    // onclick='newReply(1)'
+            "<form name='add-comment' class='add-comment--add-reply' method='POST'>" +
+            "<input name='comment_id' class='comment__id' type='text' value='" +
             comments[x].id +
             "' style='display:none;'>" +
-            "<input name='reply_to' type='text' value='" +
+            "<input name='reply_to' class='reply__to' type='text' value='" +
             comments[x].username +
             "' style='display:none;'>" +
             "<img class='avatar--you' src='" +
             userAvatar +
             "'>" +
             "<textarea  class='add-comment__comment' name='comment_text' placeholder='Add a comment...'></textarea>" +
-            " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
+            " <button class='add-comment__send add-comment__send--reply'>SEND</button>" +
             "</form>";
 
           // Creates reply flexbox for each comment
@@ -249,9 +249,9 @@ fetch(session)
                     "</div>" +
                     "</div>" +
                     // Add Reply
-                    "<form name='replyToReply' method='POST' class='add-comment--add-reply' action='http://localhost:" +
-                    port +
-                    "/addReplyToReply'>" +
+                    //  action='http://localhost:" +port + "/addReplyToReply'
+                    // onclick='newReply(1)'
+                    "<form name='replyToReply' method='POST' class='add-comment--add-reply reply-to-reply'>" +
                     "<img class='avatar--you' src='" +
                     userAvatar +
                     "'>" +
@@ -262,7 +262,7 @@ fetch(session)
                     replies[y].username +
                     "' style='display:none;'>" +
                     "<textarea name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'></textarea>" +
-                    " <button class='add-comment__send add-comment__send--reply'+ onclick='newReply(1)'>SEND</button>" +
+                    " <button class='add-comment__send add-comment__send--reply'>SEND</button>" +
                     "</form>";
                 }
               }

@@ -92,16 +92,6 @@ app.get("/comments", (req, res) => {
   });
 });
 
-app.get("/comments2", (req, res) => {
-  let sql =
-    "SELECT * FROM comments"
-  db.query(sql, (error, result) => {
-    if (error) {
-      console.log(error);
-    }
-    res.send(result);
-  });
-});
 
 // Get replies
 app.get("/replies", (req, res) => {
@@ -236,9 +226,6 @@ app.post("/updateReply", (req, res) => {
     console.log(sql)
   });
 });
-
-// https://codingstatus.com/how-to-update-data-using-node-js-and-mysql/
-// https://www.tutsmake.com/node-express-js-creating-a-restful-api-mysql-example/
 
 // Update Comment
 app.get("/updateComment/:id", (req, res) => {
