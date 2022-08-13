@@ -64,13 +64,46 @@ setTimeout(() => {
 
 
   const comment_id = document.querySelectorAll(".add-comment--add-reply:not(.reply-to-reply) > .comment__id");
-  const reply_to = document.getElementsByClassName("reply__to")
+  const reply_to = document.querySelectorAll(".add-comment--add-reply:not(.reply-to-reply) > .reply__to")
 
   for (let x = 0; x < newReplyForm.length; x++) {
     newReplyForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
 
       fetch("http://localhost:3000/addReply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          comment_id: comment_id[x].value,
+          reply_to: reply_to[x].value,
+          comment_text: replyText[x].value
+        }),
+      })
+        .then((text) => {
+          console.log(text);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }
+}, 1000);
+
+// Add reply to reply
+setTimeout(() => {
+  const newReplyForm = document.querySelectorAll(".reply-to-reply")
+  const replyText = document.querySelectorAll(
+    ".reply-to-reply > .add-comment__comment"
+  );
+
+  const comment_id = document.querySelectorAll(".reply-to-reply > .comment__id");
+  const reply_to = document.querySelectorAll(".reply-to-reply > .reply__to")
+
+  for (let x = 0; x < newReplyForm.length; x++) {
+    newReplyForm[x].addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      fetch("http://localhost:3000/addReplyToReply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

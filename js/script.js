@@ -255,10 +255,10 @@ fetch(session)
                     "<img class='avatar--you' src='" +
                     userAvatar +
                     "'>" +
-                    "<input name='comment_id' type='text' value='" +
+                    "<input name='comment_id' class='comment__id' type='text' value='" +
                     comments[x].id +
                     "' style='display:none;'>" +
-                    "<input name='reply_to' value ='" +
+                    "<input name='reply_to' class='reply__to' value ='" +
                     replies[y].username +
                     "' style='display:none;'>" +
                     "<textarea name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'></textarea>" +
