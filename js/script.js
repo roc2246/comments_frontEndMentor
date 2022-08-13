@@ -1,5 +1,3 @@
-// https://stackoverflow.com/questions/58000355/save-data-to-mysql-with-node-js-express-without-refreshing-page
-
 const port = "3000";
 const url = "http://localhost:";
 
@@ -105,13 +103,12 @@ fetch(session)
             "<div class='comment__text'>" +
             "<p></p>" +
             // Edit Comment
-            "<form  method='POST' action='http://localhost:" +
-            port +
-            "/updateComment' class='comment__text--edit'>" +
-            "<input name='comment_index' style='display:none;' value=" +
+            //  action='http://localhost:" + port + "/updateComment'
+            "<form  method='POST' class='comment__text--edit'>" +
+            "<input name='comment_index' class='comment-index' style='display:none;' value=" +
             comments[x].id +
             ">" +
-            "<textarea name='updated_comment'>" +
+            "<textarea name='updated_comment' class='updated-comment'>" +
             comments[x].content +
             "</textarea>" +
             "<button class='update-comment'>UPDATE</button>" +
@@ -178,7 +175,7 @@ fetch(session)
                       "</span>";
                     youIcon = "<span class='you-icon'>you</span>";
                   } else {
-                    commentClass = "comment";
+                    commentClass = "comment reply";
                     crud =
                       "<span class='reply-edit-delete'>" +
                       "<span class='reply-edit-delete__reply' onclick='toggle(replyToReply," +

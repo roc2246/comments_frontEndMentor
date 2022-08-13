@@ -6,6 +6,12 @@ const path = require("path");
 
 const mysql = require("mysql");
 
+
+const cors = require("cors");
+
+
+app.use(cors());
+
 // Body Parser
 app.use(
   bodyParser.urlencoded({
@@ -78,6 +84,17 @@ app.get("/comments", (req, res) => {
     "FROM comments " +
     "INNER JOIN users " +
     "ON (users.id=comments.user_id) ";
+  db.query(sql, (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+  });
+});
+
+app.get("/comments2", (req, res) => {
+  let sql =
+    "SELECT * FROM comments"
   db.query(sql, (error, result) => {
     if (error) {
       console.log(error);
@@ -220,12 +237,28 @@ app.post("/updateReply", (req, res) => {
   });
 });
 
+// https://codingstatus.com/how-to-update-data-using-node-js-and-mysql/
+// https://www.tutsmake.com/node-express-js-creating-a-restful-api-mysql-example/
+
 // Update Comment
-app.post("/updateComment", (req, res) => {
-  let commentID = req.body.comment_index;
+app.get("/updateComment/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  let sql = "SELECT * FROM comments WHERE  id=?";
+  db.query(sql, [commentID], (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
+app.patch("/updateComment/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  console.log(commentID)
   let content = req.body.updated_comment;
-  let sql = "UPDATE comments SET content='" + content + "' WHERE id=" + commentID + "";
-  db.query(sql, (error, result) => {
+  let sql = "UPDATE comments SET content=? WHERE id=?";
+  db.query(sql, [content, commentID] ,(error, result) => {
     if (error) {
       console.log(error);
     }
