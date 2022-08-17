@@ -1,106 +1,3 @@
-const setUser = (data, username, commentID, container, toggleParam) => {
-  if (data === username) {
-    commentClass = "" + container + " comment--you";
-    crud =
-      "<span class='reply-edit-delete'>" +
-      "<input name='comment_index' class='reply-reference-no' style='display:none;' value=" +
-      commentID +
-      ">" +
-      "<span class='reply-edit-delete__delete'>" +
-      "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
-      "<span class='reply-edit-delete__edit'>" +
-      "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>" +
-      "</span>";
-    youIcon = "<span class='you-icon'>you</span>";
-  } else {
-    commentClass = container;
-    crud =
-      "<span class='reply-edit-delete'>" +
-      "<span class='reply-edit-delete__reply' onclick='" +
-      toggleParam +
-      "')>" +
-      "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>" +
-      "</span>";
-    youIcon = "";
-  }
-};
-
-const setContainer = (commentClass, action, no) => {
-  let replyTo;
-
-  if (
-    commentClass === "comment reply" ||
-    commentClass === "comment reply comment--you"
-  ) {
-    replyTo = "@" + no.replyTo + " ";
-  } else {
-    replyTo = "";
-  }
-
-  const commentContainer =
-    "<div class='" +
-    commentClass +
-    "'>" +
-    //Vote Form
-    "<form class='comment__vote' method='POST' action='http://localhost:3000/" +
-    action +
-    "'>" +
-    "<input name='comment_index' style='display:none;' value=" +
-    no.id +
-    ">" +
-    "<input name='upvote_or_downvote' class='change' style='display:none;' value=''>" +
-    "<button class='upvote' onclick='changeValue(\"+1\")'>" +
-    "<img src='images/icon-plus.svg' alt='upvote score'>" +
-    "</button>" +
-    "<input name='score' class='rating' value=" +
-    no.score +
-    ">" +
-    "<button class='downvote' onclick='changeValue(\"-1\")'>" +
-    "<img src='images/icon-minus.svg' alt='downvote score'>" +
-    "</button>" +
-    "</form>" +
-    // Avatar, Post Date, and CRUD Features
-    "<div class='comment__top-row'>" +
-    "<img class='avatar' alt='avatar' src='" +
-    no.avatar_png +
-    "'>" +
-    "<span class='name'>" +
-    no.username +
-    "</span>" +
-    youIcon +
-    "<span class='post-date'>" +
-    no.createdAt +
-    "</span>" +
-    "</div>" +
-    "<span class='reply-edit-delete'>" +
-    crud +
-    "</span>" +
-    // Comment Container
-    "<div class='comment__text'>" +
-    "<p></p>" +
-    // Edit Comment
-    "<form  method='POST' class='comment__text--edit'>" +
-    "<input name='comment_index' class='comment-index' style='display:none;' value=" +
-    no.id +
-    ">" +
-    "<textarea name='updated_comment' class='updated-comment'>" +
-    replyTo +
-    no.content +
-    "</textarea>" +
-    "<button class='update-comment'>UPDATE</button>" +
-    "</form> " +
-    "<span class='comment__text--reply-to'>" +
-    replyTo +
-    "</span>" +
-    "<span class='comment__text--text'>" +
-    no.content +
-    "</span>" +
-    "</div>" +
-    "</div>";
-
-  return commentContainer;
-};
-
 const port = "3000";
 const url = "http://localhost:";
 
@@ -205,13 +102,10 @@ fetch(session)
                   setUserReply;
 
                   // Generates Replies
-                  replyCommentWrapper[x].innerHTML += setContainer(
-                    commentClass,
-                    "updateReplyScore",
-                    replies[y]
-                  ) +
-                  // Add Reply
-                  "<form name='replyToReply' method='POST' class='add-comment--add-reply reply-to-reply'>" +
+                  replyCommentWrapper[x].innerHTML +=
+                    setContainer(commentClass, "updateReplyScore", replies[y]) +
+                    // Add Reply
+                    "<form name='replyToReply' method='POST' class='add-comment--add-reply reply-to-reply'>" +
                     "<img class='avatar--you' src='" +
                     userAvatar +
                     "'>" +
@@ -300,15 +194,15 @@ fetch(session)
 
         // Delete Comment
         const deleteForm = document.getElementsByClassName("modal")[0];
-        const idContainer = document.querySelectorAll(
-          ".reply-edit-delete > .reference-no"
-        );
+        const idContainer = document.getElementsByClassName("comment-index");
 
+        console.log(idContainer[2]);
         const deleteComment = document.getElementsByClassName(
           "reply-edit-delete__delete"
         );
 
         for (let x = 0; x < deleteComment.length; x++) {
+          console.log(idContainer[x]);
           deleteComment[x].addEventListener("click", () => {
             document.getElementsByName("delete_comment_id")[0].value =
               idContainer[x].value;
