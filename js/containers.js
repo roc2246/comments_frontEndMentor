@@ -60,7 +60,6 @@ const setUser = (data, username, commentID, container, toggleParam) => {
       ) {
         yourComment='container-id--you'
       } else {
-        replyTo = "";
         yourComment='container-id'
       }
   
@@ -97,7 +96,7 @@ const setUser = (data, username, commentID, container, toggleParam) => {
       "<span class='post-date'>" +
       source.createdAt +
       "</span>" +
-      "<span class='"+yourComment+"'>"+source.id+"</span>"+
+      "<span class='"+yourComment+"' style='display:none;'>"+source.id+"</span>"+
       "</div>";
   
     const commentText =
