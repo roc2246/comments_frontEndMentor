@@ -1,3 +1,30 @@
+const setUser = (data, username, commentID, container, toggleParam) => {
+  if (data === username) {
+    commentClass = "" + container + " comment--you";
+    crud =
+      "<span class='reply-edit-delete'>" +
+      "<input name='comment_index' class='reply-reference-no' style='display:none;' value=" +
+      commentID +
+      ">" +
+      "<span class='reply-edit-delete__delete'>" +
+      "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
+      "<span class='reply-edit-delete__edit'>" +
+      "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>" +
+      "</span>";
+    youIcon = "<span class='you-icon'>you</span>";
+  } else {
+    commentClass = container;
+    crud =
+        "<span class='reply-edit-delete'>" +
+      "<span class='reply-edit-delete__reply' onclick='" +
+      toggleParam +
+      "')>" +
+      "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>"+
+      "</span>"
+    youIcon = "";
+  }
+};
+
 const port = "3000";
 const url = "http://localhost:";
 
@@ -37,28 +64,16 @@ fetch(session)
 
         for (let x = 0; x < comments.length; x++) {
           commentFormKey++;
+          const setUserComment = setUser(
+            comments[x].username,
+            userInfo.username,
+            comments[x].id,
+            "comment",
+            'toggle(replyForm, ['+commentFormKey+'])'
+          );
 
           // Checks if comment is from user
-          if (comments[x].username === userInfo.username) {
-            commentClass = "comment comment--you";
-            crud =
-              "<input name='comment_index' class='reference-no' style='display:none;' value=" +
-              comments[x].id +
-              ">" +
-              "<span class='reply-edit-delete__delete'>" +
-              "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
-              "<span class='reply-edit-delete__edit'>" +
-              "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>";
-            youIcon = "<span class='you-icon'>you</span>";
-          } else {
-            commentClass = "comment";
-            crud =
-              "<span class='reply-edit-delete__reply' onclick='toggle(replyForm," +
-              commentFormKey +
-              ")'>" +
-              "<img src='images/icon-reply.svg' alt='reply icon' class='reply-edit-delete__reply--image'> Reply</span>";
-            youIcon = "";
-          }
+          setUserComment;
 
           // Generates Comments
           commentBox.innerHTML +=
@@ -120,8 +135,8 @@ fetch(session)
             "</div>" +
             "</div>" +
             // Add Reply
-             //  action='http://localhost:" +port + "/addReply'
-                    // onclick='newReply(1)'
+            //  action='http://localhost:" +port + "/addReply'
+            // onclick='newReply(1)'
             "<form name='add-comment' class='add-comment--add-reply' method='POST'>" +
             "<input name='comment_id' class='comment__id' type='text' value='" +
             comments[x].id +
@@ -160,31 +175,17 @@ fetch(session)
                 if (comments[x].id === replies[y].comment_id) {
                   replyFormKey++;
                   commentFormKey++;
+                  const setUserReply = setUser(
+                    replies[y].username,
+                    userInfo.username,
+                    replies[y].id,
+                    "comment reply",
+                    'toggle(replyToReply, '+ [replyFormKey] +')' 
+                  );
+                  
+
                   // Checks if reply is from user
-                  if (replies[y].username === userInfo.username) {
-                    commentClass = "comment reply comment--you";
-                    crud =
-                      "<span class='reply-edit-delete'>" +
-                      "<input name='comment_index' class='reply-reference-no' style='display:none;' value=" +
-                      replies[y].id +
-                      ">" +
-                      "<span class='reply-edit-delete__delete'>" +
-                      "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
-                      "<span class='reply-edit-delete__edit'>" +
-                      "<img src='images/icon-edit.svg' alt='' class='reply-edit-delete__reply--image'> Edit</span>" +
-                      "</span>";
-                    youIcon = "<span class='you-icon'>you</span>";
-                  } else {
-                    commentClass = "comment reply";
-                    crud =
-                      "<span class='reply-edit-delete'>" +
-                      "<span class='reply-edit-delete__reply' onclick='toggle(replyToReply," +
-                      [replyFormKey] +
-                      ")'>" +
-                      "<img src='images/icon-reply.svg' alt='' class='reply-edit-delete__reply--image'> Reply</span>" +
-                      "</span>";
-                    youIcon = "";
-                  }
+                  setUserReply;
 
                   // Generates Replies
                   replyCommentWrapper[x].innerHTML +=
