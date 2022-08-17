@@ -163,7 +163,7 @@ app.post("/addReplyToReply", (req, res) => {
 
   let sql =
     `INSERT INTO replies 
-    (comment_id, user_id, replyTo, reply_content, reply_createdAt, reply_score) 
+    (comment_id, user_id, replyTo, content, createdAt, score) 
   VALUES (` +
     commentID +
     `, ` +

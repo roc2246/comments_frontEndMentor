@@ -28,17 +28,23 @@ const setUser = (data, username, commentID, container, toggleParam) => {
 const setContainer = (commentClass, action, no) => {
   let replyTo;
 
-  if(commentClass === 'comment reply' || commentClass === 'comment reply comment--you'){
-    replyTo ="@" + no.replyTo + " "
+  if (
+    commentClass === "comment reply" ||
+    commentClass === "comment reply comment--you"
+  ) {
+    replyTo = "@" + no.replyTo + " ";
   } else {
-    replyTo = ''
+    replyTo = "";
   }
 
-  const commentContainer = "<div class='" +
+  const commentContainer =
+    "<div class='" +
     commentClass +
     "'>" +
     //Vote Form
-    "<form class='comment__vote' method='POST' action='http://localhost:3000/"+action+"'>" +
+    "<form class='comment__vote' method='POST' action='http://localhost:3000/" +
+    action +
+    "'>" +
     "<input name='comment_index' style='display:none;' value=" +
     no.id +
     ">" +
@@ -77,21 +83,22 @@ const setContainer = (commentClass, action, no) => {
     "<input name='comment_index' class='comment-index' style='display:none;' value=" +
     no.id +
     ">" +
-    "<textarea name='updated_comment' class='updated-comment'>" + replyTo +
+    "<textarea name='updated_comment' class='updated-comment'>" +
+    replyTo +
     no.content +
     "</textarea>" +
     "<button class='update-comment'>UPDATE</button>" +
     "</form> " +
-    "<span class='comment__text--reply-to'>"+ replyTo +"</span>" +
+    "<span class='comment__text--reply-to'>" +
+    replyTo +
+    "</span>" +
     "<span class='comment__text--text'>" +
     no.content +
     "</span>" +
     "</div>" +
     "</div>";
 
-  
-
-    return commentContainer;
+  return commentContainer;
 };
 
 const port = "3000";
@@ -146,7 +153,7 @@ fetch(session)
 
           // Generates Comments
           commentBox.innerHTML +=
-            setContainer(commentClass, 'updateScore', comments[x]) +
+            setContainer(commentClass, "updateScore", comments[x]) +
             // Add Reply
             "<form name='add-comment' class='add-comment--add-reply' method='POST'>" +
             "<input name='comment_id' class='comment__id' type='text' value='" +
@@ -198,8 +205,25 @@ fetch(session)
                   setUserReply;
 
                   // Generates Replies
-                  replyCommentWrapper[x].innerHTML += 
-                  setContainer(commentClass, 'updateReplyScore', replies[y]) 
+                  replyCommentWrapper[x].innerHTML += setContainer(
+                    commentClass,
+                    "updateReplyScore",
+                    replies[y]
+                  ) +
+                  // Add Reply
+                  "<form name='replyToReply' method='POST' class='add-comment--add-reply reply-to-reply'>" +
+                    "<img class='avatar--you' src='" +
+                    userAvatar +
+                    "'>" +
+                    "<input name='comment_id' class='comment__id' type='text' value='" +
+                    comments[x].id +
+                    "' style='display:none;'>" +
+                    "<input name='reply_to' class='reply__to' value ='" +
+                    replies[y].username +
+                    "' style='display:none;'>" +
+                    "<textarea name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'></textarea>" +
+                    " <button class='add-comment__send add-comment__send--reply'>SEND</button>" +
+                    "</form>";
                 }
               }
 
