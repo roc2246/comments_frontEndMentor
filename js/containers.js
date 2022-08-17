@@ -122,3 +122,21 @@ const setUser = (data, username, commentID, container, toggleParam) => {
   
     return commentContainer;
   };
+
+const addContainerForm = (formName, formClass, source1, source2, userAvatar) => {
+   const form =  "<form name='"+formName+"' class='"+formClass+"' method='POST'>" +
+    "<input name='comment_id' class='comment__id' type='text' value='" +
+    source1.id +
+    "' style='display:none;'>" +
+    "<input name='reply_to' class='reply__to' type='text' value='" +
+    source2.username +
+    "' style='display:none;'>" +
+    "<img class='avatar--you' src='" +
+    userAvatar +
+    "'>" +
+    "<textarea  class='add-comment__comment' name='comment_text' placeholder='Add a comment...'></textarea>" +
+    " <button class='add-comment__send add-comment__send--reply'>SEND</button>" +
+    "</form>";
+
+    return form;
+}

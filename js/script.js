@@ -51,20 +51,7 @@ fetch(session)
           // Generates Comments
           commentBox.innerHTML +=
             setContainer(commentClass, "updateScore", comments[x]) +
-            // Add Reply
-            "<form name='add-comment' class='add-comment--add-reply' method='POST'>" +
-            "<input name='comment_id' class='comment__id' type='text' value='" +
-            comments[x].id +
-            "' style='display:none;'>" +
-            "<input name='reply_to' class='reply__to' type='text' value='" +
-            comments[x].username +
-            "' style='display:none;'>" +
-            "<img class='avatar--you' src='" +
-            userAvatar +
-            "'>" +
-            "<textarea  class='add-comment__comment' name='comment_text' placeholder='Add a comment...'></textarea>" +
-            " <button class='add-comment__send add-comment__send--reply'>SEND</button>" +
-            "</form>";
+            addContainerForm('add-comment', 'add-comment--add-reply', comments[x], comments[x], userAvatar)
 
           // Creates reply flexbox for each comment
           commentBox.innerHTML +=
@@ -104,20 +91,8 @@ fetch(session)
                   // Generates Replies
                   replyCommentWrapper[x].innerHTML +=
                     setContainer(commentClass, "updateReplyScore", replies[y]) +
-                    // Add Reply
-                    "<form name='replyToReply' method='POST' class='add-comment--add-reply reply-to-reply'>" +
-                    "<img class='avatar--you' src='" +
-                    userAvatar +
-                    "'>" +
-                    "<input name='comment_id' class='comment__id' type='text' value='" +
-                    comments[x].id +
-                    "' style='display:none;'>" +
-                    "<input name='reply_to' class='reply__to' value ='" +
-                    replies[y].username +
-                    "' style='display:none;'>" +
-                    "<textarea name='comment_text' type='text' class='add-comment__comment'  placeholder='Add a comment...'></textarea>" +
-                    " <button class='add-comment__send add-comment__send--reply'>SEND</button>" +
-                    "</form>";
+                    addContainerForm('replyToReply', 'add-comment--add-reply reply-to-reply', comments[x], replies[y], userAvatar)
+             
                 }
               }
 
