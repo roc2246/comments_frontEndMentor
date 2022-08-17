@@ -28,19 +28,15 @@ newCommentForm.addEventListener("submit", (e) => {
 
 // Update comment
 setTimeout(() => {
-  const updatedComment = document.getElementsByClassName("updated-comment");
-  const editCommentForm = document.querySelectorAll(
-    ".comment:not(.reply) > .comment__text > .comment__text--edit"
-  );
-  const commentId = document.querySelectorAll(
-    ".comment > .comment__text > .comment__text--edit > .comment-index"
-  );
+  const updatedComment = document.getElementsByClassName("updated-comment--you");
+  const editCommentForm = document.getElementsByClassName("comment__text--edit--you");
+  const commentId = document.getElementsByClassName("container-id--you");
 
-  for (let x = 0; x < editCommentForm.length; x++) {
+  for (let x = 0; x < commentId.length; x++) {
+    console.log(updatedComment[x].value);
     editCommentForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
-      console.log(commentId[x].value);
-      fetch(`http://localhost:3000/updateComment/${commentId[x].value}`, {
+      fetch(`http://localhost:3000/updateComment/${parseInt(commentId[x].innerText)}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

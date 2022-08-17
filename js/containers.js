@@ -25,13 +25,13 @@ const setUser = (data, username, commentID, container, toggleParam) => {
     }
   };
   
-  const editText = (source, replyTo) => {
+  const editText = (source, replyTo, yourEditForm, yourUpdatedComment) => {
     const form =
-      "<form  method='POST' class='comment__text--edit'>" +
+      "<form  method='POST' class='"+yourEditForm+"'>" +
       "<input name='comment_index' class='comment-index' style='display:none;' value=" +
       source.id +
       ">" +
-      "<textarea name='updated_comment' class='updated-comment'>" +
+      "<textarea name='updated_comment' class='"+yourUpdatedComment+"'>" +
       replyTo +
       source.content +
       "</textarea>" +
@@ -44,23 +44,31 @@ const setUser = (data, username, commentID, container, toggleParam) => {
   const setContainer = (commentClass, action, source) => {
     let replyTo;
     let yourComment;
+    let yourEditForm;
+    let yourUpdatedComment
     if (
       commentClass === "comment reply" ||
       commentClass === "comment reply comment--you"
     ) {
       replyTo = "@" + source.replyTo + " ";
       yourComment='container-id--reply'
+      yourEditForm = 'comment__text--edit comment__text--edit--you'
     } else {
       replyTo = "";
       yourComment='container-id'
+      yourEditForm = 'comment__text--edit'
     }
 
     if (
         commentClass === "comment comment--you"
       ) {
         yourComment='container-id--you'
+      yourEditForm = 'comment__text--edit comment__text--edit--you'
+      yourUpdatedComment = 'updated-comment updated-comment--you'
       } else {
         yourComment='container-id'
+      yourEditForm = 'comment__text--edit'
+      yourUpdatedComment = 'updated-comment'
       }
   
     const voteForm =
@@ -101,7 +109,7 @@ const setUser = (data, username, commentID, container, toggleParam) => {
   
     const commentText =
       "<div class='comment__text'>" +
-      editText(source, replyTo) +
+      editText(source, replyTo, yourEditForm, yourUpdatedComment) +
       "<span class='comment__text--reply-to'>" +
       replyTo +
       "</span>" +
