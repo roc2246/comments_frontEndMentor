@@ -98,7 +98,7 @@ app.get("/replies", (req, res) => {
   let sql =
     "SELECT " +
     "replies.id, replies.comment_id, users.username, users.avatar_png, " +
-    "replies.replyTo, replies.reply_content, replies.reply_createdAt, replies.reply_score " +
+    "replies.replyTo, replies.content, replies.createdAt, replies.score " +
     "FROM comments " +
     "INNER JOIN replies on comments.id = replies.comment_id " +
     "INNER JOIN users on users.id = replies.user_id";
@@ -135,7 +135,7 @@ app.post("/addReply", (req, res) => {
   let replyTo = req.body.reply_to;
 
   let sql =
-    `INSERT INTO replies (comment_id, user_id, replyTo, reply_content, reply_createdAt, reply_score) 
+    `INSERT INTO replies (comment_id, user_id, replyTo, content, createdAt, score) 
   VALUES (` +
     commentID +
     `, ` +
