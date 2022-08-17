@@ -1,5 +1,3 @@
-// Function Executables
-
 const setUser = (data, username, commentID, container, toggleParam) => {
     if (data === username) {
       commentClass = "" + container + " comment--you";
@@ -27,15 +25,15 @@ const setUser = (data, username, commentID, container, toggleParam) => {
     }
   };
   
-  const editText = (no, replyTo) => {
+  const editText = (source, replyTo) => {
     const form =
       "<form  method='POST' class='comment__text--edit'>" +
       "<input name='comment_index' class='comment-index' style='display:none;' value=" +
-      no.id +
+      source.id +
       ">" +
       "<textarea name='updated_comment' class='updated-comment'>" +
       replyTo +
-      no.content +
+      source.content +
       "</textarea>" +
       "<button class='update-comment'>UPDATE</button>" +
       "</form> ";
@@ -43,58 +41,73 @@ const setUser = (data, username, commentID, container, toggleParam) => {
     return form;
   };
   
-  const setContainer = (commentClass, action, no) => {
+  const setContainer = (commentClass, action, source) => {
     let replyTo;
+    let yourComment;
     if (
       commentClass === "comment reply" ||
       commentClass === "comment reply comment--you"
     ) {
-      replyTo = "@" + no.replyTo + " ";
+      replyTo = "@" + source.replyTo + " ";
+      yourComment='container-id--reply'
     } else {
       replyTo = "";
+      yourComment='container-id'
     }
+
+    if (
+        commentClass === "comment comment--you"
+      ) {
+        yourComment='container-id--you'
+      } else {
+        replyTo = "";
+        yourComment='container-id'
+      }
   
     const voteForm =
       "<form class='comment__vote' method='POST' action='http://localhost:3000/" +
       action +
       "'>" +
       "<input name='comment_index' style='display:none;' value=" +
-      no.id +
+      source.id +
       ">" +
       "<input name='upvote_or_downvote' class='change' style='display:none;' value=''>" +
       "<button class='upvote' onclick='changeValue(\"+1\")'>" +
       "<img src='images/icon-plus.svg' alt='upvote score'>" +
       "</button>" +
       "<input name='score' class='rating' value=" +
-      no.score +
+      source.score +
       ">" +
       "<button class='downvote' onclick='changeValue(\"-1\")'>" +
       "<img src='images/icon-minus.svg' alt='downvote score'>" +
       "</button>" +
       "</form>";
   
+      
+
     const topRow =
       "<div class='comment__top-row'>" +
       "<img class='avatar' alt='avatar' src='" +
-      no.avatar_png +
+      source.avatar_png +
       "'>" +
       "<span class='name'>" +
-      no.username +
+      source.username +
       "</span>" +
       youIcon +
       "<span class='post-date'>" +
-      no.createdAt +
+      source.createdAt +
       "</span>" +
+      "<span class='"+yourComment+"'>"+source.id+"</span>"+
       "</div>";
   
     const commentText =
       "<div class='comment__text'>" +
-      editText(no, replyTo) +
+      editText(source, replyTo) +
       "<span class='comment__text--reply-to'>" +
       replyTo +
       "</span>" +
       "<span class='comment__text--text'>" +
-      no.content +
+      source.content +
       "</span>" +
       "</div>";
   

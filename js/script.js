@@ -194,18 +194,16 @@ fetch(session)
 
         // Delete Comment
         const deleteForm = document.getElementsByClassName("modal")[0];
-        const idContainer = document.getElementsByClassName("comment-index");
+        const idContainer = document.getElementsByClassName("container-id--you");
 
-        console.log(idContainer[2]);
         const deleteComment = document.getElementsByClassName(
           "reply-edit-delete__delete"
         );
 
         for (let x = 0; x < deleteComment.length; x++) {
-          console.log(idContainer[x]);
           deleteComment[x].addEventListener("click", () => {
             document.getElementsByName("delete_comment_id")[0].value =
-              idContainer[x].value;
+              parseInt(idContainer[x].innerText);
             if (
               deleteForm.style.display === "none" ||
               deleteForm.style.display === ""
