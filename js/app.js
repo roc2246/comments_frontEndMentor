@@ -214,18 +214,18 @@ app.post("/updateReplyScore", (req, res) => {
 });
 
 // Update Reply
-app.post("/updateReply", (req, res) => {
-  let replyID = req.body.reply_index;
-  let content = req.body.updated_reply;
-  let sql = "UPDATE replies SET reply_content='" + content + "' WHERE id=" + replyID + "";
-  db.query(sql, (error, result) => {
-    if (error) {
-      console.log(error);
-    }
-    res.send(result);
-    console.log(sql)
-  });
-});
+// app.post("/updateReply", (req, res) => {
+//   let replyID = req.body.reply_index;
+//   let content = req.body.updated_reply;
+//   let sql = "UPDATE replies SET reply_content='" + content + "' WHERE id=" + replyID + "";
+//   db.query(sql, (error, result) => {
+//     if (error) {
+//       console.log(error);
+//     }
+//     res.send(result);
+//     console.log(sql)
+//   });
+// });
 
 // Update Comment
 app.get("/updateComment/:id", (req, res) => {
@@ -245,6 +245,33 @@ app.patch("/updateComment/:id", (req, res) => {
   console.log(commentID)
   let content = req.body.updated_comment;
   let sql = "UPDATE comments SET content=? WHERE id=?";
+  db.query(sql, [content, commentID] ,(error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
+// Update Reply
+app.get("/updateReply/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  let sql = "SELECT * FROM replies WHERE  id=?";
+  db.query(sql, [commentID], (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
+app.patch("/updateReply/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  console.log(commentID)
+  let content = req.body.updated_comment;
+  let sql = "UPDATE replies SET content=? WHERE id=?";
   db.query(sql, [content, commentID] ,(error, result) => {
     if (error) {
       console.log(error);
