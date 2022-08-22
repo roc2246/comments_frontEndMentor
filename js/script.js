@@ -23,6 +23,7 @@ fetch(session)
   .then((data) => {
     const userInfo = data;
     const userAvatar = userInfo.avatar_png;
+    const userUsername = userInfo.username;
     const userAvatarContainer = document.querySelector(
       ".add-comment > .avatar--you"
     );
@@ -37,21 +38,30 @@ fetch(session)
 
         for (let x = 0; x < comments.length; x++) {
           commentFormKey++;
-          const setUserComment = setUser(
-            comments[x].username,
-            userInfo.username,
-            comments[x].id,
+          const userComment = {
+            user: comments[x].username,
+            userName: userInfo.username,
+            commentID: comments[x].id
+          }
+
+          const setUserComment = setUser.bind(userComment)
+
+          // Checks if comment is from user
+          setUserComment(
             "comment",
             "toggle(replyForm, [" + commentFormKey + "])"
           );
 
-          // Checks if comment is from user
-          setUserComment;
-
           // Generates Comments
           commentBox.innerHTML +=
             setContainer(commentClass, "updateScore", comments[x]) +
-            addContainerForm('add-comment', 'add-comment--add-reply', comments[x], comments[x], userAvatar)
+            addContainerForm(
+              "add-comment",
+              "add-comment--add-reply",
+              comments[x],
+              comments[x],
+              userAvatar
+            );
 
           // Creates reply flexbox for each comment
           commentBox.innerHTML +=
@@ -77,22 +87,31 @@ fetch(session)
                 if (comments[x].id === replies[y].comment_id) {
                   replyFormKey++;
                   commentFormKey++;
-                  const setUserReply = setUser(
-                    replies[y].username,
-                    userInfo.username,
-                    replies[y].id,
+                
+                  const userReply = {
+                    user: replies[y].username,
+                    userName: userInfo.username,
+                    commentID: replies[y].id
+                  }
+        
+                  const setUserReply = setUser.bind(userReply)
+
+                  // Checks if reply is from user
+                  setUserReply(
                     "comment reply",
                     "toggle(replyToReply, " + [replyFormKey] + ")"
                   );
 
-                  // Checks if reply is from user
-                  setUserReply;
-
                   // Generates Replies
                   replyCommentWrapper[x].innerHTML +=
                     setContainer(commentClass, "updateReplyScore", replies[y]) +
-                    addContainerForm('replyToReply', 'add-comment--add-reply reply-to-reply', comments[x], replies[y], userAvatar)
-             
+                    addContainerForm(
+                      "replyToReply",
+                      "add-comment--add-reply reply-to-reply",
+                      comments[x],
+                      replies[y],
+                      userAvatar
+                    );
                 }
               }
 
@@ -169,7 +188,8 @@ fetch(session)
 
         // Delete Comment
         const deleteForm = document.getElementsByClassName("modal")[0];
-        const idContainer = document.getElementsByClassName("container-id--you");
+        const idContainer =
+          document.getElementsByClassName("container-id--you");
 
         const deleteComment = document.getElementsByClassName(
           "reply-edit-delete__delete"
@@ -177,8 +197,9 @@ fetch(session)
 
         for (let x = 0; x < deleteComment.length; x++) {
           deleteComment[x].addEventListener("click", () => {
-            document.getElementsByName("delete_comment_id")[0].value =
-              parseInt(idContainer[x].innerText);
+            document.getElementsByName("delete_comment_id")[0].value = parseInt(
+              idContainer[x].innerText
+            );
             if (
               deleteForm.style.display === "none" ||
               deleteForm.style.display === ""

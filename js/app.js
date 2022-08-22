@@ -213,20 +213,6 @@ app.post("/updateReplyScore", (req, res) => {
   });
 });
 
-// Update Reply
-// app.post("/updateReply", (req, res) => {
-//   let replyID = req.body.reply_index;
-//   let content = req.body.updated_reply;
-//   let sql = "UPDATE replies SET reply_content='" + content + "' WHERE id=" + replyID + "";
-//   db.query(sql, (error, result) => {
-//     if (error) {
-//       console.log(error);
-//     }
-//     res.send(result);
-//     console.log(sql)
-//   });
-// });
-
 // Update Comment
 app.get("/updateComment/:id", (req, res) => {
   let commentID = parseInt(req.params.id);

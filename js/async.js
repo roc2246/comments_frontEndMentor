@@ -125,7 +125,6 @@ setTimeout(() => {
   const commentId = document.getElementsByClassName("comment-index");
 
   for (let x = 0; x < editCommentForm.length; x++) {
-    console.log(editCommentForm[x])
     editCommentForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
       console.log(commentId[x].value);
@@ -143,28 +142,3 @@ setTimeout(() => {
     });
   }
 }, 1000);
-
-// Update comment
-// setTimeout(() => {
-//   const updatedComment = document.getElementsByClassName("updated-comment--you");
-//   const editCommentForm = document.getElementsByClassName("comment__text--edit--you");
-//   const commentId = document.getElementsByClassName("container-id--you");
-
-//   for (let x = 0; x < commentId.length; x++) {
-//     console.log(updatedComment[x].value);
-//     editCommentForm[x].addEventListener("submit", (e) => {
-//       e.preventDefault();
-//       fetch(`http://localhost:3000/updateComment/${parseInt(commentId[x].innerText)}`, {
-//         method: "PATCH",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           updated_comment: updatedComment[x].value,
-//         }),
-//       }).then((text) => {
-//         console.log(text);
-//       });
-//     });
-//   }
-// }, 1000);

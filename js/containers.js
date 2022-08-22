@@ -1,10 +1,10 @@
-const setUser = (data, username, commentID, container, toggleParam) => {
-  if (data === username) {
+const setUser = function(container, toggleParam) {
+  if (this.user=== this.userName) {
     commentClass = "" + container + " comment--you";
     crud =
       "<span class='reply-edit-delete'>" +
       "<input name='comment_index' class='reply-reference-no' style='display:none;' value=" +
-      commentID +
+      this.commentID +
       ">" +
       "<span class='reply-edit-delete__delete'>" +
       "<img src='images/icon-delete.svg' alt='' class='reply-edit-delete__reply--image'> Delete</span>" +
