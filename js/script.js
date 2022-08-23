@@ -12,18 +12,12 @@ const commentBox = document.getElementsByClassName("comment-box")[0];
 let replyFormKey = -1;
 let commentFormKey = -1;
 
-// Containers for crud features and class names
-let crud;
-let commentClass;
-let youIcon;
-
 // Fetches Session Data
 fetch(session)
   .then((response) => response.json())
   .then((data) => {
     const userInfo = data;
     const userAvatar = userInfo.avatar_png;
-    const userUsername = userInfo.username;
     const userAvatarContainer = document.querySelector(
       ".add-comment > .avatar--you"
     );

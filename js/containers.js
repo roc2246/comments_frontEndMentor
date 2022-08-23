@@ -1,4 +1,5 @@
 const setUser = function(container, toggleParam) {
+  
   if (this.user=== this.userName) {
     commentClass = "" + container + " comment--you";
     crud =
@@ -46,10 +47,6 @@ const editText = (source, replyTo, yourEditForm, yourUpdatedComment) => {
 };
 
 const setContainer = (commentClass, action, source) => {
-  let replyTo;
-  let yourComment;
-  let yourEditForm;
-  let yourUpdatedComment;
   if (
     commentClass === "comment reply" ||
     commentClass === "comment reply comment--you"
