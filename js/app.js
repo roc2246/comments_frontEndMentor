@@ -184,12 +184,10 @@ app.post("/addReplyToReply", (req, res) => {
 
 
 // Update Score
-app.post("/updateScore", (req, res) => {
-  let userID = req.body.comment_index;
-  let score = req.body.score;
-  let scoreChange = req.body.upvote_or_downvote
-  let sql = "UPDATE comments SET score=" + score + " "+scoreChange+" WHERE id=" + userID + "";
-  db.query(sql, (error, result) => {
+app.get("/updateScore/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  let sql = "SELECT score FROM comments WHERE  id=?";
+  db.query(sql, [commentID], (error, result) => {
     if (error) {
       console.log(error);
     }
@@ -197,6 +195,22 @@ app.post("/updateScore", (req, res) => {
     console.log(sql)
   });
 });
+
+app.patch("/updateScore/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  let score = req.body.score;
+  console.log(score)
+  let sql = "UPDATE comments SET score=? WHERE id=?";
+  db.query(sql, [score, commentID] ,(error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
+
 
 // Update ReplyScore
 app.post("/updateReplyScore", (req, res) => {

@@ -61,7 +61,7 @@ const setContainer = (commentClass, action, source) => {
   }
 
   if (commentClass === "comment comment--you") {
-    yourComment = "container-id--you";
+    yourComment = "container-id container-id--you";
     yourEditForm = "comment__text--edit comment__text--edit--you";
     yourUpdatedComment = "updated-comment updated-comment--you";
   } else {

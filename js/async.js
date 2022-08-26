@@ -142,3 +142,31 @@ setTimeout(() => {
     });
   }
 }, 1000);
+
+
+// Update score
+setTimeout(() => {
+  let vote = document.getElementsByClassName("rating");
+  let voteChange = document.getElementsByClassName("change");
+  const updateVoteForm = document.getElementsByClassName("comment__vote");
+  const commentId = document.getElementsByClassName("container-id");
+
+  for (let x = 0; x < commentId.length; x++) {
+    updateVoteForm[x].addEventListener("submit", (e) => {
+      e.preventDefault();
+      vote[x].value = parseInt(vote[x].value) + parseInt(voteChange[x].value);
+      console.log(typeof vote[x].value)
+      fetch(`http://localhost:3000/updateScore/${parseInt(commentId[x].innerText)}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          score: vote[x].value
+        }),
+      }).then((text) => {
+        console.log(text);
+      });
+    });
+  }
+}, 1000);
