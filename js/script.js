@@ -48,7 +48,7 @@ fetch(session)
 
           // Generates Comments
           commentBox.innerHTML +=
-            setContainer(commentClass, "updateScore", comments[x]) +
+            setContainer(commentClass, comments[x]) +
             addContainerForm(
               "add-comment",
               "add-comment--add-reply",
@@ -98,7 +98,7 @@ fetch(session)
 
                   // Generates Replies
                   replyCommentWrapper[x].innerHTML +=
-                    setContainer(commentClass, "updateReplyScore", replies[y]) +
+                    setContainer(commentClass, replies[y]) +
                     addContainerForm(
                       "replyToReply",
                       "add-comment--add-reply reply-to-reply",

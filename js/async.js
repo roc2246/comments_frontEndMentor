@@ -146,23 +146,47 @@ setTimeout(() => {
 
 // Update score
 setTimeout(() => {
-  let vote = document.getElementsByClassName("rating");
-  let voteChange = document.getElementsByClassName("change");
-  const updateVoteForm = document.getElementsByClassName("comment__vote");
-  const commentId = document.getElementsByClassName("container-id");
+  let vote = document.querySelectorAll(".comment:not(.reply) > .comment__vote > .rating");
+  let voteChange = document.querySelectorAll(".comment:not(.reply) > .comment__vote > .change");
+  const updateVoteForm = document.querySelectorAll(".comment:not(.reply) > .comment__vote");
+  const commentId = document.querySelectorAll(".comment:not(.reply) > .comment__top-row > .container-id");
 
   for (let x = 0; x < commentId.length; x++) {
     updateVoteForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
-      vote[x].value = parseInt(vote[x].value) + parseInt(voteChange[x].value);
-      console.log(typeof vote[x].value)
       fetch(`http://localhost:3000/updateScore/${parseInt(commentId[x].innerText)}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          score: vote[x].value
+          score: parseInt(vote[x].value) + parseInt(voteChange[x].value)
+        }),
+      }).then((text) => {
+        console.log(text);
+      });
+    });
+  }
+}, 1000);
+
+
+// Update reply score
+setTimeout(() => {
+  let vote = document.querySelectorAll(".reply > .comment__vote > .rating");
+  let voteChange = document.querySelectorAll(".reply > .comment__vote > .change");
+  const updateVoteForm = document.querySelectorAll(".reply > .comment__vote");
+  const commentId = document.querySelectorAll(".reply > .comment__top-row > .container-id");
+
+  for (let x = 0; x < commentId.length; x++) {
+    updateVoteForm[x].addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(`http://localhost:3000/updateReplyScore/${parseInt(commentId[x].innerText)}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          score: parseInt(vote[x].value) + parseInt(voteChange[x].value)
         }),
       }).then((text) => {
         console.log(text);

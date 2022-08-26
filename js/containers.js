@@ -46,13 +46,13 @@ const editText = (source, replyTo, yourEditForm, yourUpdatedComment) => {
   return form;
 };
 
-const setContainer = (commentClass, action, source) => {
+const setContainer = (commentClass, source) => {
   if (
     commentClass === "comment reply" ||
     commentClass === "comment reply comment--you"
   ) {
     replyTo = "@" + source.replyTo + " ";
-    yourComment = "container-id--reply";
+    yourComment = "container-id container-id--reply";
     yourEditForm = "comment__text--edit comment__text--edit--you";
   } else {
     replyTo = "";
@@ -71,9 +71,7 @@ const setContainer = (commentClass, action, source) => {
   }
 
   const voteForm =
-    "<form class='comment__vote' method='POST' action='http://localhost:3000/" +
-    action +
-    "'>" +
+    "<form class='comment__vote' method='POST' >" +
     "<input name='comment_index' style='display:none;' value=" +
     source.id +
     ">" +
