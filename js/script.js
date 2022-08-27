@@ -234,7 +234,27 @@ const changeValue = (o) => {
 };
 
 const deleteAction = (formNo) => {
+
   modal[formNo].setAttribute("onsubmit", "return true;");
+  const deleteForm = document.querySelectorAll(".modal > .modal__content> .modal__btn-box")[formNo];
+  const commentId = document.querySelectorAll(".modal > .modal__content> .modal__btn-box> .delete-comment-id")[formNo];
+    deleteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let route;
+      if(formNo === 0){
+        route = "deleteComment"
+      } else if (formNo === 1) {
+        route = "deleteReply"
+      }
+      fetch(`http://localhost:3000/${route}/${commentId.value}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((text) => {
+        console.log(text);
+      });
+    });
 };
 
 const closeModal = (formNo) => {
