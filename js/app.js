@@ -1,6 +1,6 @@
 
 const express = require("express");
-var session = require("express-session");
+const session = require("cookie-session");
 const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
