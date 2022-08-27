@@ -1,14 +1,10 @@
+
 const express = require("express");
 var session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
-const path = require("path");
-
-const mysql = require("mysql");
-
-
 const cors = require("cors");
-
+const db = require('./login')
 
 app.use(cors());
 
@@ -20,13 +16,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// Create Connection
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "comments",
-});
 
 // Connect
 db.connect((err) => {
@@ -348,7 +337,7 @@ app.delete("/deleteReply/:id", (req, res) => {
   });
 });
 
-const portNo = 3000;
+const portNo = process.env.PORT || 3000;
 app.listen(portNo, () => {
   console.log("Server running on port " + portNo);
 });
