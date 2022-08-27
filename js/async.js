@@ -210,3 +210,20 @@ setTimeout(() => {;
       });
     });
 }, 1000);
+
+// Delete REply
+setTimeout(() => {;
+  const deleteForm = document.querySelectorAll(".modal > .modal__content> .modal__btn-box")[1];
+  const commentId = document.querySelectorAll(".modal > .modal__content> .modal__btn-box> .delete-comment-id")[1];
+    deleteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(`http://localhost:3000/deleteReply/${commentId.value}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((text) => {
+        console.log(text);
+      });
+    });
+}, 1000);

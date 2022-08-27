@@ -322,11 +322,38 @@ app.delete("/deleteComment/:id", (req, res) => {
 });
 
 // Delete Reply
-app.post("/deleteReply", (req, res) => {
-  let replyID = req.body.delete_comment_id;
-  let sql = "DELETE FROM replies WHERE replies.id="+replyID+"";
+// app.post("/deleteReply", (req, res) => {
+//   let replyID = req.body.delete_comment_id;
+//   let sql = "DELETE FROM replies WHERE replies.id="+replyID+"";
 
-  db.query(sql, (error, result) => {
+//   db.query(sql, (error, result) => {
+//     if (error) {
+//       console.log(error);
+//     }
+//     res.send(result);
+//     console.log(sql)
+//   });
+// });
+
+
+app.get("/deleteReply/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  console.log(commentID)
+  let sql = "SELECT * FROM replies WHERE id=?";
+  db.query(sql, [commentID], (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
+
+app.delete("/deleteReply/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  console.log(commentID)
+  let sql = "DELETE FROM replies WHERE id=?";
+  db.query(sql, [commentID] ,(error, result) => {
     if (error) {
       console.log(error);
     }
