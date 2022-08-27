@@ -1,3 +1,5 @@
+const waitTime = 100
+
 // Add comment
 const newCommentForm = document.getElementById("new-comment");
 newCommentForm.addEventListener("submit", (e) => {
@@ -50,7 +52,7 @@ setTimeout(() => {
       });
     });
   }
-}, 1000);
+}, waitTime);
 
 // Add reply
 setTimeout(() => {
@@ -85,7 +87,7 @@ setTimeout(() => {
         });
     });
   }
-}, 1000);
+}, waitTime);
 
 // Add reply to reply
 setTimeout(() => {
@@ -119,7 +121,7 @@ setTimeout(() => {
         });
     });
   }
-}, 1000);
+}, waitTime);
 
 // Update reply
 setTimeout(() => {
@@ -145,7 +147,7 @@ setTimeout(() => {
       });
     });
   }
-}, 1000);
+}, waitTime);
 
 
 // Update score
@@ -172,7 +174,7 @@ setTimeout(() => {
       });
     });
   }
-}, 1000);
+}, waitTime);
 
 
 // Update reply score
@@ -199,4 +201,4 @@ setTimeout(() => {
       });
     });
   }
-}, 1000);
+}, waitTime);
