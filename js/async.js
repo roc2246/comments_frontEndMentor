@@ -33,7 +33,6 @@ setTimeout(() => {
   const commentId = document.getElementsByClassName("container-id--you");
 
   for (let x = 0; x < commentId.length; x++) {
-    console.log(updatedComment[x].value);
     editCommentForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
       fetch(`http://localhost:3000/updateComment/${parseInt(commentId[x].innerText)}`, {
@@ -193,4 +192,21 @@ setTimeout(() => {
       });
     });
   }
+}, 1000);
+
+// Delete Comment
+setTimeout(() => {;
+  const deleteForm = document.querySelectorAll(".modal > .modal__content> .modal__btn-box")[0];
+  const commentId = document.querySelectorAll(".modal > .modal__content> .modal__btn-box> .delete-comment-id")[0];
+    deleteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(`http://localhost:3000/deleteComment/${commentId.value}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((text) => {
+        console.log(text);
+      });
+    });
 }, 1000);

@@ -295,11 +295,24 @@ app.patch("/updateReply/:id", (req, res) => {
 });
 
 // Delete Comment
-app.post("/deleteComment", (req, res) => {
-  let commentID = req.body.delete_comment_id;
-  let sql = "DELETE FROM comments WHERE comments.id="+commentID+"";
+app.get("/deleteComment/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  console.log(commentID)
+  let sql = "SELECT * FROM comments WHERE id=?";
+  db.query(sql, [commentID], (error, result) => {
+    if (error) {
+      console.log(error);
+    }
+    res.send(result);
+    console.log(sql)
+  });
+});
 
-  db.query(sql, (error, result) => {
+app.delete("/deleteComment/:id", (req, res) => {
+  let commentID = parseInt(req.params.id);
+  console.log(commentID)
+  let sql = "DELETE FROM comments WHERE id=?";
+  db.query(sql, [commentID] ,(error, result) => {
     if (error) {
       console.log(error);
     }
