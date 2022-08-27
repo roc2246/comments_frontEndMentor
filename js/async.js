@@ -1,4 +1,6 @@
 const waitTime = 100
+const portNo = 3000
+const localHost = 'http://localhost:' + portNo 
 
 // Add comment
 const newCommentForm = document.getElementById("new-comment");
@@ -7,7 +9,7 @@ newCommentForm.addEventListener("submit", (e) => {
 
   const comment = document.getElementById("comment").value;
 
-  fetch("http://localhost:3000/add", {
+  fetch(`${localHost}/add`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -16,7 +18,7 @@ newCommentForm.addEventListener("submit", (e) => {
   })
     .then((text) => {
       console.log(text);
-      fetch("http://localhost:3000/comments")
+      fetch(localHost + "/comments")
         .then((response) => response.json())
         .then((data) => {
           const newComment = data;
@@ -38,7 +40,7 @@ setTimeout(() => {
   for (let x = 0; x < commentId.length; x++) {
     editCommentForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
-      fetch(`http://localhost:3000/updateComment/${parseInt(commentId[x].innerText)}`, {
+      fetch(`${localHost}/updateComment/${parseInt(commentId[x].innerText)}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +71,7 @@ setTimeout(() => {
     newReplyForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
 
-      fetch("http://localhost:3000/addReply", {
+      fetch(`${localHost}/addReply`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -103,7 +105,7 @@ setTimeout(() => {
     newReplyForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
 
-      fetch("http://localhost:3000/addReplyToReply", {
+      fetch(`${localHost}/addReplyToReply`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -133,7 +135,7 @@ setTimeout(() => {
     editCommentForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
       console.log(commentId[x].value);
-      fetch(`http://localhost:3000/updateReply/${commentId[x].value}`, {
+      fetch(`${localHost}/updateReply/${commentId[x].value}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +162,7 @@ setTimeout(() => {
   for (let x = 0; x < commentId.length; x++) {
     updateVoteForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
-      fetch(`http://localhost:3000/updateScore/${parseInt(commentId[x].innerText)}`, {
+      fetch(`${localHost}/updateScore/${parseInt(commentId[x].innerText)}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -187,7 +189,7 @@ setTimeout(() => {
   for (let x = 0; x < commentId.length; x++) {
     updateVoteForm[x].addEventListener("submit", (e) => {
       e.preventDefault();
-      fetch(`http://localhost:3000/updateReplyScore/${parseInt(commentId[x].innerText)}`, {
+      fetch(`${localHost}/updateReplyScore/${parseInt(commentId[x].innerText)}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

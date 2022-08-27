@@ -1,10 +1,10 @@
 const port = "3000";
-const url = "http://localhost:";
+const url = "http://localhost:" + port;
 
-const users = url + port + "/users";
-const session = url + port + "/session";
-const replies = url + port + "/replies";
-const comments = url + port + "/comments";
+const users = url + "/users";
+const session = url + "/session";
+const replies = url + "/replies";
+const comments = url + "/comments";
 
 const commentBox = document.getElementsByClassName("comment-box")[0];
 
@@ -89,11 +89,10 @@ fetch(session)
                   }
         
                   const setUserReply = setUser.bind(userReply)
-
                   // Checks if reply is from user
                   setUserReply(
                     "comment reply",
-                    "toggle(replyToReply, " + [replyFormKey] + ")"
+                    "toggleReply("+replyFormKey+" )"
                   );
 
                   // Generates Replies
@@ -226,6 +225,17 @@ const toggle = (formName, form) => {
   }
 };
 
+const toggleReply = (form) => {
+  if (
+    replyToReply[form].style.display === "none" ||
+    replyToReply[form].style.display === ""
+  ) {
+    replyToReply[form].style.display = "grid";
+  } else {
+    replyToReply[form].style.display = "none";
+  }
+};
+
 const changeValue = (o) => {
   const changeBox = document.getElementsByClassName("change");
   for (x in changeBox) {
@@ -245,7 +255,7 @@ const deleteAction = (formNo) => {
       } else if (formNo === 1) {
         route = "deleteReply"
       }
-      fetch(`http://localhost:3000/${route}/${commentId.value}`, {
+      fetch(`${url}/${route}/${commentId.value}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
