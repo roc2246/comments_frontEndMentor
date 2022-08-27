@@ -19,6 +19,7 @@ newCommentForm.addEventListener("submit", (e) => {
         .then((data) => {
           const newComment = data;
           console.log(newComment[newComment.length - 1]);
+          location.reload()
         });
     })
     .catch((error) => {
@@ -45,6 +46,7 @@ setTimeout(() => {
         }),
       }).then((text) => {
         console.log(text);
+        location.reload()
       });
     });
   }
@@ -76,6 +78,7 @@ setTimeout(() => {
       })
         .then((text) => {
           console.log(text);
+          location.reload()
         })
         .catch((error) => {
           console.log(error);
@@ -109,6 +112,7 @@ setTimeout(() => {
       })
         .then((text) => {
           console.log(text);
+          location.reload()
         })
         .catch((error) => {
           console.log(error);
@@ -137,6 +141,7 @@ setTimeout(() => {
         }),
       }).then((text) => {
         console.log(text);
+        location.reload()
       });
     });
   }
@@ -163,6 +168,7 @@ setTimeout(() => {
         }),
       }).then((text) => {
         console.log(text);
+        location.reload()
       });
     });
   }
@@ -189,29 +195,8 @@ setTimeout(() => {
         }),
       }).then((text) => {
         console.log(text);
+        location.reload()
       });
     });
   }
-}, 1000);
-
-// Delete Comment
-setTimeout(() => {;
-  
-}, 1000);
-
-// Delete Reply
-setTimeout(() => {;
-  // const deleteForm = document.querySelectorAll(".modal > .modal__content> .modal__btn-box")[1];
-  // const commentId = document.querySelectorAll(".modal > .modal__content> .modal__btn-box> .delete-comment-id")[1];
-  //   deleteForm.addEventListener("submit", (e) => {
-  //     e.preventDefault();
-  //     fetch(`http://localhost:3000/deleteReply/${commentId.value}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }).then((text) => {
-  //       console.log(text);
-  //     });
-  //   });
 }, 1000);

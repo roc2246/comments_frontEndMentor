@@ -234,7 +234,6 @@ const changeValue = (o) => {
 };
 
 const deleteAction = (formNo) => {
-
   modal[formNo].setAttribute("onsubmit", "return true;");
   const deleteForm = document.querySelectorAll(".modal > .modal__content> .modal__btn-box")[formNo];
   const commentId = document.querySelectorAll(".modal > .modal__content> .modal__btn-box> .delete-comment-id")[formNo];
@@ -253,6 +252,7 @@ const deleteAction = (formNo) => {
         },
       }).then((text) => {
         console.log(text);
+        location.reload()
       });
     });
 };
@@ -261,4 +261,6 @@ const closeModal = (formNo) => {
   modal[formNo].style.display = "none";
   modal[formNo].setAttribute("onsubmit", "return false;");
   window.onscroll = () => {};
+  location.reload()
+
 };
